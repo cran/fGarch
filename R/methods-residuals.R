@@ -28,8 +28,40 @@
 
 
 ################################################################################
-
-.First.lib <- function(lib, pkg) library.dynam("fGarch", pkg, lib)
-
+# METHOD:                 EXTRACTORS:
+#  residuals.fGARCH        S4 residuals method for an object of class 'fGARCH'
 ################################################################################
 
+
+setMethod(f = "residuals", signature(object = "fGARCH"), definition =
+    function(object, standardize = FALSE)
+{
+    # A function implemented by Diethelm Wuertz
+
+    # Description:
+    #   S4 Residuals method for an object of class fGARCH
+
+    # Arguments:
+    #   object - an object of class fGarch as returned by the
+    #       function garchFit
+    #   ... - optional argument to be passed, this may be standardize=FALSE
+    #       to return the -non-standardized values of the residuals.
+    #       By default standardized residuals will be returned.
+
+    # FUNCTION:
+
+
+    # Residuals:
+    if (standardize) {
+        ans = object@residuals/object@sigma.t
+    } else {
+        ans = object@residuals
+    }
+
+    # Return Value:
+    ans
+
+})
+
+
+# ------------------------------------------------------------------------------

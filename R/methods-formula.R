@@ -15,7 +15,7 @@
 # MA  02111-1307  USA
 
 # Copyrights (C)
-# for this R-port:
+# for this R-port: 
 #   1999 - 2008, Diethelm Wuertz, Rmetrics Foundation, GPL
 #   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
 #   info@rmetrics.org
@@ -28,8 +28,32 @@
 
 
 ################################################################################
+# FUNCTION:               DESCRIPTION:
+#  formula.fGARCH             Extracts 'fGarch' Model formulaficients
+################################################################################
 
-.First.lib <- function(lib, pkg) library.dynam("fGarch", pkg, lib)
+
+setMethod(f = "formula", signature(x = "fGARCH"), definition =  
+    function(x) 
+{   
+    # A function implemented by Diethelm Wuertz
+    
+    # Description:  
+    #   Extracts 'fGarch' Model formula
+    
+    # Arguments:
+    #   x - an object of class fGarch as returned by the function
+    #       garchFit
+    
+    # FUNCTION:
+    
+    # Numeric vector of fitted values:
+    ans = slot(x, "formula")
+    
+    # Return Value:
+    ans
+})
+
 
 ################################################################################
 

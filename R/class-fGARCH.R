@@ -28,8 +28,27 @@
 
 
 ################################################################################
+# FUNCTION:                 DESCRIPTION:
+#  'fGARCH'                  fGARCH Class representation
+################################################################################
 
-.First.lib <- function(lib, pkg) library.dynam("fGarch", pkg, lib)
+
+# Class Representation:
+setClass("fGARCH",
+    representation(
+        call = "call",
+        formula = "formula",
+        method = "character",
+        data = "numeric",
+        fit = "list",
+        residuals = "numeric",
+        fitted = "numeric",
+        h.t = "numeric",
+        sigma.t = "numeric",
+        title = "character",
+        description = "character")
+)
+
 
 ################################################################################
 

@@ -6,7 +6,7 @@
 #
 # This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU Library General Public License for more details.
 #
 # You should have received a copy of the GNU Library General
@@ -15,7 +15,7 @@
 # MA  02111-1307  USA
 
 # Copyrights (C)
-# for this R-port:
+# for this R-port: 
 #   1999 - 2008, Diethelm Wuertz, Rmetrics Foundation, GPL
 #   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
 #   info@rmetrics.org
@@ -28,8 +28,9 @@
 
 
 ################################################################################
-
-.First.lib <- function(lib, pkg) library.dynam("fGarch", pkg, lib)
-
+# FUNCTION:               PARAMETER ESTIMATION:    
+#  .garchRCDAHessian       Computes R coded CDA Hessian matrix
+#  .garchFCDAHessian       Computes Fortran coded CDA Hessian matrix
+#  .garchFFDAHessian       Computes Fortran coded FDA Hessian matrix
 ################################################################################
-
+    

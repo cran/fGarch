@@ -28,8 +28,36 @@
 
 
 ################################################################################
+# METHOD:                 EXTRACTORS:
+#  fitted.fGARCH           S3 fitted values for an object of class 'fGARCH'
+################################################################################
 
-.First.lib <- function(lib, pkg) library.dynam("fGarch", pkg, lib)
+
+setMethod(f = "fitted", signature(object = "fGARCH"), definition =
+    function(object)
+{
+    # A function implemented by Diethelm Wuertz
+
+    # Description:
+    #   S3 Fitted values method for an object of class fGARCH
+
+    # Arguments:
+    #   object - an object of class fGarch as returned by the function
+    #       garchFit
+
+    # FUNCTION:
+
+    # Get numeric vector of fitted, optionally standardized
+    fitted = object@fitted
+
+    # Get original time series class:
+    ans = slot(object, "data")
+    Name = as.character(fit@formula[2])
+    attr(ans, "Name") <- Name
+    # Return Value:
+    ans
+})
+
 
 ################################################################################
 

@@ -15,7 +15,7 @@
 # MA  02111-1307  USA
 
 # Copyrights (C)
-# for this R-port:
+# for this R-port: 
 #   1999 - 2008, Diethelm Wuertz, Rmetrics Foundation, GPL
 #   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
 #   info@rmetrics.org
@@ -28,8 +28,21 @@
 
 
 ################################################################################
+# FUNCTION:               SPECIFICATION: 
+#  fGARCHSPEC              S4 fGARCHSPEC Class representation 
+################################################################################
 
-.First.lib <- function(lib, pkg) library.dynam("fGarch", pkg, lib)
+
+setClass("fGARCHSPEC", 
+    representation(
+        call = "call",
+        formula = "formula",        
+        model = "list",
+        presample = "matrix",
+        distribution = "character",
+        rseed = "numeric")  
+)
+
 
 ################################################################################
 

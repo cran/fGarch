@@ -6,7 +6,7 @@
 #
 # This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU Library General Public License for more details.
 #
 # You should have received a copy of the GNU Library General
@@ -28,8 +28,36 @@
 
 
 ################################################################################
+# FUNCTION:               PARAMETER ESTIMATION:
+#  'fGARCH'                S4: fGARCH Class representation
+#  garchFit                Fits GARCH and APARCH processes
+################################################################################
 
-.First.lib <- function(lib, pkg) library.dynam("fGarch", pkg, lib)
+
+test.garchFit.init <-
+    function()
+{
+    # RVs:
+    RNGkind(kind = "Marsaglia-Multicarry", normal.kind = "Inversion")
+    set.seed(4711, kind = "Marsaglia-Multicarry")
+
+    # Simulate Garch(1,1) Series:
+    x = garchSim(n = 250)
+
+    # Modify Start Values - mci default:
+    fit = garchFit( ~ garch(1,1), x, init.rec = "mci", trace = FALSE) # default
+    print(coef(fit))
+
+    # Modify Start Values - uev alternative:
+    # fit = garchFit( ~ garch(1,1), x, init.rec = "uev", trace = FALSE)
+    # Error in .garchFit(formula.mean = args$formula.mean, formula.var = args$formula.var,  :
+    #   Algorithm only supported for mci Recursion
+    # coef(fit)
+
+    # Return Value:
+    return()
+}
+
 
 ################################################################################
 
