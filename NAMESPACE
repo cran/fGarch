@@ -6,7 +6,8 @@
 importFrom("fBasics",
            "volatility",
            "Heaviside",
-           ".sliderMenu")
+           ".sliderMenu",
+           "dsnig")                   ## DW
 importFrom("graphics",
            "plot",
            "abline",
@@ -21,6 +22,7 @@ importFrom("methods",
            "slotNames",
            "slot")
 importFrom("stats",
+           "update",
            "coef",
            "fitted",
            "formula",
@@ -84,6 +86,7 @@ useDynLib("fGarch")
 exportClasses("fGARCH",
               "fGARCHSPEC" )
 exportMethods("coef",
+              "update",
               "fitted",
               "formula",
               "plot",
@@ -187,3 +190,4 @@ export(
     "sstdSlider",
     "stdFit",
     ".truePersistence" )
+
