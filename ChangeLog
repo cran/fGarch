@@ -1,37 +1,90 @@
-2009-04-19  chalabi
+2009-08-14 chalabi
 
-	* DESCRIPTION: added explicit version number in Depends field for
-	  key packages
+        * cosmetic changes in help page
 
-2009-04-02  chalabi
+pkg/fGarch/man/methods-predict.Rd
 
-	* DESCRIPTION: more explicit depends and suggests field in DESC
-	  file.
+2009-05-20 wuertz
 
-2009-04-01  chalabi
+        * alternative garchFit interface (still hidden) now runs
 
-	* DESCRIPTION: updated DESC file
+pkg/fGarch/R/garch-FitFromFormula.R
+pkg/fGarch/R/garch-FitFromSpec.R
+pkg/fGarch/R/garch-FitInternal.R
 
-2009-01-30  chalabi
+2009-05-20 wuertz
 
-	* R/garchSpec.R:
+        * script file renamed
 
-2009-01-28  chalabi
+pkg/fGarch/R/garch-FitFromFormula.R
 
-	* DESCRIPTION: updated version number
+2009-05-20 wuertz
 
-2009-01-28  chalabi
+        * some smaller fixes and NAMESPACE adapted
 
-	* DESCRIPTION: changed version number to match version on CRAN + 1
+pkg/fGarch/NAMESPACE
+pkg/fGarch/R/garch-Distribution.R
+pkg/fGarch/R/garch-LogLik.R
 
-2009-01-12  chalabi
+2009-05-20 wuertz
 
-	* NAMESPACE, R/methods-update.R, man/class-fGARCH.Rd,
-	  man/class-fGARCHSPEC.Rd: added update method for fGARCH and
-	  fGARCHSPEC object
+        * script file renamed and disentangled
 
-2009-01-07  chalabi
+pkg/fGarch/R/dist-sged.R
+pkg/fGarch/R/dist-snig.R
+pkg/fGarch/R/dist-snorm.R
+pkg/fGarch/R/dist-sstd.R
+pkg/fGarch/R/garch-Distribution.R
+pkg/fGarch/R/garch-Fit.R
+pkg/fGarch/R/garch-FitControl.R
+pkg/fGarch/R/garch-Gradient.R
+pkg/fGarch/R/garch-Hessian.R
+pkg/fGarch/R/garch-Sim.R
+pkg/fGarch/R/garch-Solver.R
+pkg/fGarch/R/garch-Spec.R
+pkg/fGarch/R/garch-Stats.R
+pkg/fGarch/R/garchFit.R
+pkg/fGarch/R/garchFitControl.R
+pkg/fGarch/R/garchGradient.R
+pkg/fGarch/R/garchHessian.R
+pkg/fGarch/R/garchSim.R
+pkg/fGarch/R/garchSolver.R
+pkg/fGarch/R/garchSpec.R
+pkg/fGarch/R/garchStats.R
+pkg/fGarch/R/sged.R
+pkg/fGarch/R/snorm.R
+pkg/fGarch/R/sstd.R
 
-	* src/dist.f: fixed conditional distribution thanks to comments of
-	  Michal Miklovic.
+2009-05-15 chaussep
 
+        * added a plot option to predict and adapted the manual
+
+pkg/fGarch/R/methods-predict.R
+pkg/fGarch/man/methods-predict.Rd
+
+2009-05-15 chalabi
+
+        * added Pierre Chausse in DESC file for contribution
+
+pkg/fGarch/DESCRIPTION
+
+2009-04-19 chalabi
+
+        * added explicit version number in Depends field for key packages
+
+pkg/fGarch/DESCRIPTION
+
+2009-01-28 chalabi
+
+        * changed version number to match version on CRAN + 1
+
+pkg/fGarch/DESCRIPTION
+
+2009-01-12 chalabi
+
+        * added update method for fGARCH and fGARCHSPEC object
+
+pkg/fGarch/NAMESPACE
+pkg/fGarch/R/methods-update.R
+pkg/fGarch/man/class-fGARCH.Rd
+pkg/fGarch/man/class-fGARCHSPEC.Rd

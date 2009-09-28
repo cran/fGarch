@@ -1,12 +1,13 @@
 Package: fGarch
-Version: 2100.78
-Revision: 4093
-Date: 2009-04-19
+Version: 2100.79
+Revision: 4410
+Date: 2009-09-28
 Title: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling
-Author: Diethelm Wuertz, Yohan Chalabi, Michal Miklovic
+Author: Diethelm Wuertz and Yohan Chalabi with contribution from Michal
+        Miklovic, Chris Boudt, Pierre Chausse and others
 Depends: R (>= 2.6.0), stats, graphics, methods, timeDate, timeSeries,
-        fBasics (>= 2100.77)
-Suggests: RUnit, tcltk
+        fBasics (>= 2100.78)
+Suggests: RUnit, Matrix, fastICA, tcltk
 Maintainer: Rmetrics Core Team <Rmetrics-core@r-project.org>
 Description: Environment for teaching "Financial Engineering and
         Computational Finance"
@@ -17,6 +18,6 @@ LazyLoad: yes
 LazyData: yes
 License: GPL (>= 2)
 URL: http://www.rmetrics.org
-Packaged: 2009-04-20 06:09:55 UTC; yankee
+Packaged: 2009-09-28 12:27:26 UTC; yankee
 Repository: CRAN
-Date/Publication: 2009-04-20 09:26:28
+Date/Publication: 2009-09-28 14:10:16
