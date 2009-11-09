@@ -320,7 +320,7 @@ function()
         factr = 1e+07, pgtol = 0, tmax = 10, temp = 10)
 
     # Hessian:
-    hess <- .Internal(optimhess(par, fn, gr = NULL, con))
+    hess <- optimHess(par, fn,  control = con)
     hess <- 0.5 * (hess + t(hess))
     hess
 }

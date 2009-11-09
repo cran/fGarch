@@ -30,7 +30,6 @@ function(par, .params, .series, eps = 1.0e-4)
     # A function implemeted by Diethelm Wuertz
     
     # Description:
-    #   Compute Hessian via R's Internal function optimhess()
     
     # Arguments:
     #   par -
@@ -51,7 +50,7 @@ function(par, .params, .series, eps = 1.0e-4)
         factr = 1e+07, pgtol = 0, tmax = 10, temp = 10)
 
     # Compute Hessian:
-    H <- .Internal(optimhess(par, .garchLLH, NULL, con))
+    H <- optimHess(par, .garchLLH, NULL, con)
     H <- 0.5 * (H + t(H))
     nm <- names(par)
     dimnames(H) <- list(nm, nm)
