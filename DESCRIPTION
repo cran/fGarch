@@ -1,7 +1,7 @@
 Package: fGarch
-Version: 2100.79
-Revision: 4410
-Date: 2009-09-28
+Version: 2110.80
+Revision:
+Date: 2009-11-09
 Title: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling
 Author: Diethelm Wuertz and Yohan Chalabi with contribution from Michal
         Miklovic, Chris Boudt, Pierre Chausse and others
@@ -18,6 +18,6 @@ LazyLoad: yes
 LazyData: yes
 License: GPL (>= 2)
 URL: http://www.rmetrics.org
-Packaged: 2009-09-28 12:27:26 UTC; yankee
+Packaged: 2009-11-09 22:00:02 UTC; yankee
 Repository: CRAN
-Date/Publication: 2009-09-28 14:10:16
+Date/Publication: 2009-11-10 10:15:16
