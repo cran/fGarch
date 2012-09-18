@@ -1,6 +1,0 @@
-
-
-#
-# fBasics::dsnig
-#
-
