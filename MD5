@@ -1,5 +1,5 @@
-65ecadd0184423375852b50e06ddc446 *ChangeLog
-69a5b4c0b3ab8857624c10f2141b30e8 *DESCRIPTION
+8ddf42e368503fb9cb47500e2e44adab *ChangeLog
+b052643c399038f6e1573ac313d98c81 *DESCRIPTION
 30c60066607724b18822e7132213ce1b *NAMESPACE
 2eff91a11854273e4625d5b8672d94b6 *R/class-fGARCH.R
 8b319ac72e222f5b714fd561511a1965 *R/class-fGARCHSPEC.R
@@ -48,7 +48,7 @@ f46e2370d14171a1840333063b7a5abb *R/methods-show.R
 ad86287a53598ed54b90cd88a0d9ecc5 *R/methods-update.R
 d5635a8199157a93e80de65af8d745d9 *R/methods-volatility.R
 f9838bc1de85f6196779ebf05dc898bc *R/mgarch-FitFromFormula.R
-f6994f4d7f3f3eebc32f3875e755f54e *R/zzz.R
+fa3322933d76cfb3b2255a425a111b9d *R/zzz.R
 fe75772d65e05a3b189023e372d3d1a2 *data/dem2gbp.csv.gz
 58bbdc46c698bc7b97657229e8de1277 *data/sp500dge.csv.gz
 6042b9c5e5bec3ecc1b6959cd2858b64 *inst/COPYRIGHT.html
@@ -108,6 +108,6 @@ e585f179940bc17c4b15e0c46024cc65 *man/methods-residuals.Rd
 8d55ce40351bd0de5474d8ddc710cf47 *man/methods-volatility.Rd
 b608c18c7828e45ac286afefb3e8713c *src/Makevars
 dd6d06f2cbf677b8adad564612b25dc9 *src/dist.f
-951463598cdc94160eca0a4dfb5e8663 *src/llhGarch.f
+4b98f5d08a5afa0dac518fadc2eea3e6 *src/llhGarch.f
 d17c103c6fb1e4f6e84bfaf32add5211 *src/math.f
 ca566e590ec30abd0718c5375e1a446f *tests/doRUnit.R
