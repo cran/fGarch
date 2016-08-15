@@ -9,6 +9,8 @@ import("methods")
 import("timeDate")
 import("timeSeries")
 import("fBasics")
+importFrom("utils", "capture.output", "menu")
+
 
 ################################################
 ## useDynLib

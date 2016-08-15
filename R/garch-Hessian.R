@@ -190,7 +190,7 @@
         apply( as.data.frame(x), 1, FUN = function(z) max(abs(z), 1.0e-2))
     xh = x + h
     h = xh - x
-    ee = Matrix(diag(h), sparse = TRUE)
+    ee = Matrix::Matrix(diag(h), sparse = TRUE)
 
     # Compute forward and backward steps:
     gp = vector(mode = "numeric", length = n)

@@ -1,5 +1,5 @@
 Package: fGarch
-Version: 3010.82
+Version: 3010.82.1
 Revision: 5504
 Date: 2013-04-30
 Title: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling
@@ -10,14 +10,14 @@ Depends: R (>= 2.15.0), stats, graphics, methods, timeDate, timeSeries,
 Suggests: RUnit, Matrix, fastICA, tcltk
 Maintainer: Yohan Chalabi <yohan.chalabi@rmetrics.org>
 Description: Environment for teaching "Financial Engineering and
-        Computational Finance"
+        Computational Finance".
 NOTE: SEVERAL PARTS ARE STILL PRELIMINARY AND MAY BE CHANGED IN THE
         FUTURE. THIS TYPICALLY INCLUDES FUNCTION AND ARGUMENT NAMES, AS
         WELL AS DEFAULTS FOR ARGUMENTS AND RETURN VALUES.
 LazyData: yes
 License: GPL (>= 2)
 URL: http://www.rmetrics.org
-Packaged: 2013-04-30 20:07:14 UTC; yankee
 NeedsCompilation: yes
+Packaged: 2016-08-15 09:24:21 UTC; ripley
 Repository: CRAN
-Date/Publication: 2013-05-01 07:44:01
+Date/Publication: 2016-08-15 11:29:20

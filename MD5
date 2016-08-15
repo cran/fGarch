@@ -1,6 +1,6 @@
 8ddf42e368503fb9cb47500e2e44adab *ChangeLog
-b052643c399038f6e1573ac313d98c81 *DESCRIPTION
-30c60066607724b18822e7132213ce1b *NAMESPACE
+b241fd19fd30a7cf013a7364cdcf899a *DESCRIPTION
+84da63798e4bc9bd7ca513941769fe33 *NAMESPACE
 2eff91a11854273e4625d5b8672d94b6 *R/class-fGARCH.R
 8b319ac72e222f5b714fd561511a1965 *R/class-fGARCHSPEC.R
 04a5f0bf7ac0d162ab93f47530ccf9a9 *R/dist-absMoments.R
@@ -27,7 +27,7 @@ b95de1c14a197e1ca0154300fe2ced7a *R/garch-FitFromSpec.R
 7229c9a6a796cef089e5bf489ac43570 *R/garch-FitInternal.R
 fff4d1f43e02a27c8dbb7f3a878158a7 *R/garch-GlobalVars.R
 09d5ccc434690f061e870b4f22d8d3ad *R/garch-Gradient.R
-b52a3c76e5954d29e5516e196c0c0d85 *R/garch-Hessian.R
+9c0ec411810cc3ac437fa5a6d561e40b *R/garch-Hessian.R
 e1b1fa3c676e0da11af6333cdaba9361 *R/garch-Initialization.R
 e4cf2b0d3866184a53444e5a2dfd613d *R/garch-Sim.R
 e3e825a5d6575d25fe1cd253ea79a530 *R/garch-Solver.R
@@ -47,7 +47,7 @@ f46e2370d14171a1840333063b7a5abb *R/methods-show.R
 4c436f7f23d453ac09fb88c42ba8b007 *R/methods-summary.R
 ad86287a53598ed54b90cd88a0d9ecc5 *R/methods-update.R
 d5635a8199157a93e80de65af8d745d9 *R/methods-volatility.R
-f9838bc1de85f6196779ebf05dc898bc *R/mgarch-FitFromFormula.R
+e91268b2f41c918e5f72e6504802fde5 *R/mgarch-FitFromFormula.R
 fa3322933d76cfb3b2255a425a111b9d *R/zzz.R
 fe75772d65e05a3b189023e372d3d1a2 *data/dem2gbp.csv.gz
 58bbdc46c698bc7b97657229e8de1277 *data/sp500dge.csv.gz
@@ -101,13 +101,13 @@ f8d73cea1d5b19b4ff998658c89ac755 *man/garchFit.Rd
 437a5143241abaceff1a9bc446e54e5e *man/methods-fitted.Rd
 7184cdd72049c0bd39bfd7ed621a1276 *man/methods-formula.Rd
 1bff636eac58d145cb4a73109198df68 *man/methods-plot.Rd
-68f94a039c236dd70a24349cf4127d1f *man/methods-predict.Rd
+c106fc7bae63dd1457929dbff455fb5c *man/methods-predict.Rd
 e585f179940bc17c4b15e0c46024cc65 *man/methods-residuals.Rd
 5b2f04e08dc58078f6a167d9d79525fb *man/methods-show.Rd
 66cadde8ef0a5bc7d64a7da424685692 *man/methods-summary.Rd
 8d55ce40351bd0de5474d8ddc710cf47 *man/methods-volatility.Rd
-b608c18c7828e45ac286afefb3e8713c *src/Makevars
+3996e7c16bfb96fad295ee425815cb4d *src/Makevars
 dd6d06f2cbf677b8adad564612b25dc9 *src/dist.f
 4b98f5d08a5afa0dac518fadc2eea3e6 *src/llhGarch.f
-d17c103c6fb1e4f6e84bfaf32add5211 *src/math.f
+bd80962899be270e2000e67b9687f536 *src/math.f
 ca566e590ec30abd0718c5375e1a446f *tests/doRUnit.R

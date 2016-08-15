@@ -92,7 +92,7 @@ function(formula = ~ garch(1, 1), data,
     P <- svd$u
     Dsqr <- diag(sqrt(svd$d))
     # set.seed(4711) 
-    ica <- fastICA(X, n.comp = ncol(X))
+    ica <- fastICA::fastICA(X, n.comp = ncol(X))
     Z <- P %*% Dsqr %*% t(P) %*% ica$W
     colnames(Z) = rownames(Z) = colnames(data)
     Y <- X %*% solve(Z)
