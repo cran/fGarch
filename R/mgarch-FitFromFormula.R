@@ -22,7 +22,7 @@
 
 
 .gogarchFit <- 
-function(formula = ~ garch(1, 1), data, 
+  function(formula = ~ garch(1, 1), data, 
     init.rec = c("mci", "uev"), 
     delta = 2, 
     skew = 1, 
@@ -106,9 +106,9 @@ function(formula = ~ garch(1, 1), data,
     #   Bernhard Pfaff's contributed package gogarch
     H <- matrix(unlist(lapply(fit, function(x) x@h.t)), 
         ncol = ncol(X), nrow = nrow(X))
-    Hdf = data.frame(t(H))
-    rownames(Hdf) = colnames(data)
-    colnames(Hdf) = rownames(data)
+    Hdf <- data.frame(t(H))
+    rownames(Hdf) <- colnames(data)
+    colnames(Hdf) <- rownames(data)
     H.t <- lapply(Hdf, function(x) Z %*% diag(x) %*% t(Z))
     
     # Add Title and Description:
@@ -116,7 +116,7 @@ function(formula = ~ garch(1, 1), data,
     if(is.null(description)) description = description()
     
     # Result:
-    ans = new("fGARCH",
+    ans <- new("fGARCH",
         call = as.call(match.call()),
         formula = formula,
         method = "ICA go-Garch Parmeter Estimation",

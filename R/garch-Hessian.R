@@ -21,6 +21,8 @@
 #  .garchRCDAHessian       Computes R coded CDA Hessian matrix
 #  .garchRTSHessian        Computes R coded Two Sided Hessian matrix
 #  .hessian2sided          Function called from .garchRTSHessian
+# REQUIRED:
+#  Matrix
 ################################################################################
 
 
@@ -181,16 +183,16 @@
     # FUNCTION:
 
     # Settings:
-    n = length(x)
+    n <- length(x)
     fx <- f(x, ...)
-    eps = .Machine$double.eps
+    eps <- .Machine$double.eps
 
     # Compute the stepsize (h)
     h = eps^(1/3) *
         apply( as.data.frame(x), 1, FUN = function(z) max(abs(z), 1.0e-2))
     xh = x + h
     h = xh - x
-    ee = Matrix::Matrix(diag(h), sparse = TRUE)
+    ee <- Matrix::Matrix(diag(h), sparse = TRUE)
 
     # Compute forward and backward steps:
     gp = vector(mode = "numeric", length = n)

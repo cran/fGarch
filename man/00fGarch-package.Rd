@@ -1,33 +1,42 @@
 \name{fGarch-package}
 
+
 \alias{fGarch-package}
 \alias{fGarch}
 
+
 \docType{package}
 
-\title{GARCH Modelling Package}
+
+\title{Modelling Heterskedasticity in Financial Time Series}
 
 
 \description{
 
-  Package of econometric functions for modelling GARCH processes.
+  The Rmetrics "fGarch" package is a collection of functions to 
+  analyze and model heteroskedastic behavior in financial time
+  series models.
+  .
 }
 
 
 \details{
 
-  \tabular{ll}{
-    Package:    \tab fGarch \cr
-    Type:       \tab Package \cr
-    Version:    \tab 270.73 \cr
-    Date:       \tab 2008 \cr
-    License:    \tab GPL (>= 2) \cr
-    Copyright:  \tab (c) 1999-2008 Diethelm Wuertz and Rmetrics
-    Foundation \cr
-    URL:        \tab \url{http://www.rmetrics.org}
+    \tabular{ll}{
+        Package:    \tab fGarch \cr
+        Type:       \tab Package\cr
+        Version:    \tab R 3.0.1\cr
+        Date:       \tab 2014\cr
+        License:    \tab GPL Version 2 or later\cr
+        Copyright:  \tab (c) 1999-2014 Rmetrics Assiciation\cr
+        URL:        \tab \url{https://www.rmetrics.org}
   }
   
-  
+}
+
+
+\section{1 Introduction}{
+
   GARCH, Generalized Autoregressive Conditional Heteroskedastic, models 
   have become important in the analysis of time series data, particularly 
   in financial applications when the goal is to analyze and forecast 
@@ -64,111 +73,107 @@
 }
 
 
-\section{Time Series Simulation}{
+\section{2 Time Series Simulation}{
 
-  contains functions to simulate artificial GARCH and APARCH
-  time series processes.
-  
-  Functions:
-  
-  \tabular{ll}{
-    \code{garchSpec} \tab Specifies an univariate GARCH time series
-    model, \cr 
-    \code{garchSim} \tab Simulates a GARCH/APARCH process. }
+    contains functions to simulate artificial GARCH and APARCH
+    time series processes.
+    
+    \preformatted{
+    garchSpec       specifies an univariate GARCH time series model 
+    garchSim        simulates a GARCH/APARCH process
+    }
   
 }
 
 
-\section{Parameter Estimation}{
+\section{3 Parameter Estimation}{
 
-  contains functions to fit the parameters of GARCH and APARCH 
-  time series processes.
-  
-  Functions:
-  
-  \tabular{ll}{
-    \code{garchFit} \tab Fits the parameters of a GARCH process, \cr 
-    \code{residuals} \tab Extracts residuals from a fitted 'fGARCH'
-    object, \cr 
-    \code{fitted} \tab Extracts fitted values from a fitted 'fGARCH'
-    object, \cr 
-    \code{volatility} \tab Extracts conditional volatility from a fitted
-    'fGARCH' object, \cr 
-    \code{coef} \tab Extracts coefficients from a fitted 'fGARCH'
-    object, \cr 
-    \code{formula} \tab Extracts formula expression from a fitted
-    'fGARCH' object. } 
+    contains functions to fit the parameters of GARCH and APARCH 
+    time series processes.
+    
+    \preformatted{
+    garchFit        fits the parameters of a GARCH process
+    }
+    
+    
+    \emph{Extractor Functions:}
+    
+    \preformatted{
+    residuals       extracts residuals from a fitted 'fGARCH' object
+    fitted          extracts fitted values from a fitted 'fGARCH' object
+    volatility      extracts conditional volatility from a fitted 'fGARCH' object
+    coef            extracts coefficients from a fitted 'fGARCH' object
+    formula         extracts formula expression from a fitted 'fGARCH' object
+    }
+    
 }
 
 
-\section{Forecasting}{
+\section{4 Forecasting}{
 
-  contains functions to forcecast mean and variance of GARCH and
-  APARCH processes.
+    contains functions to forcecast mean and variance of GARCH and
+    APARCH processes.
   
-  Functions:
-  
-  \tabular{ll}{
-    \code{predict} \tab Forecasts from an object of class 'fGARCH'.
-  }
-  
-}
-
-
-\section{Standardized Distribution Functions}{
-
-  contains functions to model standardized distribution functions.
-  
-  Functions:
-  
-  \tabular{ll}{
-    \code{[dpqr]norm} \tab Normal distribution function, \cr 
-    \code{[dpqr]snorm} \tab Skew Normal distribution function, \cr 
-    \code{[s]normFit} \tab Fits parameters of [skew] Normal
-    distribution, \cr 
-    \code{[dpqr]ged} \tab Generalized Error distribution function, \cr 
-    \code{[dpqr]sged} \tab Skew Generalized Error  distribution
-    function, \cr 
-    \code{[s]gedFit} \tab Fits parameters of [skew] Generalized Error
-    distribution, \cr 
-    \code{[dpqr]std} \tab standardized Student-t distribution function,
-    \cr 
-    \code{[dpqr]sstd} \tab Skew standardized Student-t distribution
-    function, \cr 
-    \code{[s]stdFit} \tab Fits parameters of [skew] Student-t
-    distribution, \cr 
-    \code{absMoments} \tab Computes absolute Moments of these
-    distribution.
-  } 
+    \preformatted{
+    predict         forecasts from an object of class 'fGARCH'
+    }
   
 }
 
 
-\section{OX Interface}{
+\section{5 Standardized Distribution Functions}{
 
-  NOTE: garchOxFit is no longer part of fGarch package. If you are
-  interested to use, please contact us.
-  
-  contains a Windows interface to OX.
-  
-  The function \code{garchOxFit} interfaces a subset of the functionality 
-  of the G@ARCH 4.0 Package written in Ox. 
-  G@RCH 4.0 is one of the most sophisticated packages for modelling 
-  univariate GARCH processes including GARCH, EGARCH, GJR, APARCH, 
-  IGARCH, FIGARCH, FIEGARCH, FIAPARCH and HYGARCH models. Parameters
-  can be estimated by approximate (Quasi-) maximum likelihood methods
-  under four assumptions: normal, Student-t, GED or skewed Student-t 
-  errors.
+    This section contains functions to model standardized distribution 
+    functions.
+    
+    
+    \emph{Skew Normal Distribution:}
+    
+    \preformatted{
+    [dpqr]norm      Normal distribution function
+    [dpqr]snorm     Skew Normal distribution function
+    [s]normFit      fits parameters of [skew] Normal distribution
+    }
+    
+    
+    \emph{Skew Generalized Error Distribution:}
+    
+    \preformatted{
+    [dpqr]ged       Generalized Error distribution function
+    [dpqr]sged      Skew Generalized Error  distribution function
+    [s]gedFit       fits parameters of [skew] Generalized Error distribution
+    }
+    
+    
+    \emph{Skew Standardized Student-t Distribution:}
+    
+    \preformatted{
+    [dpqr]std       Standardized Student-t distribution function
+    [dpqr]sstd      Skew standardized Student-t distribution function
+    [s]stdFit       fits parameters of [skew] Student-t distribution
+    }
+    
+    \emph{Abdolute Moments:}
+    \preformatted{
+    absMoments      computes absolute Moments of these distribution
+    } 
   
 }
 
 
-\author{
+\section{About Rmetrics}{
 
-  Diethelm Wuertz and Rmetrics Core Team.
-  
+    The \code{fGarch} Rmetrics package is written for educational 
+    support in teaching "Computational Finance and Financial Engineering" 
+    and licensed under the GPL.
+    
 }
+
+
+%  Diethelm Wuertz and Yohan Chalabi, with contributions from 
+%  Michal Miklovac, Pierre Chausse, and Chris Boudt.
 
 
 \keyword{package}
+
 
