@@ -1,6 +1,6 @@
 8ddf42e368503fb9cb47500e2e44adab *ChangeLog
-5a59675a293129c9476b3070c1c0825b *DESCRIPTION
-40e262af2a2fe8ae321eae5b8fe244c6 *NAMESPACE
+077fca6f610d0a7d996f7f87e38f886f *DESCRIPTION
+9d7b0f81c87a9bec600578f724e1d150 *NAMESPACE
 c7a13a689bb6a905b6bbd9d191c7f0df *R/class-fGARCH.R
 0eb2fa2612486d6e24b7ca89f27003c2 *R/class-fGARCHSPEC.R
 d53cb36b9fc1fbeb20a7fafd7aa9f0b5 *R/dist-absMoments.R
@@ -40,7 +40,7 @@ b70ab1c76855204cac6a878bc7c561f2 *R/loglik.R
 39efcefff0257a13ba13c2807d1c0b6c *R/methods-coef.R
 c96b4ee7ae023be36581ff7a27ce50f9 *R/methods-fitted.R
 7f19cf78ce22bbab0b2322e96def3b39 *R/methods-formula.R
-fd9a4a9bea168c7e37df25deb8efae28 *R/methods-plot.R
+28be398a4998ee2b3b73efcf6cae7f63 *R/methods-plot.R
 578a3adf72204cdb6d41e25cbde0373e *R/methods-predict.R
 c46ae3e7eb3ca4eaffbf35b6be00ab35 *R/methods-residuals.R
 332ad409cd0a8c3cac3ad482a53f4f32 *R/methods-show.R
@@ -49,8 +49,8 @@ c70f026e5bcd8c423e95fc44961fe7fb *R/methods-summary.R
 1b223cf816ecee7b9fe1d26245fe9baa *R/methods-volatility.R
 8da3513457c3bc1ac9d1edd0ef14d5c1 *R/mgarch-FitFromFormula.R
 ffa21c2bbe8da31f47d9a7b89bf7b61b *R/zzz.R
-546b76b0202b84b735595992648ae3ea *data/dem2gbp.csv
-e5b90a876ee62efb665b30b250b5c60e *data/sp500dge.csv
+39921b36310c2c6a757a426c0696e1b2 *data/dem2gbp.csv.bz2
+9ad0e1c0365f6b5d07c44c01e7116ac8 *data/sp500dge.csv.bz2
 70a0d93bc75a19be75bdab2f50fc48a0 *inst/THANKS
 665e719c6c9360340268b2e6ac891515 *inst/unitTests/Makefile
 6daf0e9de9a62ce7c24edd2e9cd2f7e1 *inst/unitTests/runTests.R

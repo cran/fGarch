@@ -1,7 +1,7 @@
 Package: fGarch
 Title: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling
 Date: 2017-11-12
-Version: 3042.83
+Version: 3042.83.1
 Author: Diethelm Wuertz [aut],
     Tobias Setz [cre],
 	Yohan Chalabi [ctb],
@@ -19,6 +19,6 @@ LazyData: yes
 License: GPL (>= 2)
 URL: https://www.rmetrics.org
 NeedsCompilation: yes
-Packaged: 2017-11-16 17:28:34 UTC; Tobias Setz
+Packaged: 2019-01-31 16:42:21 UTC; hornik
 Repository: CRAN
-Date/Publication: 2017-11-16 22:49:18 UTC
+Date/Publication: 2019-01-31 17:27:52 UTC
