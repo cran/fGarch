@@ -44,9 +44,6 @@ rsnorm(n, mean = 0, sd = 1, xi = 1.5)
     \item{x, q}{
         a numeric vector of quantiles.
         }
-    \item{\dots}{
-        parameters parsed to the optimization function \code{nlm}.
-        }
     \item{log}{
         a logical; if TRUE, densities are given as log densities.
         }

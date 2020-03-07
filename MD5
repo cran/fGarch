@@ -1,5 +1,5 @@
 8ddf42e368503fb9cb47500e2e44adab *ChangeLog
-077fca6f610d0a7d996f7f87e38f886f *DESCRIPTION
+5ce55e0443c0fbcddd4a1f71735115f4 *DESCRIPTION
 9d7b0f81c87a9bec600578f724e1d150 *NAMESPACE
 c7a13a689bb6a905b6bbd9d191c7f0df *R/class-fGARCH.R
 0eb2fa2612486d6e24b7ca89f27003c2 *R/class-fGARCHSPEC.R
@@ -83,7 +83,7 @@ f1df87fa10c973d2654cd6f8a1728dc1 *man/class-fGARCH.Rd
 921778e7aad98dac8a953ba8593f54fd *man/dist-sged.Rd
 eeb045af4fee08cb77d8f0551c43988c *man/dist-sgedFit.Rd
 a4bf00ceef8cedb28b9011ed38f7d80b *man/dist-sgedSlider.Rd
-34812552c00ce51d33306f19d18a1533 *man/dist-snorm.Rd
+d59d13eeaff93ef157a9b61bbd0c3b4d *man/dist-snorm.Rd
 f5c0350a45800aa2e1e5867dabcd6277 *man/dist-snormFit.Rd
 4f46b025d2b8da80b04cad646afac529 *man/dist-snormSlider.Rd
 d99215fa2ffc6821d630462a3cccbca0 *man/dist-sstd.Rd
