@@ -124,7 +124,9 @@ garchSim <-
         sigma = h[(m+1):(n+m)]^deltainv,
         y = y[(m+1):(n+m)])
     rownames(data) = as.character(1:n)
-    data = data[-(1:n.start),]
+        
+    if (n.start > 0)
+        data = data[-(1:n.start),]
 
 
     # Return Values:
