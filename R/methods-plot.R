@@ -20,19 +20,19 @@
 #  plot                      Plot method for an object of class 'fGARCH'
 #  .interactiveGarchPlot     Plot interactively
 #  .multGarchPlot            Arrange multivariate Plots
-#  .plot_garch_1               Plot Time Series
-#  .plot_garch_2               Plot Conditional SD
-#  .plot_garch_3               Plot Series with 2 Conditional SD Superimposed
-#  .plot_garch_4               Plot ACF of Observations
-#  .plot_garch_5               Plot ACF of Squared Observations
-#  .plot_garch_6               Plot Cross Correlation
-#  .plot_garch_7               Plot Residuals
-#  .plot_garch_8               Plot Conditional SDs
-#  .plot_garch_9               Plot Standardized Residuals
-#  .plot_garch_10              Plot ACF of Standardized Residuals
-#  .plot_garch_11              Plot ACF of Squared Standardized Residuals
-#  .plot_garch_12              Plot Cross Correlation between r^2 and r
-#  .plot_garch_13              Plot QQ-Plot of Standardized Residuals"
+#  .plot.garch.1               Plot Time Series
+#  .plot.garch.2               Plot Conditional SD
+#  .plot.garch.3               Plot Series with 2 Conditional SD Superimposed
+#  .plot.garch.4               Plot ACF of Observations
+#  .plot.garch.5               Plot ACF of Squared Observations
+#  .plot.garch.6               Plot Cross Correlation
+#  .plot.garch.7               Plot Residuals
+#  .plot.garch.8               Plot Conditional SDs
+#  .plot.garch.9               Plot Standardized Residuals
+#  .plot.garch.10              Plot ACF of Standardized Residuals
+#  .plot.garch.11              Plot ACF of Squared Standardized Residuals
+#  .plot.garch.12              Plot Cross Correlation between r^2 and r
+#  .plot.garch.13              Plot QQ-Plot of Standardized Residuals"
 #   .qqDist                     Quantile-Quantile Points
 #   .qqLine                     Quantile-Quantile Line
 ################################################################################
@@ -74,7 +74,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
                 "ACF of Squared Standardized Residuals",
                 "Cross Correlation between r^2 and r",
                 "QQ-Plot of Standardized Residuals"),
-            plotFUN = paste(".plot_garch", 1:13, sep = "_"),
+            plotFUN = paste(".plot.garch", 1:13, sep = "."),
             which = which, ...)
     }
     
@@ -158,11 +158,11 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
             title = "\nMake a plot selection (or 0 to exit):")
         # up to 19 plot functions ...
         switch (pick,
-            .plot_garch_1(x),  .plot_garch_2(x),  .plot_garch_3(x),
-            .plot_garch_4(x),  .plot_garch_5(x),  .plot_garch_6(x),
-            .plot_garch_7(x),  .plot_garch_8(x),  .plot_garch_9(x),
-            .plot_garch_10(x), .plot_garch_11(x), .plot_garch_12(x),
-            .plot_garch_13(x))
+            .plot.garch.1(x),  .plot.garch.2(x),  .plot.garch.3(x),
+            .plot.garch.4(x),  .plot.garch.5(x),  .plot.garch.6(x),
+            .plot.garch.7(x),  .plot.garch.8(x),  .plot.garch.9(x),
+            .plot.garch.10(x), .plot.garch.11(x), .plot.garch.12(x),
+            .plot.garch.13(x))
     }
 }
 
@@ -170,7 +170,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_1 <-
+.plot.garch.1 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -190,7 +190,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_2 <-
+.plot.garch.2 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -210,7 +210,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_3 <-
+.plot.garch.3 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -234,7 +234,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_4 <-
+.plot.garch.4 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -254,7 +254,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_5 <-
+.plot.garch.5 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -275,7 +275,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_6 <-
+.plot.garch.6 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -296,7 +296,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_7 <-
+.plot.garch.7 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -315,7 +315,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_8 <-
+.plot.garch.8 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -335,7 +335,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_9 <-
+.plot.garch.9 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -355,7 +355,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_10 <-
+.plot.garch.10 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -375,7 +375,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_11 <-
+.plot.garch.11 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -395,7 +395,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_12 <-
+.plot.garch.12 <-
 function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -416,7 +416,7 @@ function(x, ...)
 # ------------------------------------------------------------------------------
 
 
-.plot_garch_13 <-
+.plot.garch.13 <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz

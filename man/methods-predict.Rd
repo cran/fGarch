@@ -95,12 +95,7 @@
 }
 
 
-\author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
-    
-}
-
+\author{ Diethelm Wuertz for the Rmetrics \R-port. }
 
 \examples{
 ## garchFit - 
@@ -111,27 +106,26 @@
 
 ## predict -
    predict(fit, n.ahead = 10)
-   predict(fit, n.ahead = 10,mse="uncond")
+   predict(fit, n.ahead = 10, mse="uncond")
 
-## predict with plotting: critical values = +- 2
+## predict with plotting: critical values = +/- 2
 
-   predict(fit, n.ahead = 10, plot=TRUE, crit_val=2)
+   predict(fit, n.ahead = 10, plot=TRUE, crit_val = 2)
 
 ## predict with plotting: automatic critical values 
 ## for different conditional distributions
 
   set.seed(321)
-  fit2 = garchFit(~ garch(1, 1), data = garchSim(), trace = FALSE, cond.dist="sged")
+  fit2 = garchFit(~ garch(1, 1), data = garchSim(), trace=FALSE, cond.dist="sged")
 
-## 95% confidence level
- predict(fit2,n.ahead=20,plot=TRUE) 
+## 95\% confidence level
+ predict(fit2, n.ahead=20, plot=TRUE) 
 
  set.seed(444)
- fit3 = garchFit(~ garch(1, 1), data = garchSim(), trace = FALSE, cond.dist="QMLE")
+ fit3 = garchFit(~ garch(1, 1), data = garchSim(), trace=FALSE, cond.dist="QMLE")
 
-## 90% confidence level and nx=100
-
- predict(fit3,n.ahead=20,plot=TRUE,conf=.9,nx=100) 
+## 90\% confidence level and nx=100 :
+ predict(fit3, n.ahead=20, plot=TRUE, conf=.9, nx=100) 
 
 }
 

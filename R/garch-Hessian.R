@@ -25,6 +25,7 @@
 #  Matrix
 ################################################################################
 
+## These are called from  .garchOptimizeLLH()  -->> ./loglik.R
 
 .garchRoptimhess <-
     function(par, .params, .series, eps = 1.0e-4)
@@ -192,40 +193,37 @@
         apply( as.data.frame(x), 1, FUN = function(z) max(abs(z), 1.0e-2))
     xh = x + h
     h = xh - x
-    ee <- Matrix::Matrix(diag(h), sparse = TRUE)
+    ee <- Matrix(diag(h), sparse = TRUE)
 
     # Compute forward and backward steps:
-    gp = vector(mode = "numeric", length = n)
-    for(i in 1:n) gp[i] <- f(x + ee[, i], ...)
-    gm = vector(mode = "numeric", length = n)
-    for(i in 1:n) gm[i] <- f(x - ee[, i], ...)
+    gm <- gp <- numeric(n)
+    for(i in 1:n) {
+        e.i <- ee[,i]
+        gp[i] <- f(x + e.i, ...)
+        gm[i] <- f(x - e.i, ...)
+    }
     H = h %*% t(h)
     Hm = H
     Hp = H
 
     # Compute "double" forward and backward steps:
-    for(i in 1:n){
+    for(i in 1:n){ ## FIXME (speedup!) -- vectorize or even work with FULL  n x n matrices H, Hp, Hm
+        e.i <- ee[,i]
         for(j in  i:n){
-            Hp[i, j] <- f(x + ee[, i] + ee[, j], ...)
-            Hp[j, i] <- Hp[i, j]
-            Hm[i, j] <- f(x - ee[, i] - ee[, j], ...)
-            Hm[j, i] <- Hm[i, j]
+            e.j <- ee[,j]
+            Hp[j, i] <- Hp[i, j] <- f(x + e.i + e.j, ...)
+            Hm[j, i] <- Hm[i, j] <- f(x - e.i - e.j, ...)
         }
     }
 
     # Compute the hessian:
-    for(i in 1:n){
-        for(j in  i:n){
-            H[i, j] = ((Hp[i, j] - gp[i] - gp[j] + fx + fx - gm[i] - gm[j] +
-                        Hm[i, j]) / H[i, j]) / 2
-            H[j, i] = H[i, j]
+    for(i in 1:n) { ## FIXME (speedup!) -- vectorize or even work with FULL  n x n matrices H, Hp, Hm
+        for(j in i:n) { ## 1 <= i <= j <= n
+            H[j, i] = H[i, j] =
+                .5* ((Hp[i, j] - gp[i] - gp[j] + fx + fx - gm[i] - gm[j] + Hm[i, j]) / H[i, j])
         }
     }
 
-    # Return Value:
-    return(H)
+    # Return the Hessian matrix:
+    H
 }
-
-
-################################################################################
-

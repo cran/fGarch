@@ -50,6 +50,8 @@
 test.sgedDis <- 
     function()
 {       
+    .distCheck <- fBasics :: .distCheck
+
     # Generalized Error Distribution:
     RNGkind(kind = "Marsaglia-Multicarry", normal.kind = "Inversion")
     set.seed(4711, kind = "Marsaglia-Multicarry")

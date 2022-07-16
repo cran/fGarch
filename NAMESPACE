@@ -1,22 +1,47 @@
-
-################################################
-## import name space
-################################################
-
-import("stats")
-import("graphics")
-import("methods")
-import("timeDate")
-import("timeSeries")
-import("fBasics")
-importFrom("utils", capture.output, menu)
-
-
 ################################################
 ## useDynLib
 ################################################
 
-useDynLib("fGarch")
+useDynLib("fGarch", .registration=TRUE)
+
+################################################
+## import (from) name spaces
+################################################
+
+importFrom("timeDate", timeDate, timeSequence)
+
+importFrom("timeSeries", as.timeSeries, timeSeries
+       ##, dummyDailySeries  # in Examples and tests
+         , description
+         , isUnivariate, isMultivariate)
+
+importFrom("fBasics",
+           Heaviside, jarqueberaTest
+       ##, teffectPlot  # used in test
+         , dsnig, qsnig
+         , volatility # we will re-export, as we define an S3 method
+         , .distCheck, .sliderMenu)
+
+## importFrom("fastICA", fastICA)# only used in  R/mgarch-FitFromFormula.R  .gogarchFit()
+
+importFrom(Matrix, Matrix)# only in  R/garch-Hessian.R
+
+importFrom("graphics", abline, grid, hist, legend, lines,
+           par, polygon, title)
+
+importFrom("methods", new, show, slot, slotNames)
+
+importFrom("stats", Box.test, acf, arima, as.formula, ccf,
+           density, dnorm, dt, filter, integrate, lm,
+           model.frame, na.omit, nlminb, optim, optimHess,
+           pchisq, pgamma, pnorm, ppoints, printCoefmat,
+           pt, qgamma, qnorm, qt, quantile, rgamma,
+           rnorm, rt, runif, sd, shapiro.test, summary.lm,
+           terms, var)
+
+importFrom("utils", capture.output, menu)
+
+
 
 ################################################
 ## S4 classes
@@ -40,6 +65,7 @@ exportMethods("coef",
 ################################################
 
 S3method("volatility", "fGARCH")
+export(volatility) # we imported from fBasics
 
 ################################################
 ## functions
@@ -79,19 +105,19 @@ export(
     ".interactiveGarchPlot",
     ".multGarchPlot",
     ".normCondDist",
-    ".plot_garch_1",
-    ".plot_garch_10",
-    ".plot_garch_11",
-    ".plot_garch_12",
-    ".plot_garch_13",
-    ".plot_garch_2",
-    ".plot_garch_3",
-    ".plot_garch_4",
-    ".plot_garch_5",
-    ".plot_garch_6",
-    ".plot_garch_7",
-    ".plot_garch_8",
-    ".plot_garch_9",
+    ".plot.garch.1",
+    ".plot.garch.10",
+    ".plot.garch.11",
+    ".plot.garch.12",
+    ".plot.garch.13",
+    ".plot.garch.2",
+    ".plot.garch.3",
+    ".plot.garch.4",
+    ".plot.garch.5",
+    ".plot.garch.6",
+    ".plot.garch.7",
+    ".plot.garch.8",
+    ".plot.garch.9",
     ".psged",
     ".psnorm",
     ".psstd",

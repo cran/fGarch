@@ -80,6 +80,7 @@
 
 # ------------------------------------------------------------------------------
 
+## Called from .garchFit() in  ./garch-FitInternal.R -- itself called from garchFit() and .ugarchFit()
 
 .garchOptimizeLLH <-
 function(hessian = hessian, robust.cvar, trace)

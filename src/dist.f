@@ -1,13 +1,16 @@
       
 C ------------------------------------------------------------------------------
 C CONDITIONAL DISTRIBUTON:     
-    
-  
+ 
       DOUBLE PRECISION FUNCTION DIST(Z, HH, SKEW, SHAPE, NDIST)
+c                               ----
       IMPLICIT NONE
       INTEGER NDIST
       DOUBLE PRECISION Z, HH, SKEW, SHAPE
+c     Local variables:
       DOUBLE PRECISION DNORM, DSNORM, DSTD, DSSTD, DGED, DSGED
+
+      DIST = -99.d0 ! -Wall
       IF (NDIST.EQ.10) THEN
 C        NORMAL:
          DIST = DNORM(Z/HH)/HH 
@@ -44,7 +47,6 @@ C        SKEW GED:
 C ------------------------------------------------------------------------------
 C NORMAL:
 
-
       DOUBLE PRECISION FUNCTION DNORM(X)
       IMPLICIT NONE
       DOUBLE PRECISION X
@@ -58,7 +60,6 @@ C NORMAL:
       
 C ------------------------------------------------------------------------------
 C SKEW NORMAL:
-
 
       DOUBLE PRECISION FUNCTION DSNORM(X, XI)
       IMPLICIT NONE
@@ -86,7 +87,6 @@ C SKEW NORMAL:
 C ------------------------------------------------------------------------------
 C GED:
 
-
       DOUBLE PRECISION FUNCTION DGED(X, NU) 
       IMPLICIT NONE
       DOUBLE PRECISION X, NU
@@ -105,7 +105,6 @@ C GED:
       
 C ------------------------------------------------------------------------------
 C SKEW GED:
-
 
       DOUBLE PRECISION FUNCTION DSGED(X, NU, XI) 
       IMPLICIT NONE
@@ -136,7 +135,6 @@ C SKEW GED:
 C ------------------------------------------------------------------------------
 C STUDENT T:
 
-
       DOUBLE PRECISION FUNCTION DT(X, NU) 
       IMPLICIT NONE
       DOUBLE PRECISION X, NU
@@ -154,7 +152,6 @@ C STUDENT T:
 
 C ------------------------------------------------------------------------------
 C STANDARDIZED STUDENT T:
-
     
       DOUBLE PRECISION FUNCTION DSTD(X, NU) 
       IMPLICIT NONE

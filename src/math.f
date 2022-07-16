@@ -1,9 +1,12 @@
 
 C GAMMA FUNCTION:
-             
 
       DOUBLE PRECISION FUNCTION DGAM(X)
-      IMPLICIT DOUBLE PRECISION (A-H, O-Z)
+
+      IMPLICIT NONE
+      DOUBLE PRECISION X,  G, PI, Z, R, GR
+      INTEGER K, M1, M
+
       DIMENSION G(26)
           DATA G/1.0D0,0.5772156649015329D0,
      +          -0.6558780715202538D0, -0.420026350340952D-1,
@@ -18,10 +21,12 @@ C GAMMA FUNCTION:
      +          -.36968D-11, .51D-12,
      +          -.206D-13, -.54D-14, .14D-14, .1D-15/
       PI = 3.141592653589793D0
-      IF (X.EQ.INT(X)) THEN
-         IF (X.GT.0.0D0) THEN
+
+      DGAM = -99d0 ! -Wall
+      IF (X .EQ. INT(X)) THEN
+         IF (X .GT. 0.0D0) THEN
             DGAM = 1.0D0
-            M1 = X-1
+            M1 = INT(X)-1
             DO K = 2, M1
                DGAM = DGAM*K
             END DO
@@ -29,7 +34,7 @@ C GAMMA FUNCTION:
             DGAM = 1.0D+300
           END IF
       ELSE
-          IF (DABS(X).GT.1.0D0) THEN
+          IF (DABS(X) .GT. 1.0D0) THEN
              Z = DABS(X)
              M = INT(Z)
              R = 1.0D0
@@ -42,16 +47,16 @@ C GAMMA FUNCTION:
           END IF
           GR = G(26)
           DO K = 25, 1, -1
-             GR = GR*Z+G(K)
+             GR = GR*Z + G(K)
           END DO
           DGAM = 1.0D0/(GR*Z)
-          IF (DABS(X).GT.1.0D0) THEN
+          IF (DABS(X) .GT. 1.0D0) THEN
              DGAM = DGAM*R
-             IF (X.LT.0.0D0) DGAM = -PI/(X*GA*DSIN(PI*X))
+             IF (X.LT.0.0D0) DGAM = -PI/(X*DGAM*DSIN(PI*X))
           END IF
       END IF
       RETURN
       END
 
-      
+
 C ------------------------------------------------------------------------------

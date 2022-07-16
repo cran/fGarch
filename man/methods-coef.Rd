@@ -1,28 +1,20 @@
 \name{coef-methods}
 
+\title{GARCH Coefficients Methods}
 
 \docType{methods}
-
 
 \alias{coef-methods}
 \alias{coef,ANY-method}
 \alias{coef,fGARCH-method}
 \alias{coef,fGARCHSPEC-method}
 
-
-\title{GARCH Coefficients Methods}
-
-
 \description{
-
-    Coefficients methods for GARCH Modelling. 
-
+    Coefficients methods \code{coef()} for GARCH Models.
 }
 
-
 \section{Methods}{
-    \describe{
-
+  \describe{
     \item{object = "ANY"}{
         Generic function.
         }
@@ -33,23 +25,19 @@
     \item{object = "fGARCHSPEC"}{
         Extractor function for coefficients from a GARCH
         specification structure.
-        }   
+        }
     }
 }
 
 
 \note{
-
-    \code{coef} is a generic function which extracts coefficients 
+    \code{\link{coef}} is a generic function which extracts coefficients
     from objects returned by modeling functions.
-    
 }
 
 
 \author{
-
     Diethelm Wuertz for the Rmetrics \R-port.
-    
 }
 
 
@@ -59,16 +47,16 @@
    spec = garchSpec(model = list(alpha = c(0.05, 0.05)))
    spec
    coef(spec)
-   
+
 ## garchSim -
-   # Simulate an univariate "timeSeries" series
-   x = garchSim(spec, n = 200)
+   # Simulate an univariate "timeSeries" series from specification 'spec':
+   x = garchSim(spec, n = 2000)
    x = x[,1]
-  
-## garchFit - 
+
+## garchFit --
    fit = garchFit( ~ garch(1, 1), data = x)
-   
-## coef - 
+
+## coef -
    coef(fit)
 }
 

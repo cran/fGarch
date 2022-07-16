@@ -125,7 +125,7 @@ test.ar1aparch21 <-
     x = garchSim(spec, n = 250)
 
     # Taylor Plot:
-    taylor = teffectPlot(x)
+    taylor <- fBasics::teffectPlot(x)
     init.delta = mean(taylor$maxDelta)
     init.delta
 

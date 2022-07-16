@@ -1,5 +1,6 @@
 \name{snorm}
 
+\title{Skew Normal Distribution}
 
 \alias{snorm}
 \alias{dsnorm}
@@ -7,18 +8,11 @@
 \alias{qsnorm}
 \alias{rsnorm}
 
-
-\title{Skew Normal Distribution}
-
-
 \description{
-    
     Functions to compute density, distribution function, 
     quantile function and to generate random variates 
     for the skew normal distribution. 
-       
 }
-
 
 \usage{
 dsnorm(x, mean = 0, sd = 1, xi = 1.5, log = FALSE)
@@ -27,55 +21,37 @@ qsnorm(p, mean = 0, sd = 1, xi = 1.5)
 rsnorm(n, mean = 0, sd = 1, xi = 1.5)
 }
 
-
 \arguments{
-
     \item{mean, sd, xi}{
         location parameter \code{mean},
         scale parameter \code{sd},
         skewness parameter \code{xi}.
         }
-    \item{n}{
-        the number of observations.
-        } 
-    \item{p}{
-        a numeric vector of probabilities.
-        }
-    \item{x, q}{
-        a numeric vector of quantiles.
-        }
-    \item{log}{
-        a logical; if TRUE, densities are given as log densities.
-        }
+    \item{n}{the number of observations.} 
+    \item{p}{a numeric vector of probabilities.}
+    \item{x, q}{a numeric vector of quantiles.}
+    \item{log}{a logical; if TRUE, densities are given as log densities.}
 }
 
 
 \value{
-
     \code{d*} returns the density,
     \code{p*} returns the distribution function,
     \code{q*} returns the quantile function, and
     \code{r*} generates random deviates, \cr
     all values are numeric vectors.
- 
 }
 
 
 \references{
-    
-Fernandez C., Steel M.F.J. (2000); 
+  Fernandez C., Steel M.F.J. (2000); 
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
     Preprint, 31 pages. 
-    
 }
-
 
 \author{
-
     Diethelm Wuertz for the Rmetrics \R-port.
-    
 }
-
 
 \examples{
 ## snorm -

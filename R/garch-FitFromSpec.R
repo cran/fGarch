@@ -18,10 +18,12 @@
 ################################################################################
 # FUNCTION:               DESCRIPTION:
 #  fUGARCHSPEC             Fits the parameters of GARCH process
-#  .ugarchSpec             Specifies a univariate GARCH model           
-#  .ugarchFit              Fits a univariate GARCH model  
+#  .ugarchSpec             Specifies a univariate GARCH model
+#  .ugarchFit              Fits a univariate GARCH model
 ################################################################################
 
+## MM: FIXME .ugarchFit() & .ugarchSpec() are entirely
+##     =====  *un*documented and *un*tested
 
 .setfGarchEnv(.llh = 1e99)
 .setfGarchEnv(.garchDist = NA)
@@ -33,49 +35,49 @@
 # ------------------------------------------------------------------------------
 
 
-setClass("fUGARCHSPEC", 
-    representation(   
+setClass("fUGARCHSPEC",
+    representation(
         model = "list",
         distribution = "list",
         optimization = "list",
-        documentation = "list")  
+        documentation = "list")
 )
 
 
 # ------------------------------------------------------------------------------
 
 
-.ugarchSpec <- 
-function( 
+.ugarchSpec <-
+function(
 
     model = list(
         formula = ~ garch(1,1),
         mean = 0,
         include.mean = TRUE,
         delta = 2,
-        include.delta = NULL, 
+        include.delta = NULL,
         leverage = NULL,
         recursion = c("internal", "filter", "testing")[1],
         init.rec = c("mci", "uev")[1]),
 
     distribution = list(
-        cond.dist = c("norm", "snorm", "ged", "sged", "std", "sstd", 
-            "snig", "QMLE")[1], 
+        cond.dist = c("norm", "snorm", "ged", "sged", "std", "sstd",
+            "snig", "QMLE")[1],
         skew = 1,
-        include.skew = NULL, 
+        include.skew = NULL,
         shape = 4,
         include.shape = NULL),
-        
+
     optimization = list(
         algorithm = c("nlminb", "lbfgsb", "nlminb+nm", "lbfgsb+nm")[1],
         hessian = c("ropt", "rcd", "rts")[1],
         trace = TRUE,
         control = list(),
-        status = NA), 
-    
+        status = NA),
+
     documentation = list(
         call = match.call(),
-        title = NULL, 
+        title = NULL,
         description = NULL )
     )
 {
@@ -86,14 +88,14 @@ function(
     #   .garchSpec())
 
     # FUNCTION:
-    
+
     # Model Slot:
     Model = list(
         formula = ~ garch(1,1),
         mean = 0,
         include.mean = TRUE,
         delta = 2,
-        include.delta = NULL, 
+        include.delta = NULL,
         leverage = NULL,
         recursion = c("internal", "filter", "testing")[1],
         init.rec = c("mci", "uev")[1])
@@ -101,10 +103,10 @@ function(
 
     # Distribution Slot:
     Distribution = list(
-        cond.dist = c("norm", "snorm", "ged", "sged", "std", "sstd", 
-            "snig", "QMLE")[1], 
+        cond.dist = c("norm", "snorm", "ged", "sged", "std", "sstd",
+            "snig", "QMLE")[1],
         skew = 1,
-        include.skew = NULL, 
+        include.skew = NULL,
         shape = 4,
         include.shape = NULL)
     Distribution[(Names <- names(distribution))] <- distribution
@@ -117,11 +119,11 @@ function(
         control = list(),
         status = NA)
     Optimization[(Names <- names(optimization))] <- optimization
-    
+
     # Documentation Slot:
     Documentation = list(
         call = match.call(),
-        title = NULL, 
+        title = NULL,
         description = NULL )
     Documentation[(Names <- names(documentation))] <- documentation
 
@@ -137,7 +139,7 @@ function(
 # ------------------------------------------------------------------------------
 
 
-.ugarchFit <- 
+.ugarchFit <-
 function(data, spec = .ugarchSpec())
 {
     # Description:
@@ -146,14 +148,14 @@ function(data, spec = .ugarchSpec())
     # Arguments:
     #   data - time series or vector of data
     #   spec - garch specification object
-    
+
     # Example:
-    #   .ugarchFit(dem2gbp[, 1])   
-    
+    #   .ugarchFit(dem2gbp[, 1])
+
     # FUNCTION:
 
     DEBUG = FALSE
-    
+
     # Set Call:
     CALL <- spec@documentation$call <- match.call()
 
@@ -197,21 +199,21 @@ function(data, spec = .ugarchSpec())
 
     # Parse Arguments:
     args = .garchArgsParser(formula = formula, data = data, trace = FALSE)
-      
+
     # DEBUG - Print Arguments:
     if(DEBUG) print(list(
         formula.mean = args$formula.mean,
         formula.var = args$formula.var,
         series = args$series,
-        init.rec = spec@model$init.rec, 
-        delta = spec@model$delta, 
-        skew = spec@distribution$skew, 
-        shape = spec@distribution$shape, 
-        cond.dist = spec@distribution$cond.dist, 
+        init.rec = spec@model$init.rec,
+        delta = spec@model$delta,
+        skew = spec@distribution$skew,
+        shape = spec@distribution$shape,
+        cond.dist = spec@distribution$cond.dist,
         include.mean = spec@model$include.mean,
-        include.delta = spec@model$include.delta, 
-        include.skew  = spec@distribution$include.skew, 
-        include.shape = spec@distribution$include.shape, 
+        include.delta = spec@model$include.delta,
+        include.skew  = spec@distribution$include.skew,
+        include.shape = spec@distribution$include.shape,
         leverage = spec@model$leverage,
         trace = spec@optimization$trace,
         ## recursion = spec@model$recursion,
@@ -219,7 +221,7 @@ function(data, spec = .ugarchSpec())
         hessian = spec@optimization$hessian,
         robust.cvar = robust.cvar,
         control = spec@optimization$control,
-        title = spec@documentation$title, 
+        title = spec@documentation$title,
         description = spec@documentation$description))
 
     # Fit:
@@ -227,15 +229,15 @@ function(data, spec = .ugarchSpec())
         formula.mean = args$formula.mean,
         formula.var = args$formula.var,
         series = args$series,
-        init.rec = spec@model$init.rec, 
-        delta = spec@model$delta, 
-        skew = spec@distribution$skew, 
-        shape = spec@distribution$shape, 
-        cond.dist = spec@distribution$cond.dist, 
+        init.rec = spec@model$init.rec,
+        delta = spec@model$delta,
+        skew = spec@distribution$skew,
+        shape = spec@distribution$shape,
+        cond.dist = spec@distribution$cond.dist,
         include.mean = spec@model$include.mean,
-        include.delta = spec@model$include.delta, 
-        include.skew  = spec@distribution$include.skew, 
-        include.shape = spec@distribution$include.shape, 
+        include.delta = spec@model$include.delta,
+        include.skew  = spec@distribution$include.skew,
+        include.shape = spec@distribution$include.shape,
         leverage = spec@model$leverage,
         trace = spec@optimization$trace,
         ## recursion = spec@model$recursion,
@@ -243,7 +245,7 @@ function(data, spec = .ugarchSpec())
         hessian = spec@optimization$hessian,
         robust.cvar = robust.cvar,
         control = spec@optimization$control,
-        title = spec@documentation$title, 
+        title = spec@documentation$title,
         description = spec@documentation$description)
     ans@call = CALL
     attr(formula, "data") <- paste("data = ", Name, sep = "")

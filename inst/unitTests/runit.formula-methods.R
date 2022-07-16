@@ -45,7 +45,7 @@ test.formula.methods.univariate <-
     # Univariate Data Simulation:
     x.vec = 100*garchSim(spec, N)
     print(head(x.vec))
-    x.tS = dummyDailySeries(matrix(x.vec), units = "GARCH11")
+    x.tS = timeSeries::dummyDailySeries(matrix(x.vec), units = "GARCH11")
     print(head(x.tS))
 #    x.zoo = zoo(as.vector(x.vec), order.by = as.Date(rownames(x.tS)))
 #    print(head(x.zoo))
@@ -100,14 +100,14 @@ test.formula.methods.multivariate <-
     # Univariate Data Simulation:
     x.vec = 100*garchSim(spec, N)
     print(head(x.vec))
-    x.tS = dummyDailySeries(matrix(x.vec), units = "GARCH11")
+    x.tS = timeSeries::dummyDailySeries(matrix(x.vec), units = "GARCH11")
     print(head(x.tS))
 
     # Multivariate Data Simulation:
     X.mat = cbind(GARCH11 = x.vec, R = rnorm(N))
     colnames(X.mat) <- c("GARCH11", "R")
     print(head(X.mat))
-    X.tS = dummyDailySeries(X.mat, units = c("GARCH11", "R"))
+    X.tS = timeSeries::dummyDailySeries(X.mat, units = c("GARCH11", "R"))
     print(head(X.tS))
 #    X.zoo = zoo(X.mat, order.by = as.Date(rownames(x.tS)))
 #    print(head(X.zoo))
@@ -153,6 +153,7 @@ test.formula.methods.spread <-
     # MODELING THE PERCENTUAL SPI/SBI SPREAD FROM LPP BENCHMARK:
 
     # Series:
+    stopifnot(require("timeSeries")) # for the data() and as.timeS..
     X.tS = as.timeSeries(data(LPP2005REC))
     print(head(X.tS))
     X.mat = as.matrix(X.tS)
@@ -160,7 +161,7 @@ test.formula.methods.spread <-
 #    X.zoo = zoo(X.mat, order.by = as.Date(rownames(X.tS)))
 #    print(head(X.zoo))
     X.mts = ts(X.mat)
-    print(head(X.mts)) # head does not work for ts objects!
+    print(head(X.mts))
 
     # Fit:
     fit = garchFit(100*(SPI - SBI) ~ garch(1,1), data = X.tS, trace = FALSE)

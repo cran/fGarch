@@ -43,6 +43,8 @@
 test.snormDist <- 
     function()
 {   
+    .distCheck <- fBasics :: .distCheck
+
     # Normal Distribution:
     RNGkind(kind = "Marsaglia-Multicarry", normal.kind = "Inversion")
     set.seed(4711, kind = "Marsaglia-Multicarry")

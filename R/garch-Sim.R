@@ -57,7 +57,7 @@ garchSim <-
     # FUNCTION:
 
     # Specification:
-    stopifnot(class(spec) == "fGARCHSPEC")
+    stopifnot(inherits(spec, "fGARCHSPEC"))
     model = spec@model
 
     # Random Seed:

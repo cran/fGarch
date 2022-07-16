@@ -6,12 +6,12 @@
 #
 # This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU Library General Public License for more details.
 #
-# You should have received a copy of the GNU Library General 
-# Public License along with this library; if not, write to the 
-# Free Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+# You should have received a copy of the GNU Library General
+# Public License along with this library; if not, write to the
+# Free Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA  02111-1307  USA
 
 
@@ -22,19 +22,19 @@
 ################################################################################
 
 
-.gedFit <- 
-function(x, mean = 0, sd = 1, nu = 2, 
+.gedFit <-
+function(x, mean = 0, sd = 1, nu = 2,
     scale = NA, doplot = TRUE, add = FALSE, span = "auto", trace = TRUE,
     title = NULL, description = NULL, ...)
 {
     # A function implemented by Diethelm Wuertz
 
     # Description:
-    #   Fits parameters of a NIG using maximum log-likelihood  
+    #   Fits parameters of a NIG using maximum log-likelihood
 
     # Example:
-    #   set.seed(4711); x = rged(500); .gedFit(x)@fit$estimate 
-    
+    #   set.seed(4711); x = rged(500); .gedFit(x)@fit$estimate
+
     # FUNCTION:
 
     # Settings:
@@ -45,8 +45,8 @@ function(x, mean = 0, sd = 1, nu = 2,
 
     # Parameter Estimation:
     obj = function(x, y = x, trace) {
-        f = try(-sum(log(dist(y, x[1], x[2], x[3]))), silent = TRUE)
-        if (is.na(f) | class(f) == "try-error") return(1e9)
+        f <- tryCatch(-sum(log(dist(y, x[1], x[2], x[3]))), error=identity)
+        if (is.na(f) || inherits(f, "error")) return(1e9)
         # Print Iteration Path:
         if (trace) {
             cat("\n Objective Function Value:  ", -f)
@@ -54,11 +54,11 @@ function(x, mean = 0, sd = 1, nu = 2,
         }
         f }
     r = nlminb(
-        start = c(mean = 0, sd = 1, nu = 2), 
+        start = c(mean = 0, sd = 1, nu = 2),
         objective = obj,
-        lower = c(-Inf, 0,   0), 
-        upper = c( Inf, Inf, Inf), 
-        y = x, 
+        lower = c(-Inf, 0,   0),
+        upper = c( Inf, Inf, Inf),
+        y = x,
         trace = trace)
     names(r$par) <- c("mean", "sd", "nu")
 
@@ -104,36 +104,36 @@ function(x, mean = 0, sd = 1, nu = 2,
 
 gedFit <-
 function(x, ...)
-{   
+{
     # A function implemented by Diethelm Wuertz
-    
+
     # Description:
     #   Fit the parameters for a generalized error distribution
-    
+
     # FUNCTION:
-     
+
     # Start Value:
     start = c(mean = mean(x), sd = sqrt(var(x)), nu = 2)
 
     # Log-likelihood Function:
-    loglik = function(x, y = x){ 
+    loglik = function(x, y = x){
         f = -sum(log(dged(y, x[1], x[2], x[3])))
         f }
-        
+
     # Minimization:
     fit = nlminb(
-        start = start, 
-        objective = loglik, 
-        lower = c(-Inf, 0,   0), 
-        upper = c( Inf, Inf, Inf), 
+        start = start,
+        objective = loglik,
+        lower = c(-Inf, 0,   0),
+        upper = c( Inf, Inf, Inf),
         y = x, ...)
-        
+
     # Add Names to $par
     names(fit$par) = c("mean", "sd", "nu")
-    
+
     # Return Value:
     fit
-}      
+}
 
 
 ################################################################################

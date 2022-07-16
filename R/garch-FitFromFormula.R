@@ -26,15 +26,12 @@
 
 
 garchFit <-
-function(
-    formula = ~ garch(1,1), 
-    data = fGarch::dem2gbp,
+function(formula = ~ garch(1,1), data,
     init.rec = c("mci", "uev"),
     delta = 2, 
     skew = 1, 
     shape = 4,
-    cond.dist = c("norm", "snorm", "ged", "sged", "std", "sstd", 
-        "snig", "QMLE"),
+    cond.dist = c("norm", "snorm", "ged", "sged", "std", "sstd", "snig", "QMLE"),
     include.mean = TRUE, 
     include.delta = NULL, 
     include.skew = NULL,

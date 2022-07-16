@@ -45,8 +45,8 @@ function(x, mean = 0, sd = 1, xi = 1.5,
 
     # Parameter Estimation:
     obj = function(x, y = x, trace) {
-        f = try(-sum(log(dist(y, x[1], x[2], x[3]))), silent = TRUE)
-        if (is.na(f) | class(f) == "try-error") return(1e9)
+        f <- tryCatch(-sum(log(dist(y, x[1], x[2], x[3]))), error=identity)
+        if (is.na(f) || inherits(f, "error")) return(1e9)
         # Print Iteration Path:
         if (trace) {
             cat("\n Objective Function Value:  ", -f)

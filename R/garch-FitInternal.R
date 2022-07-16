@@ -24,7 +24,7 @@
 #  .garchNames              Slot names, @fit slot, parameters and controls
 ################################################################################
 
-
+## called from garchFit() and .ugarchFit()
 .garchFit <-
 function(
     formula.mean = ~arma(0, 0),
@@ -167,10 +167,7 @@ function(
     residuals = .series$z
     fitted.values = .series$x - residuals
     h.t = .series$h
-    if (.params$includes["delta"])
-        deltainv = 1/fit$par["delta"]
-    else
-        deltainv = 1/fit$params$delta
+    deltainv <- 1/(if(.params$includes["delta"]) fit$par["delta"] else fit$params$delta)
     sigma.t = (.series$h)^deltainv
 
     # Standard Errors and t-Values:
@@ -191,7 +188,7 @@ function(
     # Add Title and Description:
     if (DEBUG) print("Add Title and Description ...")
     if(is.null(title)) title = "GARCH Modelling"
-    if(is.null(description)) description = description()
+    if(is.null(description)) description = description() # {timeSeries}
 
     # Total Execution Time:
     Time =  Sys.time() - .StartFit
@@ -203,7 +200,7 @@ function(
     # Return Value:
     new("fGARCH",
         call = as.call(match.call()),
-        formula = as.formula(paste("~", formula.mean, "+", formula.var)),
+        formula = formula(paste("~", formula.mean, "+", formula.var, collapse = " ")),
         method = "Max Log-Likelihood Estimation",
         data = data,
         fit = fit,
@@ -363,9 +360,8 @@ function (formula, data, fake = FALSE, lhs = FALSE)
     x = model.frame(formula, data)
 
     # timeSeries ?
-    if (class(data) == "timeSeries") {
+    if (inherits(data, "timeSeries"))
         x = timeSeries(x)
-    }
 
     # Add control atrribute:
     if (fake) {
