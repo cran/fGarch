@@ -2,6 +2,59 @@
 \title{News for \R Package \pkg{fGarch}}
 \encoding{UTF-8}
 
+\section{CHANGES in fGarch VERSION 4021.87 (2022-08-XX, svn rXXXX)}{
+  \subsection{New maintainer}{
+    \itemize{
+      \item Georgi N. Boshnakov
+    }
+  }
+  \subsection{BUG FIXES}{
+    Fixed issue 6061 raised by William Scott, who also supplied
+    examples.
+    \itemize{
+
+      \item The quantile function, \code{qsnorm}, was wrong around
+      0.5. The error was in \code{.qsnorm}. For now its version before
+      the fix is kept as \code{.qsnorm_orig}. Basically, branching was
+      done w.r.t. \eqn{p = 0.5}, which is correct only for the symmetric
+      case, \eqn{\xi = 1}, and should be \eqn{1/(1+\xi^2)} instead.  More
+      details in the source code. The error was affecting the central
+      part of the distrbution with the interval becoming larger for
+      \eqn{\xi} further away from 1.
+
+      \item The cdf, \code{psnorm}, had an error at a single point,
+      coinciding with the wrong value for \eqn{p = 0.5} returned by
+      \code{qsnorm(0.5)} before the fix. The result was that
+      \code{psnorm(qsnorm(0.5))} was returning 0.5, falsely giving
+      reassurance that \code{qsnorm(0.5)} was correct.
+
+      \item Not mentioned in issue 6061 but the same problems held for
+      the other skewed distributions: \code{qsstd}, \code{psstd},
+      \code{qsged}, \code{psged}. The original versions of the relevant
+      internal functions are kept for now with a suffix \code{_orig}, as
+      above: \code{qsstd_orig}, \code{psstd_orig}, \code{qsged_orig},
+      \code{psged_orig}.
+      
+    }
+  }
+
+  \subsection{Documentation}{
+    \itemize{
+
+      \item Edited the documentation of \code{"garchSpec"} and
+      \code{garchSim}. It was somewhat incomplete and contained
+      leftovers, apparently from old versions of the functions.
+
+      \item Documented the datasets. Previously the help page for them
+      was a placeholder, without the names of the available datasets.
+      There is no information about the time span of the data or how the
+      returns were calculated.
+
+    }
+  }
+
+}
+
 \section{CHANGES in fGarch VERSION 4001.1 (2022-06-23, svn r6184)}{
   \subsection{NEW FEATURES}{
     \itemize{

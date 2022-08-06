@@ -1,15 +1,16 @@
 Package: fGarch
 Title: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling
-Date: 2022-06-24
-Version: 4021.86
-Author: Diethelm Wuertz [aut],
-    Yohan Chalabi [aut],
-    Tobias Setz [aut,cre],
-    Chris Boudt [ctb],
-    Pierre Chausse [ctb],
-    Michal Miklovac [ctb],
-    Martin Maechler [aut]
-Maintainer: Tobias Setz <tobias.setz@live.com>
+Date: 2022-07-27
+Version: 4021.87
+Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
+	   , person("Yohan", "Chalabi", role = "aut")
+	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
+	   , person("Martin","Maechler", role="aut", email="maechler@stat.math.ethz.ch", comment = c(ORCID = "0000-0002-8685-9910"))
+	   , person("Chris", "Boudt", role = "ctb")
+	   , person("Pierre", "Chausse", role = "ctb")
+	   , person("Michal", "Miklovac", role = "ctb")
+	   , person(given = c("Georgi", "N."), family = "Boshnakov", 
+                    role = c("cre", "ctb"), email = "georgi.boshnakov@manchester.ac.uk") )
 Description: Analyze and model heteroskedastic behavior in financial time series.
 Imports: fBasics, timeDate, timeSeries, fastICA, Matrix, graphics,
         methods, stats, utils
@@ -17,10 +18,17 @@ Suggests: RUnit, tcltk
 LazyData: yes
 License: GPL (>= 2)
 URL: https://www.rmetrics.org
-Repository: CRAN
-Repository/R-Forge/Project: rmetrics
-Repository/R-Forge/Revision: 6188
-Repository/R-Forge/DateTimeStamp: 2022-07-13 17:33:34
-Date/Publication: 2022-07-17 00:10:02 UTC
+BugReports: https://r-forge.r-project.org/projects/rmetrics
 NeedsCompilation: yes
-Packaged: 2022-07-13 17:52:08 UTC; rforge
+Packaged: 2022-08-06 07:41:01 UTC; georgi
+Author: Diethelm Wuertz [aut] (original code),
+  Yohan Chalabi [aut],
+  Tobias Setz [aut],
+  Martin Maechler [aut] (<https://orcid.org/0000-0002-8685-9910>),
+  Chris Boudt [ctb],
+  Pierre Chausse [ctb],
+  Michal Miklovac [ctb],
+  Georgi N. Boshnakov [cre, ctb]
+Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
+Repository: CRAN
+Date/Publication: 2022-08-06 14:20:02 UTC

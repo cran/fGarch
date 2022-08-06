@@ -19,93 +19,95 @@ garchSim(spec = garchSpec(), n = 100, n.start = 100, extended = FALSE)
 
 \arguments{
 
-    \item{extended}{
-        logical parameter if the output series should be a 3 columns
-        \code{timeSeries} object with \code{garch}, \code{sigma} and
-        \code{eps} data (\code{extended = TRUE}) or a univariate GARCH\\APARCH time
-        series (\code{extended = FALSE}
-        }
-    \item{spec}{
-        a specification object of class \code{"fGARCHSPEC"} as
-        returned by the function \code{garchSpec}. The model parameters
-        are taken from the \code{@model} slot, a list with the 
-        following entries:\cr
-        \code{omega} - the constant coefficient of the variance equation,
-        by default 1e-6; \cr
-        \code{alpha} - the value or vector of autoregressive coefficients, 
-            by default 0.1, specifying a model of order 1; \cr
-        \code{beta} - the value or vector of variance coefficients,
-            by default 0.8, specifying a model of order 1; 
-        \cr
-        The optional values for the linear part are: \cr
-        \code{mu} - the intercept value, by default 0 (it implies that the mean = mu/(1-sum(ar))); \cr
-        \code{ar} - the autoregressive ARMA coefficients, by default 0; \cr
-        \code{ma} - the moving average ARMA coefficients, by default 0. 
-        \cr
-        The optional parameters for the conditional distributions are:\cr
-        \code{skew} - the skewness parameter (also named xi), by default
-            0.9, effective only for the \code{"dsnorm"}, the \code{"dsged"},
-            and the \code{"dsstd"} skewed conditional distributions; \cr
-        \code{shape} = the shape parameter (also named nu), by default 2 
-            for the \code{"dged"} and \code{"dsged"}, and by default 4
-            for the \code{"dstd"} and \code{"dsstd"} conditional
-            distributions.\cr
-        See also below for further details.
-        }   
-    \item{n}{
-        length of output series, an integer value. An integer value,
-        by default \code{n=100}.
-        }
-    \item{n.start}{
-        length of "burn-in" period, by default 100.
-        }
+  \item{spec}{
+      
+    a specification object of class \code{"fGARCHSPEC"} as returned by
+    \code{\link{garchSpec}}. See also below for further details.
 
+  }   
+  \item{n}{
+
+    length of output series, an integer value, by default \code{n=100}.
+
+  }
+
+  \item{n.start}{
+
+    length of "burn-in" period, by default 100.
+
+  }
+
+  \item{extended}{
+    
+    logical parameter specifying what to return. If \code{FALSE}, return
+    the univariate GARCH/APARCH time series. If \code{TRUE}, return a
+    multivariate time series containing also the volatility and
+    conditional innovations time series.
+      
+  }
+      
 }
 
 
 \details{
 
-    The function \code{garchSim} simulates an univariate GARCH or 
-    APARCH time series process as specified by the argument \code{model}. 
+    The function \code{garchSim} simulates an univariate GARCH or APARCH
+    time series process as specified by argument \code{spec}.  The
+    default model specifies Bollerslev's GARCH(1,1) model with normal
+    distributed innovations.
     
-    The \code{model} is an object of class \code{"fGARCHSPEC"} as 
-    returned by the function \code{garchSpec}. The returned model
-    specification comes comes with a slot \code{@model} which is
-    a list of just the numeric parameter entries. These are recognized 
-    and extracted for use by the function \code{garchSim}.
-    
-    By default the series will be returned as an object of class
-    \code{"ts"} or as a \code{"numeric"} vector. Having time/date
-    positions, e.g. from an empirical process the numeric vector
-    can be easily transformed into other time series objects like 
-    \code{"timeSeries"} or \code{"zoo"}. So one can estimate the
+    \code{spec} is an object of class \code{"fGARCHSPEC"} as returned by
+    the function \code{\link{garchSpec}}. The returned model
+    specification comes comes with a slot \code{@model} which is a list
+    of just the numeric parameter entries. These are recognized and
+    extracted for use by the function \code{garchSim}.
+
+    % (GB) commenting out since the return value is 'timeSeries'.
+    %
+    % By default the series will be returned as an object of class
+    % \code{"ts"} or as a \code{"numeric"} vector. Having time/date
+    % positions, e.g. from an empirical process the numeric vector
+    % can be easily transformed into other time series objects like 
+    % \code{"timeSeries"} or \code{"zoo"}. So
+    One can estimate the
     parameters of a GARCH process from empirical data using the
-    function \code{garchFit} and simulate than statistically 
+    function \code{garchFit} and then simulate statistically 
     equivalent GARCH processes with the same set of model parameters
     using the function \code{garchSim}.
-    
-    The third entry in the argument \code{returnClass="mts"} allows
-    to return a trivariate time series, where the first column contains
-    the simulated \code{"garch"} process, the second column the conditional
-    standard deviations \code{"h"}, and the last column the innovations
-    named \code{"eps"}.
-    
-    Note, the default model specifies Bollerslev's GARCH(1,1) model
-    with normal distributed innovations.
 
+    
+    % (GB) commenting out since there is no argument 'returnClass'
+    %  (apparently it is superseded by 'extend')
+    %
+    % The third entry in the argument \code{returnClass="mts"} allows
+    % to return a trivariate time series, where the first column contains
+    % the simulated \code{"garch"} process, the second column the conditional
+    % standard deviations \code{"h"}, and the last column the innovations
+    % named \code{"eps"}.
+    
 }
 
 
 \value{
 
-    The function \code{garchSim} returns an objects of class
-    \code{"timeSeries"} attributed by a list with entry
-    \code{$garchSpec} giving the GARCH specification structure as
-    returned by the function \code{garchSpec} and with information on 
-    conditional standard deviations and innovations. See details above.
-    
+  the simulated time series, \code{garch} as an objects of class
+  \code{"timeSeries"} with attribute \code{"spec"} containing the
+  specification of the model.
+
+  If \code{extended} is \code{TRUE}, then the time series is
+  multivariate and contains also the volatility, \code{sigma}, and the
+  conditional innovations, \code{eps}.
+  
 }
 
+\note{
+  
+  An undocumented feature (so, it should not be relied on) is that the
+  returned time series is timed so that the last observation is the day
+  before the date when the function is executed. This probably should be
+  controlled by an additional argument in \code{garchSim}.
+  
+}
 
 \author{
 
@@ -113,6 +115,9 @@ garchSim(spec = garchSpec(), n = 100, n.start = 100, extended = FALSE)
     
 }
 
+\seealso{
+  \code{\link{garchSpec}}
+}
 
 \examples{
 ## garchSpec -
@@ -180,6 +185,9 @@ garchSim(spec = garchSpec(), n = 100, n.start = 100, extended = FALSE)
        alpha = c(0.10, 0.05), gamma = c(0, 0), beta = 0.8, delta = 1.8, 
        shape = 4, skew = 0.85), cond.dist = "sstd")
    garchSim(spec, n = 10)
+
+   garchSim(spec, n = 10, extended = TRUE)
+   
 }
 
 

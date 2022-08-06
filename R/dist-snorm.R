@@ -190,8 +190,33 @@ function(q, xi)
       sigma = sqrt((1-m1^2)*(xi^2+1/xi^2) + 2*m1^2 - 1)
       z = q*sigma + mu
     # Compute:  
+      sig <- ifelse(z >= 0, 1, -1) # note: 1 for z = 0; was sign(z)
+    Xi = xi^sig  # not sign(z)
+    g = 2  / (xi + 1/xi)
+    ## was: Probability = Heaviside(z) - sig * g * Xi * pnorm(q = -abs(z)/Xi)
+      Probability = ifelse(z >= 0, 1, 0) - sig * g * Xi * pnorm(q = -abs(z)/Xi)
+    # Return Value:
+      Probability 
+}
+    
+.psnorm_orig <- 
+function(q, xi) 
+{   
+    # A function implemented by Diethelm Wuertz 
+
+    # Description:
+    #   Internal Function
+    
+    # FUNCTION:
+    
+    # Standardize:
+      m1 = 2/sqrt(2*pi)
+      mu = m1 * (xi - 1/xi)
+      sigma = sqrt((1-m1^2)*(xi^2+1/xi^2) + 2*m1^2 - 1)
+      z = q*sigma + mu
+    # Compute:  
       Xi = xi^sign(z)
-      g = 2  / (xi + 1/xi)  
+      g = 2  / (xi + 1/xi)
       Probability = Heaviside(z) - sign(z) * g * Xi * pnorm(q = -abs(z)/Xi)
     # Return Value:
       Probability 
@@ -201,7 +226,7 @@ function(q, xi)
 # ------------------------------------------------------------------------------
  
 
-.qsnorm <- 
+.qsnorm_orig <- 
 function(p, xi) 
 {   
     # A function implemented by Diethelm Wuertz 
@@ -218,11 +243,91 @@ function(p, xi)
     # Compute:  
       g = 2  / (xi + 1/xi)
       sig = sign(p-1/2) 
-      Xi = xi^sig         
+      Xi = xi^sig
       p = (Heaviside(p-1/2)-sig*p) / (g*Xi)
-      Quantile = (-sig*qnorm(p = p, sd = Xi) - mu ) / sigma
+    ## GB:
+    ## TODO: BUG [#6061] fGarch::qsnorm() incorrect around p=0.5
+    ##
+    ## This has, in general,  discontinuity for p = 1/2, since then sig = 0.
+    ## Note that the original p = 1/2 is transformed above to 1/(2*g*Xi),
+    ## so qnorm() doesn't necessarilly give 1/2 when p = 1/2.
+    ##
+    ## Note also that p can be a vector.
+    ##
+    ## Further note: the issue at p = 0.5 is a separate problem. Zooming in
+    ## shows that the quantile is not continuous at p = 0.5 and to the right of
+    ## 0.5 the values are smaller than just to the left of 0.5 up to around 0.51.
+    ##
+    ## SOLUTION(?): The error seems to be that sign() and Heaviside should compare to
+    ##    1/(1+1/xi^2), not 0.5 which is correct only for xi = 1. 
+    ## 
+    Quantile = (-sig*qnorm(p = p, sd = Xi) - mu ) / sigma
+#browser()    
     # Return Value:
       Quantile 
+}
+    
+ 
+.qsnorm <- 
+function(p, xi) 
+{   
+    ## A function implemented by Diethelm Wuertz 
+    ##    Corrected at the centre part by Georgi Boshnakov on 2022-07-27
+    ##    to fix bug [#6061].
+    ##    The version of .qsnorm before this fix is kept for now as '.qsnorm_orig'.
+    ##
+    ## Compare
+    ##    plot(function(p) .qsnorm(p, xi = 1.5), from  = 0, to = 1)
+    ##    plot(function(p) .qsnorm_orig(p, xi = 1.5), from  = 0, to = 1,
+    ##         col = "blue", add = TRUE)
+    ##
+    ## Create a quantile function by numerically inverting psnorm:
+    ##     f <- function(x, ...){ sapply(x, function(p)
+    ##                                        gbutils::cdf2quantile(p, cdf = psnorm, ...))}
+    ## It agrees with the fixed qsnorm (the 2nd is right over the first, 3rd is the orig.):
+    ##   plot(function(p) .qsnorm(p, xi = 1.5), from = 0.49, to = 0.51)
+    ##   plot(f, from = 0.49, to = 0.51, add = TRUE, col = "red")
+    ##   plot(function(p) .qsnorm_orig(p, xi = 1.5), from = 0.49, to = 0.51, add = TRUE)
+    ##   
+    ##   plot(function(p) .qsnorm(p, xi = 1.5), from = 0, to = 1)
+    ##   plot(f, from = 0, to = 1, add = TRUE, col = "red")
+    ##   plot(function(p) .qsnorm_orig(p, xi = 1.5), from = 0, to = 1, add = TRUE)
+
+    ## Description:
+    ##   Internal Function
+    
+    ## FUNCTION:
+    
+    ## Standardize:
+    m1 = 2/sqrt(2*pi)
+    mu = m1 * (xi - 1/xi)
+    sigma = sqrt((1-m1^2)*(xi^2+1/xi^2) + 2*m1^2 - 1)
+    ## Compute:  
+    g = 2 / (xi + 1/xi)
+    pxi <- p - (1 / (1 + xi^2)) # not p - 1/2
+    sig <- sign(pxi)  # not p - 1/2
+    Xi = xi^sig
+    p = (Heaviside(pxi) - sig * p) / (g * Xi)  # pxi, not p - 1/2
+    ## GB:
+    ## TODO: BUG [#6061] fGarch::qsnorm() incorrect around p=0.5
+    ##
+    ## This has, in general,  discontinuity for p = 1/2, since then sig = 0.
+    ## Note that the original p = 1/2 is transformed above to 1/(2*g*Xi),
+    ## so qnorm() doesn't necessarilly give 1/2 when p = 1/2.
+    ##
+    ## Note also that p can be a vector.
+    ##
+    ## Further note: the issue at p = 0.5 is a separate problem. Zooming in
+    ## shows that the quantile is not continuous at p = 0.5 and to the right of
+    ## 0.5 the values are smaller than just to the left of 0.5 up to around 0.51.
+    ##
+    ## SOLUTION(?): The error seems to be that sign() and Heaviside should compare to
+    ##    1/(1+1/xi^2), not 0.5 which is correct only for xi = 1. 
+    ## 
+    Quantile = (-sig * qnorm(p = p, sd = Xi) - mu ) / sigma
+
+    ## Return Value:
+    Quantile 
 }
     
  

@@ -86,7 +86,7 @@
 
 \value{
 
-    returns a data frame with the foloowing columns:
+    returns a data frame with the following columns:
     \code{"meanForecast"}, \code{meanError}, and \code{"standardDeviation"}.
     
     The number of records equals the number of forecasting steps

@@ -51,7 +51,7 @@
     \code{"ts", "mts"}.
 
     In contrast, the slot itself returns independent of the class
-    of the data input always a numceric vector, i.e. the function
+    of the data input always a numeric vector, i.e. the function
     call r\code{slot(object, "fitted")} will return a numeric vector.
 
 }

@@ -65,6 +65,10 @@ test.sgedDis <-
     set.seed(1953, kind = "Marsaglia-Multicarry")
     test = .distCheck("sged", mean = 0, sd = 1, nu = 2, xi = 0.8, robust = FALSE) 
     print(test)                                       
+
+    ## 2022-07-27 GB check fixes related to issue #6061, see NEWS and the source code
+    stopifnot( all( diff(qsged(c(0.49, 0.5, 0.51))) > 0) )
+    stopifnot( all( diff(psged(qsged(c(0.49, 0.5, 0.51)))) > 0) )
     
     # Return Value:
     return()    
