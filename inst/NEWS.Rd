@@ -2,6 +2,19 @@
 \title{News for \R Package \pkg{fGarch}}
 \encoding{UTF-8}
 
+
+\section{CHANGES in fGarch VERSION 4021.88 (2022-09-28, svn rXXXX)}{
+  \itemize{
+    
+    \item require Matrix (>= 1.5-0) to avoid problems for users who have
+    earlier versions of Matrix on their devices (thanks to Mikael Jagan
+    for checking for not strict enough dependency on Matrix and alerting
+    the maintainer).
+
+  }
+}
+
+
 \section{CHANGES in fGarch VERSION 4021.87 (2022-08-XX, svn rXXXX)}{
   \subsection{New maintainer}{
     \itemize{

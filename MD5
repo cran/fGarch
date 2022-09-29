@@ -1,5 +1,5 @@
 8ddf42e368503fb9cb47500e2e44adab *ChangeLog
-d6045493e687c317b0862111bb10e0f8 *DESCRIPTION
+ecc96b5614cfa5e5b875e5b52df8b237 *DESCRIPTION
 27b8548e0a8c36983b105222965bda47 *NAMESPACE
 c7a13a689bb6a905b6bbd9d191c7f0df *R/class-fGARCH.R
 0eb2fa2612486d6e24b7ca89f27003c2 *R/class-fGARCHSPEC.R
@@ -51,7 +51,7 @@ c70f026e5bcd8c423e95fc44961fe7fb *R/methods-summary.R
 5ba9ac762a4cd5bae7ed6ed15ea799f5 *R/zzz.R
 546b76b0202b84b735595992648ae3ea *data/dem2gbp.csv
 e5b90a876ee62efb665b30b250b5c60e *data/sp500dge.csv
-78c8bb3dbacdf8589df05e4644baa48e *inst/NEWS.Rd
+b8f0c0a21df99a5a8077e3c83504e52b *inst/NEWS.Rd
 70a0d93bc75a19be75bdab2f50fc48a0 *inst/THANKS
 665e719c6c9360340268b2e6ac891515 *inst/unitTests/Makefile
 6daf0e9de9a62ce7c24edd2e9cd2f7e1 *inst/unitTests/runTests.R

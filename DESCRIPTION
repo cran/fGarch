@@ -1,7 +1,7 @@
 Package: fGarch
 Title: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling
-Date: 2022-07-27
-Version: 4021.87
+Date: 2022-09-28
+Version: 4021.88
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Yohan", "Chalabi", role = "aut")
 	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
@@ -12,15 +12,15 @@ Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person(given = c("Georgi", "N."), family = "Boshnakov", 
                     role = c("cre", "ctb"), email = "georgi.boshnakov@manchester.ac.uk") )
 Description: Analyze and model heteroskedastic behavior in financial time series.
-Imports: fBasics, timeDate, timeSeries, fastICA, Matrix, graphics,
-        methods, stats, utils
+Imports: fBasics, timeDate, timeSeries, fastICA, Matrix (>= 1.5-0),
+        graphics, methods, stats, utils
 Suggests: RUnit, tcltk
 LazyData: yes
 License: GPL (>= 2)
 URL: https://www.rmetrics.org
 BugReports: https://r-forge.r-project.org/projects/rmetrics
 NeedsCompilation: yes
-Packaged: 2022-08-06 07:41:01 UTC; georgi
+Packaged: 2022-09-28 08:13:27 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
   Yohan Chalabi [aut],
   Tobias Setz [aut],
@@ -31,4 +31,4 @@ Author: Diethelm Wuertz [aut] (original code),
   Georgi N. Boshnakov [cre, ctb]
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2022-08-06 14:20:02 UTC
+Date/Publication: 2022-09-29 09:40:06 UTC
