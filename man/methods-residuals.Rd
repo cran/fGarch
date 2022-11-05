@@ -1,41 +1,45 @@
 \name{residuals-methods}
-
-\title{Extract GARCH Model Residuals}
+\alias{residuals-methods}
 
 \docType{methods}
-\alias{residuals-methods}
-\alias{residuals,ANY-method}
+
+\alias{residuals}
 \alias{residuals,fGARCH-method}
 
+
+\title{Extract GARCH model residuals}
+
 \description{
-    Extracts residuals from a fitted GARCH object.
+  Extracts residuals from a fitted GARCH object.
 }
+
 \usage{
 \S4method{residuals}{fGARCH}(object, standardize = FALSE)
 }
 
 \arguments{
-  \item{object}{an object of class \code{"fGARCH"} as returned from \code{\link{garchFit}()}.}
-    \item{standardize}{a logical, indicating if the residuals should be standardized.}
-}
+  \item{object}{
 
-\section{Methods}{
-  \describe{
-    \item{object = "ANY"}{
-      Generic function
-    }
-    \item{object = "fGARCH"}{
-      Extractor function for residual from an object of class \code{"fGARCH"}.
-    }
+    an object of class \code{"fGARCH"} as returned from
+    \code{\link{garchFit}}.
+
+  }
+  \item{standardize}{
+
+    a logical, indicating if the residuals should be standardized.
+
   }
 }
 
-
 \details{
 
-    The function extracts the \code{@residuals} slot from an
-    object of class \code{"fGARCH"} as returned by the function
-    \code{garchFit}.
+  \code{\link{residuals}} is a generic function which extracts residual
+  values from objects returned by modeling functions.
+
+  The \code{"fGARCH"} method extracts the \code{@residuals} slot from an
+  object of class \code{"fGARCH"} as returned by the function
+  \code{garchFit} and optionally standardizes the residuals, using
+  conditional standard deviations.
 
     The class of the returned value depends on the input to the
     function \code{garchFit} who created the object. The returned
@@ -55,12 +59,26 @@
 }
 
 \note{
-   \code{\link{residuals}} is a generic function which extracts residual values
-   from objects returned by modeling functions.
+  
+  (GNB) Contrary to the description of the returned value of the
+  \code{"fGARCH"} method, it is always \code{"numeric"}.
+
+  TODO: either implement the documented behaviour or fix the
+  documentation.
+
 }
 
+\author{
+  Diethelm Wuertz for the Rmetrics \R-port
+}
 
-\author{ Diethelm Wuertz for the Rmetrics \R-port. }
+\seealso{
+  
+  \code{\link{fitted}},
+  \code{\link{predict}},
+  \code{\link{garchFit}},
+  class \code{\linkS4class{fGARCH}},
+}
 
 \examples{
 ## Swiss Pension fund Index -
@@ -80,6 +98,4 @@
    identical(res, slot(fit, "residuals"))
 }
 
-
 \keyword{models}
-

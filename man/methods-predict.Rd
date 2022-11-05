@@ -1,36 +1,32 @@
 \name{predict-methods}
-
+\alias{predict-methods}
 
 \docType{methods}
 
-
-\alias{predict-methods}
-\alias{predict,ANY-method}
+\alias{predict}
 \alias{predict,fGARCH-method}
 
 
-\title{GARCH Prediction Function}
+\title{GARCH prediction function}
 
 
 \description{
 
-    Predicts a time series from a fitted GARCH object.
+  Predicts a time series from a fitted GARCH object.
 
 }
-
 
 \usage{
 \S4method{predict}{fGARCH}(object, n.ahead = 10, trace = FALSE, mse = c("cond","uncond"),
         plot=FALSE, nx=NULL, crit_val=NULL, conf=NULL, \dots)
 }
 
-
 \arguments{
   
   \item{n.ahead}{ an integer value, denoting the number of steps to be
     forecasted, by default 10.}
   
-  \item{object}{ an object of class \code{fGARCH} as returned by the
+  \item{object}{ an object of class \code{"fGARCH"} as returned by the
     function \code{garchFit}.}
   
   \item{trace}{ a logical flag. Should the prediction process be traced?
@@ -69,34 +65,38 @@
 
 }
 
+\details{
 
-\section{Methods}{
-    \describe{
-
-    \item{object = "ANY"}{
-        Generic function.
-        }
-    \item{object = "fGARCH"}{
-        Predict function for objects of class \code{"fGARCH"}.
-        }
+  The predictions are returned as a data frame with with columns
+  \code{"meanForecast"}, \code{"meanError"}, and
+  \code{"standardDeviation"}. Row \code{h} contains the predictions for
+  horizon \code{h}.
+    
+  The number of records equals the number of forecasting steps \code{n.ahead}.
         
-    }
+  
 }
-
 
 \value{
 
-    returns a data frame with the following columns:
-    \code{"meanForecast"}, \code{meanError}, and \code{"standardDeviation"}.
-    
-    The number of records equals the number of forecasting steps
-    \code{n.ahead}.
+  a data frame containing 3 columns and \code{n.ahead} rows, see section \sQuote{Details}
         
 }
 
+\author{
+  Diethelm Wuertz for the Rmetrics \R-port
+}
 
-\author{ Diethelm Wuertz for the Rmetrics \R-port. }
+\seealso{
+  \code{\link[stats]{predict}} in base R
 
+  \code{\link{fitted}},
+  \code{\link{residuals}},
+
+  \code{\link{plot}},
+  \code{\link{garchFit}},
+  class \code{\linkS4class{fGARCH}},
+}
 \examples{
 ## garchFit - 
    # Parameter Estimation of Default GARCH(1,1) Model:
@@ -129,6 +129,5 @@
 
 }
 
-
 \keyword{models}
-
+\keyword{ts}

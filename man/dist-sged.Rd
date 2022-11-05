@@ -1,21 +1,27 @@
 \name{sged}
-
-
 \alias{sged}
+
 \alias{dsged}
 \alias{psged}
 \alias{qsged}
 \alias{rsged}
 
+\concept{standardized skew GED distribution}
+\concept{skew GED distribution}
+\concept{skewed GED distribution}
 
-\title{Skew Generalized Error Distribution}
+\concept{skew distribution}
+\concept{skewed distribution}
+
+
+\title{Skew generalized error distribution}
 
 
 \description{
     
-    Functions to compute density, distribution function, 
-    quantile function and to generate random variates 
-    for the skew generalized error distribution.
+  Functions to compute density, distribution function, quantile function
+  and to generate random variates for the skew generalized error
+  distribution.
           
 }
 
@@ -77,11 +83,15 @@ Fernandez C., Steel M.F.J. (2000);
 
 
 \author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
-    
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
+\seealso{
+  \code{\link{sgedFit}} (fit),
+  \code{\link{sgedSlider}} (visualize),
+
+  \code{\link{ged}} (symmetric GED)
+}
 
 \examples{
 ## sged -
@@ -105,6 +115,4 @@ Fernandez C., Steel M.F.J. (2000);
    round(qsged(psged(q = seq(-1, 5, by = 1))), digits = 6)
 }
 
-
 \keyword{distribution}
-

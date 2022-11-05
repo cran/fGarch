@@ -1,24 +1,26 @@
 \name{std}
-
-
 \alias{std}
+
 \alias{dstd}
 \alias{pstd}
 \alias{qstd}
 \alias{rstd}
 
+\concept{t-distribution}
+\concept{Student-t distribution}
+\concept{standardized Student t distribution}
+\concept{standardized Student t-distribution}
 
-\title{Student-t Distribution}
 
+\title{Standardized Student-t distribution}
 
 \description{
     
-    Functions to compute density, distribution function, 
-    quantile function and to generate random variates 
-    for the Student-t distribution.
+  Functions to compute density, distribution function, quantile function
+  and to generate random variates for the standardized Student-t
+  distribution.
        
 }
-
 
 \usage{
 dstd(x, mean = 0, sd = 1, nu = 5, log = FALSE)
@@ -27,37 +29,55 @@ qstd(p, mean = 0, sd = 1, nu = 5)
 rstd(n, mean = 0, sd = 1, nu = 5)
 }
 
-
 \arguments{
 
-    \item{mean, sd, nu}{
-        location parameter \code{mean},
-        scale parameter \code{sd},
-        shape parameter \code{nu}.
-        }
-    \item{n}{
-        the number of observations.
-        } 
-    \item{p}{
-        a numeric vector of probabilities.
-        }
-    \item{x, q}{
-        a numeric vector of quantiles.
-        }
-    \item{log}{
-        a logical; if TRUE, densities are given as log densities.
-        }
+  \item{x, q}{
+    a numeric vector of quantiles.
+  }
+  \item{p}{
+    a numeric vector of probabilities.
+  }
+  \item{n}{
+    number of observations to simulate.
+  } 
+  \item{mean}{
+    location parameter.
+  }
+  \item{sd}{
+    scale parameter.
+  }
+  \item{nu}{
+    shape parameter (degrees of freedom).
+  }
+  \item{log}{
+    logical; if \code{TRUE}, densities are given as log densities.
+  }
 }
 
+\details{
+
+  The standardized Student-t distribution is defined so that for a given
+  \code{sd} it has the same variance, \code{sd^2}, for all degrees of
+  freedom. For comparison, the variance of the usual Student-t
+  distribution is \code{nu/(nu-2)}, where \code{nu} is the degrees of
+  freedom.  The usual Student-t distribution is obtained by setting
+  \code{sd = sqrt(nu/(nu - 2))}.
+
+  Argument \code{nu} must be greater than 2. Although there is a default
+  value for \code{nu}, it is rather arbitrary and relying on it is
+  strongly discouraged.
+  
+  \code{dstd} computes the density,
+  \code{pstd} the distribution function,
+  \code{qstd} the quantile function,
+  and
+  \code{rstd} generates random deviates from the standardized-t
+  distribution with the specified parameters.
+  
+}
 
 \value{
-
-    \code{d*} returns the density,
-    \code{p*} returns the distribution function,
-    \code{q*} returns the quantile function, and
-    \code{r*} generates random deviates, \cr
-    all values are numeric vectors.
- 
+  numeric vector
 }
 
 
@@ -69,16 +89,21 @@ Fernandez C., Steel M.F.J. (2000);
     
 }
 
-
 \author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
-    
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
+\seealso{
+  \code{\link{stdFit}} (fit).
+  \code{\link{stdSlider}} (visualize),
 
+  \code{\link{absMoments}}
+}
 \examples{
 ## std -
+
+pstd(1, sd = sqrt(5/(5-2)), nu = 5) == pt(1, df = 5) # TRUE
+
    par(mfrow = c(2, 2))
    set.seed(1953)
    r = rstd(n = 1000)
@@ -99,6 +124,4 @@ Fernandez C., Steel M.F.J. (2000);
    round(qstd(pstd(q = seq(-1, 5, by = 1))), digits = 6)
 }
 
-
 \keyword{distribution}
-

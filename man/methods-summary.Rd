@@ -1,28 +1,27 @@
 \name{summary-methods}
-
-\title{GARCH Summary Methods}
+\alias{summary-methods}
 
 \docType{methods}
-\alias{summary-methods}
-\alias{summary,ANY-method}
+
+\alias{summary}
+%\alias{summary,ANY-method}
 \alias{summary,fGARCH-method}
 
-\description{
-    Summary methods for GARCH Modelling. 
-}
 
+\title{GARCH summary methods}
+
+\description{
+  Summary methods for GARCH modelling. 
+}
 
 \section{Methods}{
+  Methods for \code{summary} defined in package \pkg{fGarch}:
   \describe{
-    \item{object = "ANY"}{
-        Generic function
-        }
     \item{object = "fGARCH"}{
-        Summary function for objects of class \code{"fGARCH"}.
-        }
+      Summary function for objects of class \code{"fGARCH"}.
+    }
   }
 }
-
 
 \section{How to read a diagnostic summary report?}{
 
@@ -48,7 +47,7 @@
         }
     
     
-    The next three sections return the estimated coefficients, and
+    The next three sections return the estimated coefficients and
     an error analysis including standard errors, t values, and
     probabilities, as well as the log Likelihood values from 
     optimization:
@@ -95,7 +94,7 @@
 }
 
 \author{
-    Diethelm Wuertz for the Rmetrics \R-port.
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
 \examples{
@@ -106,5 +105,3 @@
    fit = garchFit(formula = x ~ garch(1, 1), data = x, trace = FALSE)
    summary(fit)
 }
-
-

@@ -1,17 +1,24 @@
 \name{snorm}
-
-\title{Skew Normal Distribution}
-
 \alias{snorm}
+
 \alias{dsnorm}
 \alias{psnorm}
 \alias{qsnorm}
 \alias{rsnorm}
 
+\concept{skewed normal distribution}
+
+\concept{skew distribution}
+\concept{skewed distribution}
+
+
+\title{Skew normal distribution}
+
 \description{
-    Functions to compute density, distribution function, 
-    quantile function and to generate random variates 
-    for the skew normal distribution. 
+
+  Functions to compute density, distribution function, quantile function
+  and to generate random variates for the skew normal distribution.
+
 }
 
 \usage{
@@ -22,26 +29,29 @@ rsnorm(n, mean = 0, sd = 1, xi = 1.5)
 }
 
 \arguments{
-    \item{mean, sd, xi}{
-        location parameter \code{mean},
-        scale parameter \code{sd},
-        skewness parameter \code{xi}.
-        }
-    \item{n}{the number of observations.} 
-    \item{p}{a numeric vector of probabilities.}
-    \item{x, q}{a numeric vector of quantiles.}
-    \item{log}{a logical; if TRUE, densities are given as log densities.}
+  \item{x, q}{a numeric vector of quantiles.}
+  \item{p}{a numeric vector of probabilities.}
+  \item{n}{the number of observations.} 
+  \item{mean}{location parameter.}
+  \item{sd}{scale parameter.}
+  \item{xi}{skewness parameter.}
+  \item{log}{a logical; if TRUE, densities are given as log densities.}
 }
 
+
+\details{
+
+  \code{dsnorm} computed the density,
+  \code{psnorm} the distribution function,
+  \code{qsnorm} the quantile function,
+  and
+  \code{rsnorm} generates random deviates.
+
+}
 
 \value{
-    \code{d*} returns the density,
-    \code{p*} returns the distribution function,
-    \code{q*} returns the quantile function, and
-    \code{r*} generates random deviates, \cr
-    all values are numeric vectors.
+  numeric vector
 }
-
 
 \references{
   Fernandez C., Steel M.F.J. (2000); 
@@ -50,7 +60,16 @@ rsnorm(n, mean = 0, sd = 1, xi = 1.5)
 }
 
 \author{
-    Diethelm Wuertz for the Rmetrics \R-port.
+  Diethelm Wuertz for the Rmetrics \R-port
+}
+
+\seealso{
+  \code{\link{snormFit}} (fit),
+  \code{\link{snormSlider}} (visualize),
+
+  \code{\link{sstd}} (skew Student-t),
+  \code{\link{sged}} (skew GED)
+
 }
 
 \examples{
@@ -76,6 +95,4 @@ rsnorm(n, mean = 0, sd = 1, xi = 1.5)
    round(qsnorm(psnorm(q = seq(-1, 5, by = 1))), digits = 6)
 }
 
-
 \keyword{distribution}
-

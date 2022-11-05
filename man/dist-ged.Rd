@@ -1,21 +1,23 @@
 \name{ged}
-
-
 \alias{ged}
+
 \alias{dged}
 \alias{pged}
 \alias{qged}
 \alias{rged}
 
 
-\title{Generalized Error Distribution}
+\concept{standardized GED distribution}
+\concept{GED distribution}
 
+
+\title{Standardized generalized error distribution}
 
 \description{
     
-    Functions to compute density, distribution function, 
-    quantile function and to generate random variates 
-    for the generalized error distribution. 
+  Functions to compute density, distribution function, quantile function
+  and to generate random variates for the standardized generalized error
+  distribution.
           
 }
 
@@ -27,40 +29,48 @@ qged(p, mean = 0, sd = 1, nu = 2)
 rged(n, mean = 0, sd = 1, nu = 2)
 }
 
-
 \arguments{
-
-    \item{mean, sd, nu}{
-        location parameter \code{mean},
-        scale parameter \code{sd},
-        shape parameter \code{nu}.
-        }
-    \item{n}{
-        the number of observations.
-        } 
-    \item{p}{
-        a numeric vector of probabilities.
-        }
-    \item{x, q}{
-        a numeric vector of quantiles.
-        }
-    \item{log}{
-        a logical; if TRUE, densities are given as log densities.
-        }
-    
+  
+  \item{x, q}{
+    a numeric vector of quantiles.
+  }
+  \item{p}{
+    a numeric vector of probabilities.
+  }
+  \item{n}{
+    number of observations to simulate.
+  } 
+  \item{mean}{
+    location parameter.
+  }
+  \item{sd}{
+    scale parameter.
+  }
+  \item{nu}{
+    shape parameter.
+  }
+  \item{log}{
+    logical; if \code{TRUE}, densities are given as log densities.
+  }
 }
 
+\details{
+
+  The standardized GED is defined so that for a given \code{sd} it has
+  the same variance, \code{sd^2}, for all values of the shape parameter.
+  
+  \code{dstd} computes the density,
+  \code{pstd} the distribution function,
+  \code{qstd} the quantile function,
+  and
+  \code{rstd} generates random deviates from the standardized-t
+  distribution with the specified parameters.
+  
+}
 
 \value{
-
-    \code{d*} returns the density,
-    \code{p*} returns the distribution function,
-    \code{q*} returns the quantile function, and
-    \code{r*} generates random deviates, \cr
-    all values are numeric vectors.
- 
+  numeric vector
 }
-
 
 \references{
 
@@ -76,11 +86,16 @@ Fernandez C., Steel M.F.J. (2000);
 
 
 \author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
-    
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
+\seealso{
+  \code{\link{gedFit}},
+  \code{\link{absMoments}},
+  \code{\link{sged}} (skew GED),
+
+  \code{\link{gedSlider}} for visualization
+}
 
 \examples{
 ## sged -
@@ -105,6 +120,4 @@ Fernandez C., Steel M.F.J. (2000);
        
 }
 
-
 \keyword{distribution}
-

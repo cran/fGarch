@@ -1,25 +1,26 @@
 \name{garchSpec}
-
-
 \alias{garchSpec}
 
+\concept{GARCH model}
+\concept{APARCH model}
+\concept{asymmetric power ARCH model}
+\concept{ARMA-GARCH model}
+\concept{ARMA-APARCH model}
 
-\title{Univariate GARCH Time Series Specification}
 
+\title{Univariate GARCH/APARCH time series specification}
 
 \description{
 
-    Specifies an univariate GARCH time series model.
+  Specifies an univariate ARMA-GARCH or ARMA-APARCH time series model.
 
 }
-
 
 \usage{
 garchSpec(model = list(), presample = NULL, 
     cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd"), 
     rseed = NULL)
 }
-
 
 \arguments{
 
@@ -52,64 +53,71 @@ garchSpec(model = list(), presample = NULL,
   }
 }
 
-
 \details{
 
-    The function \code{garchSpec} specifies a GARCH or APARCH time
-    series process which we can use for simulating artificial GARCH
-    and/or APARCH models. This is very useful for testing the
-    GARCH parameter estimation results, since your model parameters
-    are known and well specified.
+  The function \code{garchSpec} specifies a GARCH or APARCH time series
+  process which we can use for simulating artificial GARCH and/or APARCH
+  models. This is very useful for testing the GARCH parameter estimation
+  results, since your model parameters are known and well specified.
 
-    Argument \code{model} is a list of model parameters. For the GARCH
-    part of the model they are:
-    \describe{
+  Argument \code{model} is a list of model parameters. For the GARCH
+  part of the model they are:
+  
+  \describe{
 
-      \item{\code{omega}}{the constant coefficient of the variance equation,
-	by default \code{1e-6};} 
+    \item{\code{omega}}{the constant coefficient of the variance
+      equation, by default \code{1e-6};}
 
-      \item{\code{alpha}}{the value or vector of autoregressive coefficients, 
-        by default 0.1, specifying a model of order 1;} 
+    \item{\code{alpha}}{the value or vector of autoregressive
+      coefficients, by default 0.1, specifying a model of order 1;}
       
-      \item{\code{beta}}{the value or vector of variance coefficients,
-        by default 0.8, specifying a model of order 1.} 
+    \item{\code{beta}}{the value or vector of variance coefficients, by
+      default 0.8, specifying a model of order 1.}
 
-    }
+  }
 
-    If the model is APARCH, then the following additional parameters are available:
-    \describe{
+  If the model is APARCH, then the following additional parameters are
+  available:
 
-      \item{delta}{a positive number, the power of sigma in the
-	volatility equation, it is 2 for GARCH models;}
+  \describe{
 
-      \item{gamma}{the leverage parameters, a vector of length
-	\code{alpha}, containing numbers in the interval \eqn{(0,1)}.}
+    \item{delta}{a positive number, the power of sigma in the volatility
+      equation, it is 2 for GARCH models;}
 
-    }
+    \item{gamma}{the leverage parameters, a vector of length
+      \code{alpha}, containing numbers in the interval \eqn{(0,1)}.}
+
+  }
     
-    The values for the linear part (conditional mean) are:
-    \describe{
+  The values for the linear part (conditional mean) are:
+
+  \describe{
     
-      \item{\code{mu}}{the mean value, by default NULL;} 
-      \item{\code{ar}}{the autoregressive ARMA coefficients, by default NULL;} 
-      \item{\code{ma}}{the moving average ARMA coefficients, by default NULL.}
-    }
-    The parameters for the conditional distributions are:
-    \describe{
+    \item{\code{mu}}{the mean value, by default NULL;} 
+    \item{\code{ar}}{the autoregressive ARMA coefficients, by default NULL;} 
+    \item{\code{ma}}{the moving average ARMA coefficients, by default NULL.}
+  }
+
+  The parameters for the conditional distributions are:
+
+  \describe{
     
-      \item{\code{skew}}{the skewness parameter (also named "xi"), by default
-        0.9, effective only for the \code{"dsnorm"}, the \code{"dsged"},
-        and the \code{"dsstd"} skewed conditional distributions;} 
+    \item{\code{skew}}{the skewness parameter (also named "xi"), by
+      default 0.9, effective only for the \code{"dsnorm"}, the
+      \code{"dsged"}, and the \code{"dsstd"} skewed conditional
+      distributions;}
       
-      \item{\code{shape}}{the shape parameter (also named "nu"), by default 2 
-        for the \code{"dged"} and \code{"dsged"}, and by default 4
-        for the \code{"dstd"} and \code{"dsstd"} conditional
-        distributions.} 
-    }
+    \item{\code{shape}}{the shape parameter (also named "nu"), by
+      default 2 for the \code{"dged"} and \code{"dsged"}, and by default
+      4 for the \code{"dstd"} and \code{"dsstd"} conditional
+      distributions.}
+
+  }
     
-    For example, specifying a subset AR(5[1,5])-GARCH(2,1) model with a 
-    standardized Student-t distribution with four degrees of freedom 
-    will return the following printed output:
+    
+  For example, specifying a subset AR(5[1,5])-GARCH(2,1) model with a
+  standardized Student-t distribution with four degrees of freedom will
+  return the following printed output:
        
         \preformatted{
         garchSpec(model = list(ar = c(0.5,0,0,0,0.1), alpha =  
@@ -134,34 +142,32 @@ garchSpec(model = list(), presample = NULL,
         -3   -3  0.4146414 2e-05 0  
         -4   -4 -1.5399500 2e-05 0  
         }
+
+  Its interpretation is as follows.  \sQuote{Formula} describes the
+  formula expression specifying the generating process, \sQuote{Model}
+  lists the associated model parameters, \sQuote{Distribution} the type
+  of the conditional distribution function in use,
+  \sQuote{Distributional Parameters} lists the distributional parameter
+  (if any), and the \sQuote{Presample} shows the presample input matrix.
     
-    "Formula" describes the formula expression specifying the
-    generating process, "Model" lists the associated model parameters,
-    "Distribution" the type of the conditional distribution function
-    in use, "Distributional Parameters" lists the distributional 
-    parameter (if any), and the "Presample" shows the presample
-    input matrix.
-    
-    If we have specified \code{presample=NULL} in the argument list, 
-    then the presample is generated automatically by default as  
-    norm-AR()-GARCH() process.
+  If we have specified \code{presample = NULL} in the argument list,
+  then the presample is generated automatically by default as
+  norm-AR()-GARCH() process.
    
 }
 
-
 \value{
-
-    an object of class \code{"fGARCHSPEC"}.
-    
+  an object of class \code{"\linkS4class{fGARCHSPEC}"}
 }
-
-
 
 \author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
+\seealso{
+  \code{\link{garchSim}},
+  \code{\link{garchFit}}
+}
 
 \examples{
 ## garchSpec -
@@ -222,6 +228,5 @@ garchSpec(model = list(), presample = NULL,
        shape = 4, skew = 0.85), cond.dist = "sstd")
 }
 
-
 \keyword{models}
-
+\keyword{ts}

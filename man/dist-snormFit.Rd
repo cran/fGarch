@@ -1,15 +1,15 @@
 \name{snormFit}
-
 \alias{snormFit}
 
+\concept{skew distribution}
+\concept{skewed distribution}
 
-\title{Skew Normal Distribution Parameter Estimation}
 
+\title{Skew normal distribution parameter estimation}
 
 \description{
     
-    Function to fit the parameters of the skew normal
-    distribution. 
+  Fits the parameters of the skew normal distribution.
     
 }
 
@@ -18,45 +18,41 @@
 snormFit(x, \dots)
 }
 
-
 \arguments{
 
-    \item{x}{
-        a numeric vector of quantiles.
-        }
-    \item{\dots}{
-        parameters parsed to the optimization function \code{nlm}. 
-        }
+  \item{x}{
+    a numeric vector of quantiles.
+  }
+  \item{\dots}{
+    parameters passed to the optimization function \code{nlm}. 
+  }
     
 }
 
 
 \value{
-
     
-    \code{snormFit} returns a list with the following components: 
-    \cr
-    \item{par}{
-        The best set of parameters found. 
-        }
-    \item{objective}{
-        The value of objective corresponding to \code{par}.
-        }
-    \item{convergence}{
-        An integer code. 0 indicates successful convergence.
-        }  
-    \item{message}{
-        A character string giving any additional information 
-        returned by the optimizer, or NULL. For details, see 
-        PORT documentation.
-        }  
-    \item{iterations}{
-        Number of iterations performed.
-        } 
-    \item{evaluations}{
-        Number of objective function and gradient function 
-        evaluations.
-        } 
+  \code{snormFit} returns a list with the following components: 
+  \item{par}{
+    The best set of parameters found. 
+  }
+  \item{objective}{
+    The value of objective corresponding to \code{par}.
+  }
+  \item{convergence}{
+    An integer code. 0 indicates successful convergence.
+  }  
+  \item{message}{
+    A character string giving any additional information returned by the
+    optimizer, or NULL. For details, see PORT documentation.
+  }  
+  \item{iterations}{
+    Number of iterations performed.
+  } 
+  \item{evaluations}{
+    Number of objective function and gradient function 
+    evaluations.
+  } 
  
 }
 
@@ -71,11 +67,14 @@ Fernandez C., Steel M.F.J. (2000);
 
 
 \author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
-    
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
+\seealso{
+  \code{\link{snormFit}} (fit),
+  \code{\link{snormSlider}} (visualize),
+  \code{\link{absMoments}}
+}
 
 \examples{
 ## rsnorm -
@@ -86,6 +85,4 @@ Fernandez C., Steel M.F.J. (2000);
    snormFit(r)
 }
 
-
 \keyword{distribution}
-

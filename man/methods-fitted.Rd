@@ -1,43 +1,42 @@
 \name{fitted-methods}
-
+\alias{fitted-methods}
 
 \docType{methods}
 
-
-\alias{fitted-methods}
-\alias{fitted,ANY-method}
+\alias{fitted}
 \alias{fitted,fGARCH-method}
 
 
-\title{Extract GARCH Model Fitted Values}
-
+\title{Extract GARCH model fitted values}
 
 \description{
 
-    Extracts fitted values from a fitted GARCH object.
+  Extracts fitted values from a fitted GARCH object.
 
 }
 
 
 \section{Methods}{
-    \describe{
+  Methods for \code{fitted} defined in package \pkg{fGarch}:
+  \describe{
 
-    \item{object = "ANY"}{
-        Generic function.
-        }
     \item{object = "fGARCH"}{
-        Extractor function for fitted values.
-        }
-
+      Extractor function for fitted values.
     }
+
+  }
 }
 
 
 \details{
 
-    The function extracts the \code{@fitted} value slot from an
-    object of class \code{"fGARCH"} as returned by the function
-    \code{garchFit}.
+    \code{fitted()} is a generic function which extracts fitted values
+    from objects returned by modeling functions.  \code{methods(fitted)}
+    will show the methods available in the current \R session.
+
+    The method for \code{"fGARCH"} objects extracts the \code{@fitted}
+    value slot from an object of class \code{"fGARCH"} as returned by
+    the function \code{garchFit}.
 
     The class of the returned value depends on the input to the
     function \code{garchFit} who created the object. The returned
@@ -57,15 +56,27 @@
 }
 
 \note{
-    \code{fitted()} is a generic function which extracts fitted values
-    from objects returned by modeling functions.  \code{methods(fitted)}
-    will show the methods available in the current \R session.
+  
+  (GNB) Contrary to the description of the returned value of the
+  \code{"fGARCH"} method, it is always \code{"numeric"}.
+
+  TODO: either implement the documented behaviour or fix the
+  documentation.
+
 }
 
 \author{
-    Diethelm Wuertz for the Rmetrics \R-port.
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
+\seealso{
+  \code{\link{predict}},
+  \code{\link{residuals}},
+  \code{\link{garchFit}},
+  class \code{\linkS4class{fGARCH}},
+
+  \code{\link{plot}}
+}
 
 \examples{
 stopifnot(require("timeSeries"))
@@ -89,7 +100,6 @@ stopifnot(require("timeSeries"))
    head(fitted)
    class(fitted)
 }
-
 
 \keyword{models}
 

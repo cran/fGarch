@@ -25,7 +25,9 @@ absMoments <-
 function(n, density = c("dnorm", "dged", "dstd"), ...)
 {   
     # A function implemented by Diethelm Wuertz 
-
+    ##
+    ## Georgi N. Boshnakov corrected the computation for std
+    
     # Description:
     #   Compute the absolute moments of a standardized
     #   symmetric distribution function.
@@ -40,7 +42,7 @@ function(n, density = c("dnorm", "dged", "dstd"), ...)
     # Value:
     #   Returns a numeric vector of moments M_i.
     #   Stores globally errors in the variable absMoment.error
-    #     if the moments were comuted numerically.
+    #     if the moments were computed numerically.
     
     # FUNCTION:
               
@@ -56,11 +58,25 @@ function(n, density = c("dnorm", "dged", "dstd"), ...)
         return(parm(n, ...)) 
     }
 
-    # std - Student-t Distribution:
+    # std - Standardized Student-t Distribution:
     # Note: nu > 2*n
     if (density == "dstd" | density == "std") {
+        
         parm = function(n, nu) {
-            return (beta(1/2+2*n, nu/2-2*n)/beta(1/2, nu/2) * sqrt(nu-2)) }
+            ## GNB: this is  wrong, gives NaN's when it shouldn't:
+            ##    beta(1/2 + 2*n, nu/2 - 2*n) / beta(1/2, nu/2) * sqrt(nu-2)
+            ##
+            ## This is from the paper Wuertz at all (draft for JSS), eq. (14):
+            ##
+            ##     r <- n / 2
+            ##     beta(1/2 + r/2, nu/2 - r/2) / beta(1/2, nu/2) * (nu-2)^(r/2)
+            ##
+            ## but the results are not right. It looks like a typo/error in the
+            ## formula and changing r/2 to n/2 gives a consistent result with
+            ## the usual t-distribution
+            ##
+            beta(1/2 + n/2, nu/2 - n/2) / beta(1/2, nu/2) * (nu-2)^(n/2)
+        }
         return(parm(n, ...)) 
     }
 

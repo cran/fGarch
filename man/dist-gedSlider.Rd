@@ -1,16 +1,13 @@
 \name{gedSlider}
-
-
 \alias{gedSlider}
 
 
-\title{Generalized Error Distribution Slider}
-
+\title{Generalized error distribution slider}
 
 \description{
     
-    Displays interactively the dependence of the GED 
-    distribution on its parameters. 
+  Displays interactively the dependence of the GED distribution on its
+  parameters.
           
 }
 
@@ -19,22 +16,20 @@
 gedSlider(type = c("dist", "rand"))
 }
 
-
 \arguments{
 
-    \item{type}{
-        a character string denoting which interactive plot should
-        be displayed. Either a distribution plot \code{type="dist"},
-        the default value, or a random variates plot, \code{type="rand"}.
-        }
-    
+  \item{type}{
+
+    a character string denoting which interactive plot should be
+    displayed. Either a distribution plot \code{type = "dist"}, the
+    default value, or a random variates plot, \code{type = "rand"}.
+
+  }
 }
 
 
 \value{
-
-    a Tcl object.
- 
+  a Tcl object
 }
 
 
@@ -52,12 +47,14 @@ Fernandez C., Steel M.F.J. (2000);
 
 
 \author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
-    
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
-
+\seealso{
+  \code{\link{ged}},
+  \code{\link{gedFit}}
+}
+  
 \examples{
 \dontrun{  
 ## gedSlider -
@@ -66,7 +63,6 @@ Fernandez C., Steel M.F.J. (2000);
    gedSlider("rand")
 }
 }
-
 
 \keyword{distribution}
 

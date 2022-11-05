@@ -1,16 +1,19 @@
-\name{TimeSeriesData}
-
-\alias{TimeSeriesData}
+\name{fGarchData}
+\alias{fGarchData}
 
 \alias{dem2gbp}
 \alias{sp500dge}
 
-\title{Time Series Data Sets} 
+\concept{exchange rates data}
+\concept{SP500 data}
+
+
+\title{Time series datasets} 
 
 \description{
   
-  Data sets used in the examples of the timeSeries packages, including
-  DEM/GBP foreign exchange rates dataset and data on SP500 index.
+  Datasets used in the examples, including DEM/GBP foreign exchange
+  rates and data on SP500 index.
 
 }
 \format{
@@ -24,6 +27,10 @@
 }
 \details{
   The data represent retuns. No further details have been recorded.
+
+  Further datasets are available in the packages that \pkg{fGarch}
+  imports, see \code{\link[fBasics]{fBasicsData}} and
+  \code{\link[timeSeries]{TimeSeriesData}}.
 }
 
 \examples{
@@ -38,6 +45,10 @@ head(sp500dge)
 tail(sp500dge)
 str(sp500dge)
 plot(sp500dge[[1]])
+
+## list time series datasets from available in some packages
+data(package = "fBasics")
+data(package = "timeSeries")
 }
 \keyword{datasets}
 \keyword{ts}

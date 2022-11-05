@@ -1,21 +1,18 @@
 \name{sstd}
-
-
 \alias{sstd}
+
 \alias{dsstd}
 \alias{psstd}
 \alias{qsstd}
 \alias{rsstd}
 
 
-\title{Skew Student-t Distribution and Parameter Estimation}
-
+\title{Skew Student-t distribution}
 
 \description{
     
-    Functions to compute density, distribution function, 
-    quantile function and to generate random variates 
-    for the skew Student-t distribution. 
+  Functions to compute density, distribution function, quantile function
+  and to generate random variates for the skew Student-t distribution.
        
 }
 
@@ -29,39 +26,46 @@ rsstd(n, mean = 0, sd = 1, nu = 5, xi = 1.5)
 
 
 \arguments{
-
-    \item{mean, sd, nu, xi}{
-        location parameter \code{mean},
-        scale parameter \code{sd},
-        shape parameter \code{nu}, 
-        skewness parameter \code{xi}.
-        }
-    \item{n}{
-        the number of observations.
-        } 
-    \item{p}{
-        a numeric vector of probabilities.
-        }
-    \item{x, q}{
-        a numeric vector of quantiles.
-        }
-    \item{log}{
-        a logical; if TRUE, densities are given as log densities.
-        }
+  \item{x, q}{
+    a numeric vector of quantiles.
+  }
+  \item{p}{
+    a numeric vector of probabilities.
+  }
+  \item{n}{
+    number of observations to simulate.
+  } 
+  \item{mean}{
+    location parameter.
+  }
+  \item{sd}{
+    scale parameter.
+  }
+  \item{nu}{
+    shape parameter (degrees of freedom).
+  }
+  \item{xi}{
+    skewness parameter.
+  }
+  \item{log}{
+    logical; if \code{TRUE}, densities are given as log densities.
+  }
     
 }
 
+
+\details{
+
+  \code{dsstd} computes the density,
+  \code{psstd} the distribution function,
+  \code{qsstd} the quantile function, and
+  \code{rsstd} generates random deviates.
+
+}
 
 \value{
-
-    \code{d*} returns the density,
-    \code{p*} returns the distribution function,
-    \code{q*} returns the quantile function, and
-    \code{r*} generates random deviates, \cr
-    all values are numeric vectors.
-    
+  numeric vector
 }
-
 
 \references{
    
@@ -73,11 +77,13 @@ Fernandez C., Steel M.F.J. (2000);
 
 
 \author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
-    
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
+\seealso{
+  \code{\link{sstdFit}} (fit),
+  \code{\link{sstdSlider}} (visualize)
+}
 
 \examples{
 ## sstd -
@@ -101,6 +107,4 @@ Fernandez C., Steel M.F.J. (2000);
    round(qsstd(psstd(q = seq(-1, 5, by = 1))), digits = 6)
 }
 
-
 \keyword{distribution}
-

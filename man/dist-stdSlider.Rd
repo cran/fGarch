@@ -1,16 +1,13 @@
 \name{stdSlider}
-
-
 \alias{stdSlider}
 
 
-\title{Student-t Distribution Slider}
-
+\title{Student-t distribution slider}
 
 \description{
     
-    Displays interactively the dependence of the Student-t 
-    distribution on its parameters. 
+  Displays interactively the dependence of the Student-t distribution on
+  its parameters.
           
 }
 
@@ -22,19 +19,18 @@ stdSlider(type = c("dist", "rand"))
 
 \arguments{
 
-    \item{type}{
-        a character string denoting which interactive plot should
-        be displayed. Either a distribution plot \code{type="dist"},
-        the default value, or a random variates plot, \code{type="rand"}.
-        }
+  \item{type}{
     
+    a character string denoting which interactive plot should be
+    displayed. Either a distribution plot \code{type="dist"}, the
+    default value, or a random variates plot, \code{type="rand"}.
+
+  }
 }
 
 
 \value{
-
-    a Tcl object.
- 
+  a Tcl object
 }
 
 
@@ -43,12 +39,15 @@ stdSlider(type = c("dist", "rand"))
 
 
 \author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
-    
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
 
+\seealso{
+  \code{\link{std}},
+  \code{\link{stdFit}},
+}
+  
 \examples{
 \dontrun{  
 ## stdSlider -
@@ -58,6 +57,4 @@ stdSlider(type = c("dist", "rand"))
 }
 }
 
-
 \keyword{distribution}
-

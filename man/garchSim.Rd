@@ -1,13 +1,19 @@
 \name{garchSim}
-
 \alias{garchSim}
 
-\title{Univariate GARCH/APARCH Time Series Simulation}
+\concept{GARCH model}
+\concept{APARCH model}
 
+\concept{simulate GARCH}
+\concept{simulate APARCH}
+
+
+
+\title{Simulate univariate GARCH/APARCH time series}
 
 \description{
 
-    Simulates a univariate GARCH/APARCH time series model.
+  Simulates univariate GARCH/APARCH time series.
 
 }
 
@@ -16,27 +22,26 @@
 garchSim(spec = garchSpec(), n = 100, n.start = 100, extended = FALSE) 
 }
 
-
 \arguments{
 
   \item{spec}{
       
-    a specification object of class \code{"fGARCHSPEC"} as returned by
-    \code{\link{garchSpec}}. See also below for further details.
+    a specification object of class \code{"\linkS4class{fGARCHSPEC}"} as
+    returned by \code{\link{garchSpec}}. See also below for further
+    details.
 
   }   
   \item{n}{
 
-    length of output series, an integer value, by default \code{n=100}.
+    length of the output series, an integer value, by default
+    \code{n=100}.
 
   }
-
   \item{n.start}{
 
-    length of "burn-in" period, by default 100.
+    length of \sQuote{burn-in} period, by default 100.
 
   }
-
   \item{extended}{
     
     logical parameter specifying what to return. If \code{FALSE}, return
@@ -45,54 +50,49 @@ garchSim(spec = garchSpec(), n = 100, n.start = 100, extended = FALSE)
     conditional innovations time series.
       
   }
-      
 }
-
 
 \details{
 
-    The function \code{garchSim} simulates an univariate GARCH or APARCH
-    time series process as specified by argument \code{spec}.  The
-    default model specifies Bollerslev's GARCH(1,1) model with normal
-    distributed innovations.
-    
-    \code{spec} is an object of class \code{"fGARCHSPEC"} as returned by
-    the function \code{\link{garchSpec}}. The returned model
-    specification comes comes with a slot \code{@model} which is a list
-    of just the numeric parameter entries. These are recognized and
-    extracted for use by the function \code{garchSim}.
+  The function \code{garchSim} simulates an univariate GARCH or APARCH
+  time series process as specified by argument \code{spec}.  The default
+  model specifies Bollerslev's GARCH(1,1) model with normally
+  distributed innovations.
+  
+  \code{spec} is an object of class \code{"fGARCHSPEC"} as returned by
+  the function \code{\link{garchSpec}}. It comes with a slot
+  \code{@model} which is a list of just the numeric parameter
+  entries. These are recognized and extracted for use by the function
+  \code{garchSim}.
 
-    % (GB) commenting out since the return value is 'timeSeries'.
-    %
-    % By default the series will be returned as an object of class
-    % \code{"ts"} or as a \code{"numeric"} vector. Having time/date
-    % positions, e.g. from an empirical process the numeric vector
-    % can be easily transformed into other time series objects like 
-    % \code{"timeSeries"} or \code{"zoo"}. So
-    One can estimate the
-    parameters of a GARCH process from empirical data using the
-    function \code{garchFit} and then simulate statistically 
-    equivalent GARCH processes with the same set of model parameters
-    using the function \code{garchSim}.
+  % (GB) commenting out since the return value is 'timeSeries'.
+  %
+  % By default the series will be returned as an object of class
+  % \code{"ts"} or as a \code{"numeric"} vector. Having time/date
+  % positions, e.g. from an empirical process the numeric vector can be
+  % easily transformed into other time series objects like
+  % \code{"timeSeries"} or \code{"zoo"}. So
 
-    
-    % (GB) commenting out since there is no argument 'returnClass'
-    %  (apparently it is superseded by 'extend')
-    %
-    % The third entry in the argument \code{returnClass="mts"} allows
-    % to return a trivariate time series, where the first column contains
-    % the simulated \code{"garch"} process, the second column the conditional
-    % standard deviations \code{"h"}, and the last column the innovations
-    % named \code{"eps"}.
-    
+  One can estimate the parameters of a GARCH process from empirical data
+  using the function \code{garchFit} and then simulate statistically
+  equivalent GARCH processes with the same set of model parameters using
+  the function \code{garchSim}.
+  
+  % (GB) commenting out since there is no argument 'returnClass'
+  %  (apparently it is superseded by 'extend')
+  %
+  % The third entry in the argument \code{returnClass="mts"} allows to
+  % return a trivariate time series, where the first column contains the
+  % simulated \code{"garch"} process, the second column the conditional
+  % standard deviations \code{"h"}, and the last column the innovations
+  % named \code{"eps"}.
 }
-
 
 \value{
 
-  the simulated time series, \code{garch} as an objects of class
-  \code{"timeSeries"} with attribute \code{"spec"} containing the
-  specification of the model.
+  the simulated time series as an objects of class \code{"timeSeries"}
+  with attribute \code{"spec"} containing the specification of the
+  model.
 
   If \code{extended} is \code{TRUE}, then the time series is
   multivariate and contains also the volatility, \code{sigma}, and the
@@ -110,13 +110,12 @@ garchSim(spec = garchSpec(), n = 100, n.start = 100, extended = FALSE)
 }
 
 \author{
-
-    Diethelm Wuertz for the Rmetrics \R-port.
-    
+  Diethelm Wuertz for the Rmetrics \R-port
 }
 
 \seealso{
-  \code{\link{garchSpec}}
+  \code{\link{garchSpec}},
+  \code{\link{garchFit}}
 }
 
 \examples{
@@ -190,6 +189,5 @@ garchSim(spec = garchSpec(), n = 100, n.start = 100, extended = FALSE)
    
 }
 
-
 \keyword{models}
-
+\keyword{ts}

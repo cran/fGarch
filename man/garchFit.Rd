@@ -1,14 +1,39 @@
 \name{garchFit}
-\title{Univariate or Multivariate GARCH Time Series Fitting}
 \alias{garchFit}
+
 \alias{garchKappa}
 \alias{.gogarchFit}
+
+\concept{GARCH model}
+\concept{APARCH model}
+\concept{ARMA-GARCH model}
+\concept{ARMA-APARCH model}
+\concept{AR-GARCH model}
+\concept{AR-APARCH model}
+\concept{MA-GARCH model}
+\concept{MA-APARCH model}
+
+\concept{fit GARCH model}
+\concept{fit APARCH model}
+\concept{fit ARMA-GARCH model}
+\concept{fit ARMA-APARCH model}
+\concept{fit AR-GARCH model}
+\concept{fit AR-APARCH model}
+\concept{fit MA-GARCH model}
+\concept{fit MA-APARCH model}
+
+
+\title{Univariate or multivariate GARCH time series fitting}
+
 \description{
+  
   Estimates the parameters of a univariate ARMA-GARCH/APARCH process, or
   --- experimentally --- of a multivariate GO-GARCH process model.  The
   latter uses an algorithm based on \code{fastICA()}, inspired from
   Bernhard Pfaff's package \CRANpkg{gogarch}.
+
 }
+
 \usage{
 garchFit(formula = ~ garch(1, 1), data,
 	init.rec = c("mci", "uev"),
@@ -87,7 +112,7 @@ garchKappa(cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd", "snig"),
         \code{\link{formula}} object describing the mean and variance equation of the
         ARMA-GARCH/APARCH model.  A pure GARCH(1,1) model is selected
         e.g., for \code{formula = ~garch(1,1)}.  To specify an
-        ARMA(2,1)-APARCH(1,1) process, use \code{ ~ arma(2,1) + apaarch(1,1)}.
+        ARMA(2,1)-APARCH(1,1) process, use \code{ ~ arma(2,1) + aparch(1,1)}.
     }
     \item{gamma}{
         APARCH leverage parameter entering into the formula for calculating
@@ -103,6 +128,7 @@ garchKappa(cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd", "snig"),
       parameter for the recursion equation \code{delta} will be estimated
       or not.  If false, the shape parameter will be kept fixed during the
       process of parameter optimization.}
+
     \item{include.mean}{
         this flag determines if the parameter for the mean will be estimated
         or not. If \code{include.mean=TRUE} this will be the case, otherwise
@@ -149,61 +175,6 @@ garchKappa(cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd", "snig"),
 
 }
 
-\value{
-    \code{garchFit} \cr
-    \cr
-    returns a S4 object of class \code{"fGARCH"} with the following slots:
-    \item{@call}{
-        the call of the \code{garch} function.
-    }
-    \item{@formula}{
-        a list with two formula entries, one for the mean and the other
-        one for the variance equation.
-    }
-    \item{@method}{
-        a string denoting the optimization method, by default the
-        returneds string is "Max Log-Likelihood Estimation".
-    }
-    \item{@data}{
-        a list with one entry named \code{x}, containing the data of
-        the time series to be estimated, the same as given by the
-        input argument \code{series}.
-    }
-    \item{@fit}{
-        a list with the results from the parameter estimation. The entries
-        of the list depend on the selected algorithm, see below.
-    }
-    \item{@residuals}{
-        a numeric vector with the (raw, unstandardized) residual values.
-    }
-    \item{@fitted}{
-        a numeric vector with the fitted values.
-    }
-    \item{@h.t}{
-        a numeric vector with the conditional variances
-        (\eqn{h_t = \sigma_t^\delta}{h.t = sigma.t^delta}).
-    }
-    \item{@sigma.t}{
-        a numeric vector with the conditional standard deviation.
-    }
-    \item{@title}{
-        a title string.
-    }
-    \item{@description}{
-        a string with a brief description.
-    }
-
-    The entries of the @fit slot show the results from the
-    optimization.
-
-    \code{.gogarchFit()} : \cr
-    \cr
-    Similar definition for GO-GARCH modeling.  Here, \code{data} must be
-    \emph{multivariate}.
-    Still \dQuote{preliminary}, mostly undocumented, and untested(!).
-    At least mentioned here...
-}
-
 \details{
     \code{"QMLE"} stands for Quasi-Maximum Likelihood Estimation, which
     assumes normal distribution and uses robust standard errors for
@@ -232,6 +203,17 @@ garchKappa(cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd", "snig"),
 
 }
 
+\value{
+
+  for \code{garchFit}, an S4 object of class \code{"\linkS4class{fGARCH}"}.
+  Slot \code{@fit} contains the results from the optimization.
+
+  for \code{.gogarchFit()}: Similar definition for GO-GARCH modeling.
+  Here, \code{data} must be \emph{multivariate}.  Still
+  \dQuote{preliminary}, mostly undocumented, and untested(!).  At least
+  mentioned here...
+
+}
 
 \references{
     ATT (1984);
@@ -287,8 +269,14 @@ garchKappa(cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd", "snig"),
     Ladislav Luksan for the underlying Fortran SQP Routine, \cr
     Zhu, Byrd, Lu-Chen and Nocedal for the underlying L-BFGS-B Routine.
 
-    Martin Maechler for adding docu, cleaning up; \emph{mentioning}
+    Martin Maechler for cleaning up; \emph{mentioning}
     \code{.gogarchFit()}.
+}
+
+\seealso{
+  \code{\link{garchSpec}},
+  \code{\link{garchFitControl}},
+  class \code{"\linkS4class{fGARCH}"}
 }
 
 \examples{
@@ -366,4 +354,3 @@ garchKappa(cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd", "snig"),
 }
 
 \keyword{models}
-

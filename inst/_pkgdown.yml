@@ -1,0 +1,90 @@
+url: https://geobosh.github.io/fGarchDoc/
+
+deploy:
+  install_metadata: true
+
+template:
+  bootstrap: 5
+  
+search:
+  exclude: ['news/index.html']
+
+reference:
+  - title: "Overview of package fGarch"
+    contents:
+      - "fGarch-package"
+      - fGarch
+      - fGarchData
+      - garchSim
+      - dem2gbp
+      - sp500dge
+  - title: "Fit models"
+    contents:
+      - garchFit
+      - .gogarchFit
+      - garchKappa
+      - garchSpec
+      - garchFitControl
+  - title: "Classes"
+    contents:
+      - "fGARCH-class"
+      - "show,fGARCH-method"
+      - "fGARCHSPEC-class"
+      - "show,fGARCHSPEC-method"
+  - title: "Exploring and computing on 'fGARCH' objects"
+    contents:
+      - "plot,fGARCH,missing-method"
+      - "summary-methods"
+      - "summary,fGARCH-method"
+      - "coef-methods"
+      - "coef,fGARCH-method"
+      - "coef,fGARCHSPEC-method"
+      - "fitted-methods"
+      - "fitted,fGARCH-method"
+      - "formula-methods"
+      - "formula,fGARCH-method"
+      - "predict,fGARCH-method"
+      - "residuals,fGARCH-method"
+      - volatility
+  - title: "Standardized distributions"
+    contents:
+      - absMoments
+      - dstd
+      - pstd
+      - qstd
+      - rstd
+      - dged
+      - pged
+      - qged
+      - rged
+  - title: "Skewed standardized distributions"
+    contents:
+      - dsnorm
+      - psnorm
+      - qsnorm
+      - rsnorm
+      - dsstd
+      - psstd
+      - qsstd
+      - rsstd
+      - dsged
+      - psged
+      - qsged
+      - rsged
+  - title: "Fit standardized distributions"
+    contents:
+      - stdFit
+      - gedFit
+      - snormFit
+      - sstdFit
+      - sgedFit
+  - title: "Visualize standardized distributions"
+    contents:
+      - stdSlider
+      - gedSlider
+      - snormSlider
+      - sstdSlider
+      - sgedSlider
+  - title: "Internal functions and classes"
+    contents:
+      - "fUGARCHSPEC-class"

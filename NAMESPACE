@@ -24,6 +24,8 @@ importFrom("fBasics",
 
 ## importFrom("fastICA", fastICA)# only used in  R/mgarch-FitFromFormula.R  .gogarchFit()
 
+importFrom("cvar", VaR, ES)
+
 importFrom(Matrix, Matrix)# only in  R/garch-Hessian.R
 
 importFrom("graphics", abline, grid, hist, legend, lines,
