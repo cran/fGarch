@@ -50,20 +50,18 @@
 test.sgedDis <- 
     function()
 {       
-    .distCheck <- fBasics :: .distCheck
-
     # Generalized Error Distribution:
     RNGkind(kind = "Marsaglia-Multicarry", normal.kind = "Inversion")
     set.seed(4711, kind = "Marsaglia-Multicarry")
     
     # Test:
-    test = .distCheck("ged",  mean = 0, sd = 1, nu = 2, robust = FALSE) 
+    test = fBasics::distCheck("ged",  mean = 0, sd = 1, nu = 2, robust = FALSE) 
     print(test)                                     
        
     # Skew Generalized Error Distribution:
     RNGkind(kind = "Marsaglia-Multicarry", normal.kind = "Inversion")
     set.seed(1953, kind = "Marsaglia-Multicarry")
-    test = .distCheck("sged", mean = 0, sd = 1, nu = 2, xi = 0.8, robust = FALSE) 
+    test = fBasics::distCheck("sged", mean = 0, sd = 1, nu = 2, xi = 0.8, robust = FALSE) 
     print(test)                                       
 
     ## 2022-07-27 GB check fixes related to issue #6061, see NEWS and the source code

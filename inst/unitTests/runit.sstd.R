@@ -48,14 +48,12 @@
 test.sstdDist <-  
     function()
 { 
-    .distCheck <- fBasics :: .distCheck
-
     # Standardized Student-t Distribution:
     RNGkind(kind = "Marsaglia-Multicarry", normal.kind = "Inversion")
     set.seed(4711, kind = "Marsaglia-Multicarry")
     
     # Test:
-    test = .distCheck("std",  mean = 0, sd = 1, nu = 5, robust = FALSE) 
+    test = fBasics::distCheck("std",  mean = 0, sd = 1, nu = 5, robust = FALSE) 
     print(test)                                    
     
     # Skew Standardized Student-t Distribution:
@@ -63,7 +61,7 @@ test.sstdDist <-
     set.seed(4711, kind = "Marsaglia-Multicarry")
     
     # Test:
-    test = .distCheck("sstd", mean = 0, sd = 1, nu = 5, xi = 1.5, robust = FALSE) 
+    test = fBasics::distCheck("sstd", mean = 0, sd = 1, nu = 5, xi = 1.5, robust = FALSE) 
     print(test)                                     
     
     # Return Value:

@@ -1,5 +1,7 @@
 \name{fUGARCHSPEC-class}
 \alias{fUGARCHSPEC-class}
+\alias{.ugarchFit}
+\alias{.ugarchSpec}
 
 \docType{class}
 

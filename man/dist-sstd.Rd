@@ -56,6 +56,9 @@ rsstd(n, mean = 0, sd = 1, nu = 5, xi = 1.5)
 
 \details{
 
+  The distribution is standardized as discussed in the reference by
+  Wuertz et al below.
+  
   \code{dsstd} computes the density,
   \code{psstd} the distribution function,
   \code{qsstd} the quantile function, and
@@ -73,8 +76,12 @@ Fernandez C., Steel M.F.J. (2000);
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
     Preprint, 31 pages. 
     
+Wuertz D., Chalabi Y. and Luksan L. (????);
+    \emph{Parameter estimation of ARMA  models with GARCH/APARCH errors: An R
+      and SPlus software implementation},
+    Preprint, 41 pages,
+    \url{https://github.com/GeoBosh/fGarchDoc/blob/master/WurtzEtAlGarch.pdf}
 }
-
 
 \author{
   Diethelm Wuertz for the Rmetrics \R-port

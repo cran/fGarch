@@ -161,41 +161,13 @@ function(x, nu, xi)
 # ------------------------------------------------------------------------------
 
 
-.psstd_orig <-
-function(q, nu, xi)
-{
-    # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Internal Function
-
-    # FUNCTION:
-
-    # For SPlus compatibility:
-    if (!exists("beta"))
-        beta <- function (a, b) exp( lgamma(a) + lgamma(b) -lgamma(a+b) )
-
-    # Standardize:
-    m1 = 2 * sqrt(nu-2) / (nu-1) / beta(1/2, nu/2)
-    mu = m1*(xi-1/xi)
-    sigma =  sqrt((1-m1^2)*(xi^2+1/xi^2) + 2*m1^2 - 1)
-    z = q*sigma + mu
-
-    # Compute:
-    Xi = xi^sign(z)
-    g = 2 / (xi + 1/xi)
-    Probability = Heaviside(z) - sign(z) * g * Xi * 
-        pstd(q = -abs(z)/Xi, nu = nu)
-
-    # Return Value:
-    Probability
-}
-
-
 .psstd <-
 function(q, nu, xi)
 {
     # A function implemented by Diethelm Wuertz
+    ##
+    ## fixed by GNB, see section 'CHANGES in fGarch VERSION 4021.87, 2022-08-06', subsection
+    ## 'BUG fixes' in NEWS.Rd.
 
     # Description:
     #   Internal Function
@@ -227,41 +199,13 @@ function(q, nu, xi)
 # ------------------------------------------------------------------------------
 
 
-.qsstd_org <-
-function(p, nu, xi)
-{
-    # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Internal Function
-
-    # FUNCTION:
-
-    # For SPlus compatibility:
-    if (!exists("beta"))
-        beta <- function (a, b) exp( lgamma(a) + lgamma(b) -lgamma(a+b) )
-
-    # Standardize:
-    m1 = 2 * sqrt(nu-2) / (nu-1) / beta(1/2, nu/2)
-    mu = m1*(xi-1/xi)
-    sigma =  sqrt((1-m1^2)*(xi^2+1/xi^2) + 2*m1^2 - 1)
-
-    # Compute:
-    g = 2  / (xi + 1/xi)
-    sig = sign(p-1/2)
-    Xi = xi^sig
-    p = (Heaviside(p-1/2)-sig*p) / (g*Xi)
-    Quantile = (-sig*qstd(p = p, sd = Xi, nu = nu) - mu ) / sigma
-
-    # Return Value:
-    Quantile
-}
-
-
 .qsstd <-
 function(p, nu, xi)
 {
     # A function implemented by Diethelm Wuertz
+    ##
+    ## fixed by GNB, see section 'CHANGES in fGarch VERSION 4021.87, 2022-08-06', subsection
+    ## 'BUG fixes' in NEWS.Rd.
 
     # Description:
     #   Internal Function

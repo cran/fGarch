@@ -8,7 +8,6 @@
 \concept{simulate APARCH}
 
 
-
 \title{Simulate univariate GARCH/APARCH time series}
 
 \description{
@@ -54,10 +53,10 @@ garchSim(spec = garchSpec(), n = 100, n.start = 100, extended = FALSE)
 
 \details{
 
-  The function \code{garchSim} simulates an univariate GARCH or APARCH
-  time series process as specified by argument \code{spec}.  The default
-  model specifies Bollerslev's GARCH(1,1) model with normally
-  distributed innovations.
+  \code{garchSim} simulates an univariate GARCH or APARCH time series
+  process as specified by argument \code{spec}.  The default model
+  specifies Bollerslev's GARCH(1,1) model with normally distributed
+  innovations.
   
   \code{spec} is an object of class \code{"fGARCHSPEC"} as returned by
   the function \code{\link{garchSpec}}. It comes with a slot
@@ -90,9 +89,9 @@ garchSim(spec = garchSpec(), n = 100, n.start = 100, extended = FALSE)
 
 \value{
 
-  the simulated time series as an objects of class \code{"timeSeries"}
-  with attribute \code{"spec"} containing the specification of the
-  model.
+  the simulated time series as an objects of
+  class \code{"timeSeries"} with attribute \code{"spec"} containing the
+  specification of the model.
 
   If \code{extended} is \code{TRUE}, then the time series is
   multivariate and contains also the volatility, \code{sigma}, and the

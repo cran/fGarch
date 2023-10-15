@@ -15,7 +15,6 @@
 }
 
 \usage{
-volatility(object, \dots)
 \S3method{volatility}{fGARCH}(object, type = c("sigma", "h"), \dots)
 }
 
@@ -32,13 +31,13 @@ volatility(object, \dots)
     \code{"sigma"} or the variances \code{"h"} should be returned.
 
   }
-  \item{\dots}{additional arguments to be passed.}
+  \item{\dots}{currently not used.}
 }
 
 \details{
 
   \code{volatility} is an S3 generic function for computation of
-  volatility, see \code{link[fBasics]{volatility}} for the default
+  volatility, see \code{\link[fBasics]{volatility}} for the default
   method.
 
   The method for \code{"fGARCH"} objects, described here, extracts the

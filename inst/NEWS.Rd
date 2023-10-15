@@ -1,8 +1,58 @@
+% Convert this to NEWS.md:
+%  1. inst/NEWS.Rd to NEWS.html:
+%     tools:::Rd2HTML("inst/NEWS.Rd", "NEWS.html")
+%
+%  2. NEWS.html to NEWS.md (https://www.r-bloggers.com/2018/12/rstudio-pandoc-html-to-markdown/)
+%     rmarkdown::pandoc_convert("NEWS.html", to = "markdown_strict", output = "NEWS.md")
+%
+%  3. Manually remove everything up to the first line containing:
+%              ## CHANGES in fGarch VERSION ...
+%
+%  4. Bring the markdown sections one level up, i.e. remove one '#' from
+%     each section level. For example using regex ^#\(#+\) with replacement value \1
+
 \name{NEWS}
 \title{News for \R Package \pkg{fGarch}}
 \encoding{UTF-8}
 
-\section{CHANGES in fGarch VERSION 4021.89 (2022-??-??, from svn r6316--rXXXX)}{
+\section{CHANGES in fGarch VERSION 4022.90 (20232-??-??, svn r6333--r????)}{
+  \itemize{
+
+    \item added \code{"fGARCH"} method for `stats::tsdiag`. The method
+    produces diagnostic plot for fitted GARCH/APARCH models and computes
+    some diagnostic tests. The plots can be chosen iteractively and/or
+    via arguments. The test results are in the returned value. The
+    method is in development in that more plots may be made available
+    and additional tests included in the returned value.
+
+    \item refactored the \code{"fGARCH"} method for 'summary' to return
+    an object from S3 class 'summary_fGARCH' equipped with a 'print'
+    method. The printout is the same as before, except that now the
+    numbers in the statistics column for the residual diagnostics are
+    aligned on the decimal point (previously they were left-aligned due
+    to a buglet).
+
+    \item the \code{"fGARCH"} method for \code{fitted} was returning the
+    data, not the fitted values. Fixes issue 6789, reported by Kouhei
+    Hashinokuchi (hakoshie).
+
+    \item the help pages for the \code{"fGARCH"} methods for
+    \code{fitted()} and \code{residuals()} were stating that the
+    returned results have the same class as the input time
+    series. Actually, they return numeric vectors. (todo?: to make the
+    returned values as previously documented, \code{garchFit()} would
+    need to put the original data or the necessary information in the
+    fitted object, e.g., \code{object@fit$data}.
+
+    \item some tests were using deprecated \code{fBasics::.distCheck()}
+    (notice the leading dot). Replaced such calls with the equivalent
+    \code{fBasics::distCheck()}.
+
+  }
+}
+
+
+\section{CHANGES in fGarch VERSION 4022.89 (2022-11-05, from svn r6316--r6326)}{
   \itemize{
     
     \item in \code{absMoments}, the absolute moments for the
@@ -11,6 +61,10 @@
     \item in README, linked to the paper by Wuertz et al.
 
     \item substantially revised the documentation and filled gaps in it.
+
+    \item removed the functions with suffix `_orig` which were kept
+    temporarilly after the bug fix in v4021.87 since there were no
+    reported problems with the fix.
 
   }
 }

@@ -20,7 +20,7 @@
 \arguments{
   \item{object}{
 
-    an object of class \code{"fGARCH"} as returned from
+    an object of class \code{"fGARCH"} as returned by
     \code{\link{garchFit}}.
 
   }
@@ -33,38 +33,10 @@
 
 \details{
 
-  \code{\link{residuals}} is a generic function which extracts residual
-  values from objects returned by modeling functions.
-
   The \code{"fGARCH"} method extracts the \code{@residuals} slot from an
   object of class \code{"fGARCH"} as returned by the function
-  \code{garchFit} and optionally standardizes the residuals, using
-  conditional standard deviations.
-
-    The class of the returned value depends on the input to the
-    function \code{garchFit} who created the object. The returned
-    value is always of the same class as the input object to the
-    argument \code{data} in the function \code{garchFit}, i.e. if
-    you fit a \code{"timeSeries"} object, you will get back from
-    the function \code{fitted} also a \code{"timeSeries"} object,
-    if you fit an object of class \code{"zoo"}, you will get back
-    again a \code{"zoo"} object. The same holds for a \code{"numeric"}
-    vector, for a \code{"data.frame"}, and for objects of class
-    \code{"ts", "mts"}.
-
-    In contrast, the slot itself returns independent of the class
-    of the data input always a numeric vector, i.e. the function
-    call r\code{slot(object, "fitted")} will return a numeric vector.
-
-}
-
-\note{
-  
-  (GNB) Contrary to the description of the returned value of the
-  \code{"fGARCH"} method, it is always \code{"numeric"}.
-
-  TODO: either implement the documented behaviour or fix the
-  documentation.
+  \code{garchFit} and optionally standardizes them, using conditional
+  standard deviations.
 
 }
 
@@ -73,7 +45,6 @@
 }
 
 \seealso{
-  
   \code{\link{fitted}},
   \code{\link{predict}},
   \code{\link{garchFit}},
@@ -81,21 +52,22 @@
 }
 
 \examples{
-## Swiss Pension fund Index -
-   stopifnot(require("timeSeries"))
-   x = as.timeSeries(data(LPP2005REC))
+stopifnot(require("timeSeries"))
+## Swiss Pension fund Index
+data(LPP2005REC, package = "timeSeries")
+x <- as.timeSeries(LPP2005REC)
 
-## garchFit
-   fit = garchFit(LPP40 ~ garch(1, 1), data = 100*x, trace = FALSE)
-   fit
+## Fit LPP40 Bechmark:
+fit <- garchFit(LPP40 ~ garch(1, 1), data = 100*x, trace = FALSE)
+fit
 
-## residuals -
-   res = residuals(fit)
-   head(res)
-   class(res)
+fitted <- fitted(fit)
+head(fitted)
+class(fitted)
 
-## slot -
-   identical(res, slot(fit, "residuals"))
+res <- residuals(fit)
+head(res)
+class(res)
 }
 
 \keyword{models}

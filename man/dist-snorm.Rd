@@ -19,6 +19,9 @@
   Functions to compute density, distribution function, quantile function
   and to generate random variates for the skew normal distribution.
 
+  The distribution is standardized as discussed in the reference by
+  Wuertz et al below.
+  
 }
 
 \usage{
@@ -56,7 +59,14 @@ rsnorm(n, mean = 0, sd = 1, xi = 1.5)
 \references{
   Fernandez C., Steel M.F.J. (2000); 
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
-    Preprint, 31 pages. 
+    Preprint, 31 pages.
+
+  Wuertz D., Chalabi Y. and Luksan L. (????);
+    \emph{Parameter estimation of ARMA  models with GARCH/APARCH errors: An R
+      and SPlus software implementation},
+    Preprint, 41 pages,
+    \url{https://github.com/GeoBosh/fGarchDoc/blob/master/WurtzEtAlGarch.pdf}
+
 }
 
 \author{

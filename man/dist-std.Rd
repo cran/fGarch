@@ -87,6 +87,11 @@ Fernandez C., Steel M.F.J. (2000);
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
     Preprint, 31 pages. 
     
+Wuertz D., Chalabi Y. and Luksan L. (????);
+    \emph{Parameter estimation of ARMA  models with GARCH/APARCH errors: An R
+      and SPlus software implementation},
+    Preprint, 41 pages,
+    \url{https://github.com/GeoBosh/fGarchDoc/blob/master/WurtzEtAlGarch.pdf}
 }
 
 \author{

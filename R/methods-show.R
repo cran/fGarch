@@ -21,11 +21,8 @@
 #  show.fGARCHSPEC           S4 Show method for an object of class 'fGARCHSPEC'
 ################################################################################
 
-
-setMethod(f = "show", signature(object = "fGARCH"), definition =
-    function(object)
-{
-    # A function implemented by Diethelm Wuertz
+.show_orig_body <- function(object) {
+    ## A function implemented by Diethelm Wuertz
 
     # Description:
     #   Print method for an object of class "fGARCH"
@@ -111,7 +108,12 @@ setMethod(f = "show", signature(object = "fGARCH"), definition =
     # Return Value:
     cat("\n")
     invisible()
-})
+}
+
+setMethod(f = "show", signature(object = "fGARCH"), definition =
+    function(object) {
+        .show_orig_body(object)
+    })
 
 
 # ------------------------------------------------------------------------------
@@ -190,4 +192,3 @@ setMethod(f = "show", signature(object = "fGARCHSPEC"), definition =
 
 
 ################################################################################
-

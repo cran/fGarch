@@ -35,13 +35,41 @@ setMethod(f = "fitted", signature(object = "fGARCH"), definition =
 
     # FUNCTION:
 
-    # Get numeric vector of fitted, optionally standardized
-    fitted = object@fitted
-
-    # Get original time series class:
-    ans = slot(object, "data")
-    Name = as.character(object@formula[2])
-    attr(ans, "Name") <- Name
+    ## GNB: this was the previous code (before v4022.90).  Clearly, it assumes
+    ##      that 'data' is from class \code{"timeSeries"} and, to return an
+    ##      object from the same class, gets 'data' and replaces the data values
+    ##      with the fitted ones. ... Except that it doesn't do the latter, so
+    ##      returns the data! 
+    ##
+    ##   # Get numeric vector of fitted, optionally standardized
+    ##   fitted = object@fitted
+    ##   ## Get original time series class: (!! GNB: Nope, slot 'data' is numeric!)
+    ##   ans = slot(object, "data")                                                    
+    ##   Name = as.character(object@formula[2])
+    ##   attr(ans, "Name") <- Name
+    ##   # Return Value:
+    ##   ans
+    ##
+    ## GNB: the following code is in the spirit of the above, assuming that
+    ##      'ans' is indeed the original time series. For example (todo?) this
+    ##      could be achieved if garchFit sets object@fit$data to the original
+    ##      time series, using 'ans <- object@fit$data'. Changing the class of
+    ##      slot 'data' instead doesn't seem practical.
+    ##   
+    ##   fitted <- object@fitted
+    ##   if(is(ans, "timeSeries")){
+    ##       Name <- as.character(object@formula[2])
+    ##       attr(ans, "Name") <- Name
+    ##       ans@.Data <- if(is.matrix(fitted)) fitted else matrix(fitted, ncol = 1)
+    ##   } else if(inherits(ans, "ts") || is.numeric(ans)) {
+    ##       ans[] <- fitted
+    ##   } else {
+    ##       message(paste0("conversion to class '", class(ans), "' not supported yet,\n",
+    ##                      "returning slot fitted asis."))
+    ##       ans <- fitted
+    ##   }
+    ans <- object@fitted
+    
     # Return Value:
     ans
 })

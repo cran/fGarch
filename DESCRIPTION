@@ -1,6 +1,6 @@
 Package: fGarch
 Title: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling
-Version: 4022.89
+Version: 4031.90
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Yohan", "Chalabi", role = "aut")
 	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
@@ -9,17 +9,17 @@ Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Pierre", "Chausse", role = "ctb")
 	   , person("Michal", "Miklovac", role = "ctb")
 	   , person(given = c("Georgi", "N."), family = "Boshnakov", 
-                    role = c("cre", "ctb"), email = "georgi.boshnakov@manchester.ac.uk") )
+                    role = c("cre", "aut"), email = "georgi.boshnakov@manchester.ac.uk") )
 Description: Analyze and model heteroskedastic behavior in financial time series.
 Imports: fBasics, timeDate, timeSeries, fastICA, Matrix (>= 1.5-0),
         cvar (>= 0.5), graphics, methods, stats, utils
-Suggests: RUnit, tcltk
+Suggests: RUnit, tcltk, goftest
 LazyData: yes
 License: GPL (>= 2)
 URL: https://www.rmetrics.org
 BugReports: https://r-forge.r-project.org/projects/rmetrics
 NeedsCompilation: yes
-Packaged: 2022-11-05 16:56:26 UTC; georgi
+Packaged: 2023-10-15 12:23:02 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
   Yohan Chalabi [aut],
   Tobias Setz [aut],
@@ -27,7 +27,7 @@ Author: Diethelm Wuertz [aut] (original code),
   Chris Boudt [ctb],
   Pierre Chausse [ctb],
   Michal Miklovac [ctb],
-  Georgi N. Boshnakov [cre, ctb]
+  Georgi N. Boshnakov [cre, aut]
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2022-11-05 22:10:02 UTC
+Date/Publication: 2023-10-15 14:40:05 UTC

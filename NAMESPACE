@@ -1,12 +1,6 @@
-################################################
-## useDynLib
-################################################
-
 useDynLib("fGarch", .registration=TRUE)
 
-################################################
-## import (from) name spaces
-################################################
+## imports
 
 importFrom("timeDate", timeDate, timeSequence)
 
@@ -20,20 +14,20 @@ importFrom("fBasics",
        ##, teffectPlot  # used in test
          , dsnig, qsnig
          , volatility # we will re-export, as we define an S3 method
-         , .distCheck, .sliderMenu)
+         , distCheck, .sliderMenu)
 
 ## importFrom("fastICA", fastICA)# only used in  R/mgarch-FitFromFormula.R  .gogarchFit()
 
 importFrom("cvar", VaR, ES)
 
-importFrom(Matrix, Matrix)# only in  R/garch-Hessian.R
+importFrom(Matrix, Matrix) # only in  R/garch-Hessian.R
 
 importFrom("graphics", abline, grid, hist, legend, lines,
            par, polygon, title)
 
-importFrom("methods", new, show, slot, slotNames)
+importFrom("methods", new, show, slot, slotNames, is)
 
-importFrom("stats", Box.test, acf, arima, as.formula, ccf,
+importFrom("stats", Box.test, acf, arima, as.formula, ccf, tsdiag,
            density, dnorm, dt, filter, integrate, lm,
            model.frame, na.omit, nlminb, optim, optimHess,
            pchisq, pgamma, pnorm, ppoints, printCoefmat,
@@ -44,14 +38,19 @@ importFrom("stats", Box.test, acf, arima, as.formula, ccf,
 importFrom("utils", capture.output, menu)
 
 
+## Exports
 
-################################################
-## S4 classes
-################################################
+S3method(print, summary_fGARCH)
+S3method(print, tsdiag_fGARCH)
+S3method(tsdiag, fGARCH)
+
+S3method("volatility", "fGARCH")
+export(volatility) # we import it from fBasics
 
 exportClasses("fGARCH",
               "fGARCHSPEC",
               "fUGARCHSPEC" )
+
 exportMethods("coef",
               "fitted",
               "formula",
@@ -62,121 +61,76 @@ exportMethods("coef",
               "summary",
               "update" )
 
-################################################
-## S3 classes
-################################################
-
-S3method("volatility", "fGARCH")
-export(volatility) # we imported from fBasics
-
-################################################
-## functions
-################################################
-
 export(
-    ".QMLECondDist",
-    ".aparchLLH.filter",
-    ".aparchLLH.internal",
-    ".aparchLLH.testing",
-    ".dsged",
-    ".dsnorm",
-    ".dsstd",
-    ".garchArgsParser",
-    ".garchFit",
-    ".garchInitParameters",
-    ".garchInitSeries",
-    ".garchKappaFun",
-    ".garchLLH",
-    ".garchModelSeries",
-    ".garchNames",
-    ".garchOptimizeLLH",
-    ".garchOptimizerControl",
-    ".garchRCDAGradient",
-    ".garchRCDAHessian",
-    ".garchRlbfgsb",
-    ".garchRnlminb",
-    ".garchRnm",
-    ".garchRoptimhess",
-    ".garchSetCondDist",
-    ".garchTSHessian",
-    ".gedCondDist",
-    ".gedFit",
-    ".getfGarchEnv",
+    ## export these '.xxx' for now
     ".gogarchFit",
-    ".hessian2sided",
-    ".interactiveGarchPlot",
-    ".multGarchPlot",
-    ".normCondDist",
-    ".plot.garch.1",
-    ".plot.garch.10",
-    ".plot.garch.11",
-    ".plot.garch.12",
-    ".plot.garch.13",
-    ".plot.garch.2",
-    ".plot.garch.3",
-    ".plot.garch.4",
-    ".plot.garch.5",
-    ".plot.garch.6",
-    ".plot.garch.7",
-    ".plot.garch.8",
-    ".plot.garch.9",
-    ".psged",
-    ".psnorm",
-    ".psstd",
-    ".qqDist",
-    ".qqLine",
-    ".qsged",
-    ".qsnorm",
-    ".qsstd",
-    ".rsged",
-    ".rsnorm",
-    ".rsstd",
-    ".setfGarchEnv",
-    ".sgedCondDist",
-    ".sgedFit",
-    ".snigCondDist",
-    ".snormCondDist",
-    ".snormFit",
-    ".sstdCondDist",
-    ".sstdFit",
-    ".stdCondDist",
-    ".stdFit",
-    ".truePersistence",
-    ".ugarchFit",
-    ".ugarchSpec",
+    ".ugarchFit", ".ugarchSpec",
+    
     "absMoments",
-    "dged",
-    "dsged",
-    "dsnorm",
-    "dsstd",
-    "dstd",
+    "dged",   "pged",   "qged",   "rged",   "gedFit",   "gedSlider",
+    "dsged",  "psged",  "qsged",  "rsged",  "sgedFit",  "sgedSlider",
+    "dsnorm", "psnorm", "qsnorm", "rsnorm", "snormFit", "snormSlider",
+    "dsstd",  "psstd",  "qsstd",  "rsstd",  "sstdFit",  "sstdSlider",
+    "dstd",   "pstd",   "qstd",   "rstd",   "stdFit",   "stdSlider", 
     "garchFit",
     "garchFitControl",
     "garchKappa",
     "garchSim",
-    "garchSpec",
-    "gedFit",
-    "gedSlider",
-    "pged",
-    "psged",
-    "psnorm",
-    "psstd",
-    "pstd",
-    "qged",
-    "qsged",
-    "qsnorm",
-    "qsstd",
-    "qstd",
-    "rged",
-    "rsged",
-    "rsnorm",
-    "rsstd",
-    "rstd",
-    "sgedFit",
-    "sgedSlider",
-    "snormFit",
-    "snormSlider",
-    "sstdFit",
-    "sstdSlider",
-    "stdFit",
-    "stdSlider" )
+    "garchSpec"
+)
+
+## ".aparchLLH.filter", ".aparchLLH.internal", ".aparchLLH.testing",
+
+##                                            ".gedFit",   ".gedCondDist",
+##                                                         ".QMLECondDist",
+##                                                         ".normCondDist",
+## ".dsged",  ".psged",  ".qsged", ".rsged",  ".sgedFit",  ".sgedCondDist",  
+## ".dsnorm", ".psnorm", ".qsnorm",".rsnorm", ".snormFit", ".snormCondDist", 
+## ".dsstd",  ".psstd",  ".qsstd", ".rsstd",  ".sstdFit",  ".sstdCondDist",  
+##                                            ".stdFit",   ".stdCondDist",   
+##                                                         ".snigCondDist",
+
+## ".garchArgsParser",
+## ".garchFit",
+## ".garchInitParameters",
+## ".garchInitSeries",
+## ".garchKappaFun",
+## ".garchLLH",
+## ".garchModelSeries",
+## ".garchNames",
+## ".garchOptimizeLLH",
+## ".garchOptimizerControl",
+## ".garchRCDAGradient",
+## ".garchRCDAHessian",
+## ".garchRlbfgsb",
+## ".garchRnlminb",
+## ".garchRnm",
+## ".garchRoptimhess",
+## ".garchSetCondDist",
+## ".garchTSHessian",
+ 
+## ".getfGarchEnv", ".setfGarchEnv",
+
+## ".hessian2sided",
+
+## ".interactiveGarchPlot", ## GNB: these two may be worth exporting
+## ".multGarchPlot",
+
+## ".plot.garch.1",
+## ".plot.garch.10",
+## ".plot.garch.11",
+## ".plot.garch.12",
+## ".plot.garch.13",
+## ".plot.garch.2",
+## ".plot.garch.3",
+## ".plot.garch.4",
+## ".plot.garch.5",
+## ".plot.garch.6",
+## ".plot.garch.7",
+## ".plot.garch.8",
+## ".plot.garch.9",
+ 
+## ".qqDist", ".qqLine",
+
+## ".truePersistence",
+

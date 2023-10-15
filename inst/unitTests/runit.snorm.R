@@ -43,14 +43,12 @@
 test.snormDist <- 
     function()
 {   
-    .distCheck <- fBasics :: .distCheck
-
     # Normal Distribution:
     RNGkind(kind = "Marsaglia-Multicarry", normal.kind = "Inversion")
     set.seed(4711, kind = "Marsaglia-Multicarry")
     
     # Test:
-    test = .distCheck("norm",  mean = 0, sd = 1, robust = FALSE)
+    test = fBasics::distCheck("norm",  mean = 0, sd = 1, robust = FALSE)
     print(test)
     checkTrue(sum(test) == 3)                                     
     
@@ -59,7 +57,7 @@ test.snormDist <-
     set.seed(4711, kind = "Marsaglia-Multicarry")
     
     # Test:
-    test = .distCheck("snorm", mean = 0, sd = 1, xi = 1.5, robust = FALSE) 
+    test = fBasics::distCheck("snorm", mean = 0, sd = 1, xi = 1.5, robust = FALSE) 
     print(test)
     checkTrue(sum(test) == 3)                                      
     

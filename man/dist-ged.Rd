@@ -57,13 +57,14 @@ rged(n, mean = 0, sd = 1, nu = 2)
 \details{
 
   The standardized GED is defined so that for a given \code{sd} it has
-  the same variance, \code{sd^2}, for all values of the shape parameter.
+  the same variance, \code{sd^2}, for all values of the shape parameter,
+  see the reference by Wuertz et al below.
   
-  \code{dstd} computes the density,
-  \code{pstd} the distribution function,
-  \code{qstd} the quantile function,
+  \code{dged} computes the density,
+  \code{pged} the distribution function,
+  \code{qged} the quantile function,
   and
-  \code{rstd} generates random deviates from the standardized-t
+  \code{rged} generates random deviates from the standardized-t
   distribution with the specified parameters.
   
 }
@@ -80,8 +81,13 @@ Nelson D.B. (1991);
     
 Fernandez C., Steel M.F.J. (2000); 
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
-    Preprint, 31 pages. 
-    
+    Preprint, 31 pages.
+
+Wuertz D., Chalabi Y. and Luksan L. (????);
+    \emph{Parameter estimation of ARMA  models with GARCH/APARCH errors: An R
+      and SPlus software implementation},
+    Preprint, 41 pages,
+    \url{https://github.com/GeoBosh/fGarchDoc/blob/master/WurtzEtAlGarch.pdf}
 }
 
 

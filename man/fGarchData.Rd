@@ -33,6 +33,11 @@
   \code{\link[timeSeries]{TimeSeriesData}}.
 }
 
+\seealso{
+  \code{data(package = "fBasics")} and
+  \code{data(package = "timeSeries")} for related datasets
+
+}
 \examples{
 data(dem2gbp)
 head(dem2gbp)
@@ -45,10 +50,6 @@ head(sp500dge)
 tail(sp500dge)
 str(sp500dge)
 plot(sp500dge[[1]])
-
-## list time series datasets from available in some packages
-data(package = "fBasics")
-data(package = "timeSeries")
 }
 \keyword{datasets}
 \keyword{ts}

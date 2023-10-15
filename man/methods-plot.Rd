@@ -14,7 +14,7 @@
 
 \description{
 
-  Plot methods for GARCH Modelling. 
+  Plot methods for GARCH modelling. 
 
 }
 
@@ -70,6 +70,8 @@
 
 
 \seealso{
+  \code{\link[=tsdiag.fGARCH]{fGARCH}} method for \code{tsdiag},
+
   \code{\link{garchFit}},
   class \code{\linkS4class{fGARCH}},
 

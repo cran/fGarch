@@ -16,7 +16,6 @@
 
 \title{Skew generalized error distribution}
 
-
 \description{
     
   Functions to compute density, distribution function, quantile function
@@ -25,7 +24,6 @@
           
 }
 
-
 \usage{
 dsged(x, mean = 0, sd = 1, nu = 2, xi = 1.5, log = FALSE)
 psged(q, mean = 0, sd = 1, nu = 2, xi = 1.5)
@@ -33,30 +31,35 @@ qsged(p, mean = 0, sd = 1, nu = 2, xi = 1.5)
 rsged(n, mean = 0, sd = 1, nu = 2, xi = 1.5)
 }
 
-
 \arguments{
 
-    \item{mean, sd, nu, xi}{
-        location parameter \code{mean},
-        scale parameter \code{sd},
-        shape parameter \code{nu}, 
-        skewness parameter \code{xi}.
-        }
-    \item{n}{
-        the number of observations.
-        } 
-    \item{p}{
-        a numeric vector of probabilities.
-        }
-    \item{x, q}{
-        a numeric vector of quantiles.
-        }
-    \item{log}{
-        a logical; if TRUE, densities are given as log densities.
-        }
+  \item{mean, sd, nu, xi}{
+    location parameter \code{mean},
+    scale parameter \code{sd},
+    shape parameter \code{nu}, 
+    skewness parameter \code{xi}.
+  }
+  \item{n}{
+    the number of observations.
+  } 
+  \item{p}{
+    a numeric vector of probabilities.
+  }
+  \item{x, q}{
+    a numeric vector of quantiles.
+  }
+  \item{log}{
+    a logical; if TRUE, densities are given as log densities.
+  }
     
 }
 
+\details{
+
+  The distribution is standardized as discussed in the reference by
+  Wuertz et al below.
+
+}
 
 \value{
 
@@ -68,7 +71,6 @@ rsged(n, mean = 0, sd = 1, nu = 2, xi = 1.5)
     
 }
 
-
 \references{
 
 Nelson D.B. (1991);
@@ -79,8 +81,12 @@ Fernandez C., Steel M.F.J. (2000);
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
     Preprint, 31 pages. 
     
+Wuertz D., Chalabi Y. and Luksan L. (????);
+    \emph{Parameter estimation of ARMA  models with GARCH/APARCH errors: An R
+      and SPlus software implementation},
+    Preprint, 41 pages,
+    \url{https://github.com/GeoBosh/fGarchDoc/blob/master/WurtzEtAlGarch.pdf}
 }
-
 
 \author{
   Diethelm Wuertz for the Rmetrics \R-port

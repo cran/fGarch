@@ -20,14 +20,12 @@
 
 }
 
-
 \section{Objects from the Class}{
 
   Objects can be created by calls of the function \code{garchSpec}.
-  This object is specifies the parameters of an empirical GARCH process.
+  This object specifies the parameters of an empirical GARCH process.
     
 }
-
 
 \section{Slots}{
   \describe{
@@ -55,7 +53,6 @@
   }
 }       
 
-
 \section{Methods}{
   \describe{
     
@@ -66,14 +63,12 @@
   }
 }
 
-
 \note{
 
   With Rmetrics Version 2.6.1 the class has been renamed from
   \code{"garchSpec"} to \code{"fGARCHSPEC"}.
     
 }
-
 
 \author{
   Diethelm Wuertz for the Rmetrics \R-port
