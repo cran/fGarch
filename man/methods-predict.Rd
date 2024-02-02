@@ -6,6 +6,11 @@
 \alias{predict}
 \alias{predict,fGARCH-method}
 
+\concept{VaR}
+\concept{value-at-risk}
+\concept{ES}
+\concept{expected shortfall}
+
 
 \title{GARCH prediction function}
 
@@ -18,7 +23,7 @@
 
 \usage{
 \S4method{predict}{fGARCH}(object, n.ahead = 10, trace = FALSE, mse = c("cond","uncond"),
-        plot=FALSE, nx=NULL, crit_val=NULL, conf=NULL, \dots)
+        plot=FALSE, nx=NULL, crit_val=NULL, conf=NULL, \dots, p_loss = NULL)
 }
 
 \arguments{
@@ -61,25 +66,42 @@
     values are computed using the empirical distribution of the
     standardized residuals.  }
 
-  \item{\dots}{ additional arguments to be passed.  }
+  \item{\dots}{ additional arguments to be passed. }
+
+  \item{p_loss}{
+
+    if not null, compute predictions for VaR and ES for loss level
+    \code{p_loss} (typically, 0.05 or 0.01).
+
+  }
 
 }
 
 \details{
 
-  The predictions are returned as a data frame with with columns
+  The predictions are returned as a data frame with columns
   \code{"meanForecast"}, \code{"meanError"}, and
   \code{"standardDeviation"}. Row \code{h} contains the predictions for
-  horizon \code{h}.
-    
-  The number of records equals the number of forecasting steps \code{n.ahead}.
-        
+  horizon \code{h} (so, \code{n.ahead} rows in total).
+
+  If \code{plot = TRUE}, the data frame contain also the prediction
+  limits for each horizon in columns \code{lowerInterval} and
+  \code{upperInterval}.
+
+  If \code{p_loss} is not NULL, predictions of Value-at-Risk (VaR) and
+  Expected Shortfall (ES) are returned in columns \code{VaR} and
+  \code{ES}. The data frame has attribute \code{"p_loss"} containing
+  \code{p_loss}. Typical values for \code{p_loss} are 0.01 and 0.05.
+
+  These are somewhat experimental and the arguments and the returned
+  values may change.
   
 }
 
 \value{
 
-  a data frame containing 3 columns and \code{n.ahead} rows, see section \sQuote{Details}
+  a data frame containing \code{n.ahead} rows and 3 to 7 columns,
+  see section \sQuote{Details}
         
 }
 
@@ -98,35 +120,34 @@
   class \code{\linkS4class{fGARCH}},
 }
 \examples{
-## garchFit - 
-   # Parameter Estimation of Default GARCH(1,1) Model:
-   set.seed(123)
-   fit = garchFit(~ garch(1, 1), data = garchSim(), trace = FALSE)
-   fit
+## Parameter Estimation of Default GARCH(1,1) Model
+set.seed(123)
+fit = garchFit(~ garch(1, 1), data = garchSim(), trace = FALSE)
+fit
 
-## predict -
-   predict(fit, n.ahead = 10)
-   predict(fit, n.ahead = 10, mse="uncond")
+## predict
+predict(fit, n.ahead = 10)
+predict(fit, n.ahead = 10, mse="uncond")
 
 ## predict with plotting: critical values = +/- 2
+predict(fit, n.ahead = 10, plot=TRUE, crit_val = 2)
 
-   predict(fit, n.ahead = 10, plot=TRUE, crit_val = 2)
+## include also VaR and ES at 5\%
+predict(fit, n.ahead = 10, plot=TRUE, crit_val = 2, p_loss = 0.05)
 
 ## predict with plotting: automatic critical values 
 ## for different conditional distributions
-
-  set.seed(321)
-  fit2 = garchFit(~ garch(1, 1), data = garchSim(), trace=FALSE, cond.dist="sged")
+set.seed(321)
+fit2 = garchFit(~ garch(1, 1), data = garchSim(), trace=FALSE, cond.dist="sged")
 
 ## 95\% confidence level
- predict(fit2, n.ahead=20, plot=TRUE) 
+predict(fit2, n.ahead=20, plot=TRUE) 
 
- set.seed(444)
- fit3 = garchFit(~ garch(1, 1), data = garchSim(), trace=FALSE, cond.dist="QMLE")
+set.seed(444)
+fit3 = garchFit(~ garch(1, 1), data = garchSim(), trace=FALSE, cond.dist="QMLE")
 
-## 90\% confidence level and nx=100 :
- predict(fit3, n.ahead=20, plot=TRUE, conf=.9, nx=100) 
-
+## 90\% confidence level and nx=100
+predict(fit3, n.ahead=20, plot=TRUE, conf=.9, nx=100) 
 }
 
 \keyword{models}

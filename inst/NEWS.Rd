@@ -15,12 +15,24 @@
 \title{News for \R Package \pkg{fGarch}}
 \encoding{UTF-8}
 
-\section{CHANGES in fGarch VERSION 4022.90 (20232-??-??, svn r6333--r????)}{
+\section{CHANGES in fGarch VERSION 4032.91 (2024-02-02, svn r6436--r????)}{
+  \itemize{
+
+    \item added computation of Value-at-Risk (VaR) and expected
+    shortfall (ES) for fitted GARCH and APARCH models (in-sample and in
+    the predict method). Just use something like `Var(fitted_object)`,
+    `ES(fitted_object)` or `predict(fitted_object, ..., p_loss = 0.05)`.
+
+  }
+}
+
+
+\section{CHANGES in fGarch VERSION 4022.90 (2023-10-15, svn r6333--r6435)}{
   \itemize{
 
     \item added \code{"fGARCH"} method for `stats::tsdiag`. The method
     produces diagnostic plot for fitted GARCH/APARCH models and computes
-    some diagnostic tests. The plots can be chosen iteractively and/or
+    some diagnostic tests. The plots can be chosen interactively and/or
     via arguments. The test results are in the returned value. The
     method is in development in that more plots may be made available
     and additional tests included in the returned value.
@@ -86,6 +98,19 @@
   \subsection{NEW MAINTAINER}{
     \itemize{
       \item Georgi N. Boshnakov
+    }
+  }
+  \subsection{VERSION NUMBERS}{
+    \itemize{
+
+      \item We continue to use the traditional Rmetrics scheme for
+      numbering the versions of the package as Mmmr.n, where 'M' is the
+      current major R version at the time of submission of the package
+      to CRAN, 'mm' is the minor one and 'r' is the revision. 'n' is the
+      sequential number of the CRAN submission of the package. For
+      example, this release has version 4021.87 since it was released when R
+      4.2.1 was current and 'n' in the previous version was 86.
+
     }
   }
   \subsection{BUG FIXES}{
@@ -287,6 +312,7 @@
     }
   }
 }
+
 
 
 %% CRAN-Archive for fGarch  -- older ones

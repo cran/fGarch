@@ -23,7 +23,9 @@
 setMethod(f = "predict", signature(object = "fGARCH"), definition =
           function(object, n.ahead = 10, trace = FALSE,
                    mse = c("cond","uncond"),
-                   plot=FALSE, nx=NULL, crit_val=NULL, conf=NULL, ...)
+                   plot=FALSE, nx=NULL, crit_val=NULL, conf=NULL, ...,
+                   p_loss = NULL # GNB: for ES and VaR
+                   )
 {
     # A function implemented by Diethelm Wuertz
 
@@ -145,6 +147,10 @@ setMethod(f = "predict", signature(object = "fGARCH"), definition =
         for (i in 1:M) {
             h[N+i] = omega  + sum(beta*h[N+i-(1:q)])
             for (j in 1:p) {
+                ## 2024-01-30 GNB: TODO:
+                ##    it seems that kappa doesn't depend on i;
+                ##    so, kappa[1], ..., kappa[p] can be computed outside the i-loop
+                ##    and the formulas below use kappa[j]
                 kappa = garchKappa(cond.dist = cond.dist, gamma = gamma[j],
                     delta = delta, skew = skew, shape = shape)
                 if (i-j > 0) {
@@ -283,21 +289,46 @@ setMethod(f = "predict", signature(object = "fGARCH"), definition =
 	grid()
     }
 
-
-    # Result:
-    if(plot) {
-	forecast = data.frame(
-        meanForecast = meanForecast,
-        meanError = meanError,
-        standardDeviation = standardDeviation[-(1:N)],
-	lowerInterval = int_l,
-	upperInterval = int_u)
-    } else {
-	forecast = data.frame(
+    ## Result:
+    forecast <- data.frame(
         meanForecast = meanForecast,
         meanError = meanError,
         standardDeviation = standardDeviation[-(1:N)])
+    if(plot)
+	forecast = data.frame(
+            forecast,
+            lowerInterval = int_l,
+            upperInterval = int_u)
+    
+    ## if(plot) {
+    ##     forecast = data.frame(
+    ##         meanForecast = meanForecast,
+    ##         meanError = meanError,
+    ##         standardDeviation = standardDeviation[-(1:N)],
+    ##         lowerInterval = int_l,
+    ##         upperInterval = int_u)
+    ## } else {
+    ##     forecast = data.frame(
+    ##         meanForecast = meanForecast,
+    ##         meanError = meanError,
+    ##         standardDeviation = standardDeviation[-(1:N)])
+    ## }
+
+    ## 2024-01-31 GNB: VaR and ES - experimental
+    if(!is.null(p_loss)) {
+        cond_dist <- object@fit$params$cond.dist
+        mu_t <- meanForecast
+        sigma_t <- standardDeviation[-(1:N)]
+
+        qf <- qfun_fGarch(cond_dist, coef(object))
+
+        predVaR <- cvar::VaR_qf(qf, p_loss, intercept = mu_t, slope = sigma_t)
+        predES  <- cvar::ES(qf, p_loss, intercept = mu_t, slope = sigma_t)
+
+        forecast <- data.frame(forecast, VaR = predVaR, ES = predES)
+        attr(forecast, "p_loss") <- p_loss
     }
+
 
     # Return Value:
     forecast

@@ -44,8 +44,10 @@ S3method(print, summary_fGARCH)
 S3method(print, tsdiag_fGARCH)
 S3method(tsdiag, fGARCH)
 
-S3method("volatility", "fGARCH")
-export(volatility) # we import it from fBasics
+S3method(volatility, fGARCH)
+
+S3method(VaR, fGARCH)
+S3method(ES, fGARCH)
 
 exportClasses("fGARCH",
               "fGARCHSPEC",
@@ -60,6 +62,9 @@ exportMethods("coef",
               "show",
               "summary",
               "update" )
+
+export(volatility) # we import it from fBasics
+export(VaR, ES)    # we import them from cvar
 
 export(
     ## export these '.xxx' for now

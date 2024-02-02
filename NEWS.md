@@ -1,4 +1,4 @@
-## CHANGES in fGarch VERSION 4022.90 (20232-??-??, svn r6333–r????)
+## CHANGES in fGarch VERSION 4022.90 (2023-10-15, svn r6333–r6435)
 
 -   added `"fGARCH"` method for 'stats::tsdiag'. The method produces
     diagnostic plot for fitted GARCH/APARCH models and computes some

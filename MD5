@@ -1,9 +1,10 @@
 8ddf42e368503fb9cb47500e2e44adab *ChangeLog
-c0a0178e53674a57b63fd68c00861196 *DESCRIPTION
-3a215aeb6734ab32c0b76feca5de8394 *NAMESPACE
-6cac147ea385e6055fb549d14db9a009 *NEWS.md
+7041dd209ae73651d1a6074f916d5802 *DESCRIPTION
+a4833f5183b01601117d1607395de3ee *NAMESPACE
+5fc4a923ca3593fd57199033aaa0a490 *NEWS.md
 c7a13a689bb6a905b6bbd9d191c7f0df *R/class-fGARCH.R
 0eb2fa2612486d6e24b7ca89f27003c2 *R/class-fGARCHSPEC.R
+aaf7406e83fe74c1c684f7ae6d43f9e7 *R/cvar-VaR.R
 97a094a106805ce33f4621ed5082266b *R/dist-absMoments.R
 7b40285ba3f868b015ff905335f6d1df *R/dist-ged.R
 c4703f63fc51a3420476e610ab77c7b2 *R/dist-gedFit.R
@@ -42,7 +43,7 @@ a0af43ada8cf98ae21ff931574f48317 *R/loglik-aparch.R
 1b8a1beeea7a7a993a169b0baf7e09f0 *R/methods-fitted.R
 7f19cf78ce22bbab0b2322e96def3b39 *R/methods-formula.R
 fd9a4a9bea168c7e37df25deb8efae28 *R/methods-plot.R
-578a3adf72204cdb6d41e25cbde0373e *R/methods-predict.R
+4e940d8bba28b0a04f043c87b5fc7b28 *R/methods-predict.R
 c46ae3e7eb3ca4eaffbf35b6be00ab35 *R/methods-residuals.R
 afea658b538a1109b7cfa7eb6b8a8f7d *R/methods-show.R
 fc3a9006f5cc8824d6e6be7e77565063 *R/methods-summary.R
@@ -52,13 +53,13 @@ fc3a9006f5cc8824d6e6be7e77565063 *R/methods-summary.R
 9edf9566b34ba6611b26b3639b8c4c04 *R/stats-tsdiag.R
 5ba9ac762a4cd5bae7ed6ed15ea799f5 *R/zzz.R
 d8364b110e5b84a9ecb161a00ff5d882 *README.md
-c7215ac0a5b38c2ffbc9f2d8c1013037 *build/partial.rdb
+60f937a344b90a2278f1a9702924b10b *build/partial.rdb
 fe75772d65e05a3b189023e372d3d1a2 *data/dem2gbp.csv.gz
 58bbdc46c698bc7b97657229e8de1277 *data/sp500dge.csv.gz
-298fced7350be3496bc76385f8b03837 *inst/NEWS.Rd
+8e9297291e827ede2b4fc8331cb337a1 *inst/NEWS.Rd
 70a0d93bc75a19be75bdab2f50fc48a0 *inst/THANKS
 af9f62af061782e1693f99642b349698 *inst/_pkgdown.yml
-c175620bdf2e509fd6ec3737204b0c3a *inst/pkgdown.yml
+36cd085ff7519fff741f051ae130d83b *inst/pkgdown.yml
 665e719c6c9360340268b2e6ac891515 *inst/unitTests/Makefile
 6daf0e9de9a62ce7c24edd2e9cd2f7e1 *inst/unitTests/runTests.R
 8fa067e349485ddf6c94644cde5e3767 *inst/unitTests/runit.bugfix_6061.R
@@ -81,6 +82,7 @@ afeb0877a73a8b55095082caca3a9f40 *inst/unitTests/runit.predict-methods.R
 c5d4c5fc8f4880e61c1a3880e79bfba3 *inst/unitTests/runit.snorm.R
 dff8337ddb27e8865b4eb21996feff85 *inst/unitTests/runit.sstd.R
 437fc7d0fbac23ce7ba0bdaebb73a847 *man/00fGarch-package.Rd
+f5b7b472313f68ffcf82405d2c7a53e3 *man/VaR.Rd
 f8f05b5482d5970e8b32aace9fbbd656 *man/class-fGARCH.Rd
 44f8dc5fc2581a0afc54913d7f356db3 *man/class-fGARCHSPEC.Rd
 c3534669939f0e8c3afec7b6cc42f80f *man/class-fUGARCHSPEC.Rd
@@ -97,7 +99,7 @@ b2fc232941e92b5429df42afe3fab73e *man/dist-snormFit.Rd
 2185a76bcd87138d8ccc2797b5bfa3c9 *man/dist-sstd.Rd
 386eff289baadc2ace3bce1b5b0b5d1f *man/dist-sstdFit.Rd
 7e426c3077b9869f872441bfd82309ea *man/dist-sstdSlider.Rd
-0c7802256ba6abe998a191775fcd7721 *man/dist-std.Rd
+8b5ef8609a6165b452fe9d314ac36e45 *man/dist-std.Rd
 0ef52b07b7ed6863facee06e328040df *man/dist-stdFit.Rd
 49feff080bc3a26acf903605a27c6d4f *man/dist-stdSlider.Rd
 9b30944f18aa44177f839db277e54717 *man/fGarchData.Rd
@@ -109,7 +111,7 @@ b2fc232941e92b5429df42afe3fab73e *man/dist-snormFit.Rd
 e877368b273d1e1bd371b8848ed5fac0 *man/methods-fitted.Rd
 9bf9bec752d183b340fe9ef3d7f0dc00 *man/methods-formula.Rd
 cfbc39c57b8bbc2515d4463c9bd1e754 *man/methods-plot.Rd
-37b0733b8e8cdaf2bc56185f14b68cea *man/methods-predict.Rd
+4dd9a93782b34638ffc62b0ca8ac4ad8 *man/methods-predict.Rd
 eeed6ad45deab1e23d6fea0e42fbb2f0 *man/methods-residuals.Rd
 1462ed06a16ff011cb2438b732e49337 *man/methods-summary.Rd
 0cd9f3f2146beca42b58855d54fcac3a *man/methods-volatility.Rd
