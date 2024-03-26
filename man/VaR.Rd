@@ -53,7 +53,13 @@
   VAR\eqn{{}_\alpha}{_a} = \eqn{-q_\alpha}{-q_a}, where
   \eqn{q_\alpha}{-q_a} is the lower \eqn{\alpha}{a} quantile of \eqn{X}.
   Equivalently, VAR\eqn{{}_\alpha}{_a} is equal to the lower
-  \eqn{1-\alpha}{1-a} quantile of \eqn{-X}.
+  \eqn{1-\alpha}{1-a} quantile of \eqn{-X} (the loss series).  For
+  details see the vignette in package \pkg{cvar} availalble at
+  \url{https://cran.r-project.org/package=cvar/vignettes/Guide_cvar.pdf}
+  (or by calling \code{vignette("Guide_cvar", package = "cvar")}).
+  
+  If you wish to overlay the VaR or ES over returns, just negate the
+  VaR/ES, see the examples.
 
 }
 
@@ -63,8 +69,32 @@
 
 }
 \examples{
+## simulate a time series of returns
 x <- garchSim( garchSpec(), n = 500)
+class(x)
+## fit a GARCH model
 fit <- garchFit(~ garch(1, 1), data = x, trace = FALSE)
+
 head(VaR(fit))
 head(ES(fit))
+
+## use plot method for fitted GARCH models
+plot(fit, which = 14) # VaR
+plot(fit, which = 15) # ES
+plot(fit, which = 16) # VaR & ES
+## plot(fit) # choose the plot interactively
+
+## diy plots
+
+## overlay VaR and ES over returns
+## here x is from class 'timeSeries', so we convert VaR/ES to timeSeries
+## don't forget to negate the result of VaR()/ES(),
+plot(x)
+lines(timeSeries(-VaR(fit)), col = "red")
+lines(timeSeries(-ES(fit)), col = "blue")
+
+## alternatively, plot losses (rather than returns) and don't negate VaR()/ES()
+plot(-x)
+lines(timeSeries(VaR(fit)), col = "red")
+lines(timeSeries(ES(fit)), col = "blue")
 }

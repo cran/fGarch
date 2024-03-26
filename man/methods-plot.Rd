@@ -9,6 +9,11 @@
 \concept{GARCH diagnostics}
 \concept{GARCH goodness=of-fit}
 
+\concept{VaR}
+\concept{value-at-risk}
+\concept{ES}
+\concept{expected shortfall}
+
 
 \title{GARCH plot methods}
 
@@ -29,8 +34,10 @@
     an object of class \code{"fGARCH"}.
   } 
   \item{which}{
-    a character string or a vector of positive denoting which plot
-    should be displayed, see section \sQuote{Details}.
+
+    a character string or a vector of positive integers specifying which
+    plot(s) should be displayed, see section \sQuote{Details}.
+
   }
   \item{\dots}{
     optional arguments to be passed.
@@ -41,33 +48,44 @@
 \details{
 
   The \code{plot} method for \code{"fGARCH"} objects offers a selection
-  of diagnostic, exploratory, and presentation plots from a
-  menu. Argument \code{which} can be used to request specific plots,
-  which is particularly useful in scripts.
+  of diagnostic, exploratory, and presentation plots from a menu.
+  Argument \code{which} can be used to request specific plots.  This is
+  particularly useful in scripts.
 
-  The generic function \code{plot} allows to display 13 graphs:
+  If \code{which} is of length larger than one, all requested plots are
+  produced. For this to be useful, the graphics window should be split
+  beforehand in subwindows, e.g., using \code{par(mfrow = ...)},
+  \code{par(mfcol = ...)}, or \code{layout()} (see section
+  \sQuote{Examples}). If this is not done, then only the last plot will
+  be visible.
 
-  \tabular{l}{
-    Time SeriesPlot\cr
-    Conditional Standard Deviation Plot\cr
-    Series Plot with 2 Conditional SD Superimposed\cr
-    Autocorrelation function Plot of Observations\cr
-    Autocorrelation function Plot of Squared Observations\cr
-    Cross Correlation Plot\cr
-    Residuals Plot\cr
-    Conditional Standard Deviations Plot\cr
-    Standardized Residuals Plot\cr
-    ACF Plot of Standardized Residuals\cr
-    ACF Plot of Squared Standardized Residuals\cr
-    Cross Correlation Plot between $r^2$ and r\cr
-    Quantile-Quantile Plot of Standardized Residuals
+  The following graphs are available:
+
+  \tabular{rl}{
+     1 \tab Time SeriesPlot\cr
+     2 \tab Conditional Standard Deviation Plot\cr
+     3 \tab Series Plot with 2 Conditional SD Superimposed\cr
+     4 \tab Autocorrelation function Plot of Observations\cr
+     5 \tab Autocorrelation function Plot of Squared Observations\cr
+     6 \tab Cross Correlation Plot\cr
+     7 \tab Residuals Plot\cr
+     8 \tab Conditional Standard Deviations Plot\cr
+     9 \tab Standardized Residuals Plot\cr
+    10 \tab ACF Plot of Standardized Residuals\cr
+    11 \tab ACF Plot of Squared Standardized Residuals\cr
+    12 \tab Cross Correlation Plot between $r^2$ and r\cr
+    13 \tab Quantile-Quantile Plot of Standardized Residuals\cr
+    14 \tab Series with -VaR Superimposed\cr
+    15 \tab Series with -ES Superimposed\cr
+    16 \tab Series with -VaR & -ES Superimposed
   }        
 }
 
 \author{
-  Diethelm Wuertz for the Rmetrics \R-port
-}
+  Diethelm Wuertz for the Rmetrics \R-port;
 
+  VaR and ES graphs were added by Georgi N. Boshnakov in v4033.92
+}
 
 \seealso{
   \code{\link[=tsdiag.fGARCH]{fGARCH}} method for \code{tsdiag},
@@ -78,27 +96,32 @@
   \code{\link{predict}},
   \code{\link{fitted}},
   \code{\link{residuals}}
+  \code{\link{VaR}}
+  \code{\link{ES}}
 
   \code{\link{plot}}
 }
 
 \examples{
-## garchSim -
-   # Default Garch(1,1) Model:
-   x = garchSim(n = 200)
-   head(x) 
+## simulate a Garch(1,1) time series
+x <- garchSim(n = 200)
+head(x) 
 
-## garchFit - 
-   fit = garchFit(formula = ~ garch(1, 1), data = x, trace = FALSE)
+## fit GARCH(1,1) model
+fit <- garchFit(formula = ~ garch(1, 1), data = x, trace = FALSE)
+
+\dontrun{
+## choose plots interactively
+plot(fit)
+}
    
 ## Batch Plot:
-   plot(fit, which = 3)
-   
-\dontrun{
-## Plot:
-   # Interactive Plot:
-   plot(fit) 
-}
+plot(fit, which = 3)
+
+## a 2 by 2 matrix of plots
+op <- par(mfrow = c(2,2))          # prepare 2x2 window
+plot(fit, which = c(10, 11, 3, 16)) # plot
+par(op)                            # restore the previous layout
 }
 
 \keyword{models}

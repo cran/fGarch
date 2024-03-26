@@ -63,6 +63,7 @@ exportMethods("coef",
               "summary",
               "update" )
 
+export(timeSeries) # we import it from timeSeries
 export(volatility) # we import it from fBasics
 export(VaR, ES)    # we import them from cvar
 

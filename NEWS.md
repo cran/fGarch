@@ -1,8 +1,25 @@
+## CHANGES in fGarch VERSION 4033.92 (2024-03-26, svn r6481–r6481)
+
+-   added VaR and ES plots to the `plot` method for fitted GARCH models.
+
+-   documented with examples that argument `which` of the plot method
+    for fitted GARCH objects can be of length greater than one.
+
+-   add a link to the website created with pkgdown to file
+    'DESCRIPTION'.
+
+## CHANGES in fGarch VERSION 4032.91 (2024-02-02, svn r6436–r6479)
+
+-   added computation of Value-at-Risk (VaR) and expected shortfall (ES)
+    for fitted GARCH and APARCH models (in-sample and in the predict
+    method). Just use something like `Var(fitted_object)`,
+    `ES(fitted_object)` or `predict(fitted_object, ..., p_loss = 0.05)`.
+
 ## CHANGES in fGarch VERSION 4022.90 (2023-10-15, svn r6333–r6435)
 
--   added `"fGARCH"` method for 'stats::tsdiag'. The method produces
+-   added `"fGARCH"` method for `stats::tsdiag`. The method produces
     diagnostic plot for fitted GARCH/APARCH models and computes some
-    diagnostic tests. The plots can be chosen iteractively and/or via
+    diagnostic tests. The plots can be chosen interactively and/or via
     arguments. The test results are in the returned value. The method is
     in development in that more plots may be made available and
     additional tests included in the returned value.
@@ -53,6 +70,16 @@
 ### NEW MAINTAINER
 
 -   Georgi N. Boshnakov
+
+### VERSION NUMBERS
+
+-   We continue to use the traditional Rmetrics scheme for numbering the
+    versions of the package as Mmmr.n, where 'M' is the current major R
+    version at the time of submission of the package to CRAN, 'mm' is
+    the minor one and 'r' is the revision. 'n' is the sequential number
+    of the CRAN submission of the package. For example, this release has
+    version 4021.87 since it was released when R 4.2.1 was current and
+    'n' in the previous version was 86.
 
 ### BUG FIXES
 

@@ -1,6 +1,6 @@
 Package: fGarch
 Title: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling
-Version: 4032.91
+Version: 4033.92
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Yohan", "Chalabi", role = "aut")
 	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
@@ -16,10 +16,11 @@ Imports: fBasics, timeDate, timeSeries, fastICA, Matrix (>= 1.5-0),
 Suggests: RUnit, tcltk, goftest
 LazyData: yes
 License: GPL (>= 2)
-URL: https://www.rmetrics.org
+URL: https://geobosh.github.io/fGarchDoc/ (doc),
+        https://www.rmetrics.org (devel)
 BugReports: https://r-forge.r-project.org/projects/rmetrics
 NeedsCompilation: yes
-Packaged: 2024-02-01 15:41:23 UTC; georgi
+Packaged: 2024-03-26 12:06:25 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
   Yohan Chalabi [aut],
   Tobias Setz [aut],
@@ -30,4 +31,4 @@ Author: Diethelm Wuertz [aut] (original code),
   Georgi N. Boshnakov [aut, cre]
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2024-02-02 00:00:06 UTC
+Date/Publication: 2024-03-26 15:30:02 UTC

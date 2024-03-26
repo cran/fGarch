@@ -57,24 +57,30 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
         # Plot multivariate GO-Garch model:
         print("GO-Garch Plot Not Yet Implemented")
     } else {
-        # Plot univariate Models:
+        ## Plot univariate Models:
+        choices <- c(
+            "Time Series",
+            "Conditional SD",
+            "Series with 2 Conditional SD Superimposed",
+            "ACF of Observations",
+            "ACF of Squared Observations",
+            "Cross Correlation",
+            "Residuals",
+            "Conditional SDs",
+            "Standardized Residuals",
+            "ACF of Standardized Residuals",
+            "ACF of Squared Standardized Residuals",
+            "Cross Correlation between r^2 and r",
+            "QQ-Plot of Standardized Residuals",
+            ## added by GNB
+            "Series with -VaR Superimposed",
+            "Series with -ES Superimposed",
+            "Series with -VaR & -ES Superimposed"
+        )
         .interactiveGarchPlot(
             x,
-            choices = c(
-                "Time Series",
-                "Conditional SD",
-                "Series with 2 Conditional SD Superimposed",
-                "ACF of Observations",
-                "ACF of Squared Observations",
-                "Cross Correlation",
-                "Residuals",
-                "Conditional SDs",
-                "Standardized Residuals",
-                "ACF of Standardized Residuals",
-                "ACF of Squared Standardized Residuals",
-                "Cross Correlation between r^2 and r",
-                "QQ-Plot of Standardized Residuals"),
-            plotFUN = paste(".plot.garch", 1:13, sep = "."),
+            choices = choices,
+            plotFUN = paste(".plot.garch", 1:length(choices), sep = "."),
             which = which, ...)
     }
     
@@ -107,7 +113,7 @@ setMethod(f = "plot", signature(x = "fGARCH", y = "missing"), definition =
 
     # FUNCTION:
 
-    # Some cecks:
+    # Some checks:
     if (length(choices) != length(plotFUN))
         stop("Arguments choices and plotFUN must be of same length.")
     if (length(which) > length(choices))
@@ -563,3 +569,59 @@ function (y, dist = "qnorm", datax = FALSE, ...)
 
 ################################################################################
 
+.plot.garch.14 <- function(x, ...) {
+    ## A function implemented by Georgi N. Boshnakov
+
+    ## Description:
+    ##   Internal plot function
+
+    #= 14. Series with -VaR Superimposed:
+    xseries = x@data
+    plot(xseries, type = "l", col = "steelblue", ylab = "x",
+         main = "Series with -VaR Superimposed")
+
+    ## xseries is numeric here, so don't convert VaR to timeSeries
+    lines(-VaR(x), col = "red")
+
+    abline(h = 0, col = "grey", lty = 3)
+    grid()
+}
+
+.plot.garch.15 <- function(x, ...) {
+    ## A function implemented by Georgi N. Boshnakov
+
+    ## Description:
+    ##   Internal plot function
+
+    #= 14. Series with -ES Superimposed:
+    xseries = x@data
+    
+    plot(xseries, type = "l", col = "steelblue", ylab = "x", 
+         main = "Series with -ES Superimposed")
+
+    ## xseries is numeric here, so don't convert ES to timeSeries
+    lines(-ES(x), col = "blue")
+
+    abline(h = 0, col = "grey", lty = 3)
+    grid()
+}
+
+.plot.garch.16 <- function(x, ...) {
+    ## A function implemented by Georgi N. Boshnakov
+
+    ## Description:
+    ##   Internal plot function
+
+    #= 14. Series with -VaR & -ES Superimposed:
+    xseries = x@data
+    
+    plot(xseries, type = "l", col = "steelblue", ylab = "x", 
+         main = "Series with -VaR & -ES Superimposed")
+
+    ## xseries is numeric here, so don't convert VaR & ES to timeSeries
+    lines(-VaR(x), col = "red")
+    lines(-ES(x), col = "blue")
+
+    abline(h = 0, col = "grey", lty = 3)
+    grid()
+}

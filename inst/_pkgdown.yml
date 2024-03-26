@@ -47,6 +47,8 @@ reference:
       - "predict,fGARCH-method"
       - "residuals,fGARCH-method"
       - volatility
+      - VaR.fGARCH
+      - ES.fGARCH
   - title: "Standardized distributions"
     contents:
       - absMoments
