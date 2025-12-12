@@ -64,10 +64,9 @@
 }
 
 \seealso{
-
   \code{\link[cvar]{VaR}} and \code{\link[cvar]{ES}} in package \pkg{cvar}
-
 }
+
 \examples{
 ## simulate a time series of returns
 x <- garchSim( garchSpec(), n = 500)

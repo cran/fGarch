@@ -21,8 +21,104 @@
 #  show.fGARCHSPEC           S4 Show method for an object of class 'fGARCHSPEC'
 ################################################################################
 
-.show_orig_body <- function(object) {
+.prepare_GARCH_show <- function(object) {
+    ## based on the original body of the show method
+    common <- list(
+        title = object@title,
+        call = object@call,
+        formula = object@formula,
+        description = object@description
+    )
+
+    wrk <- if(as.character(object@call[1]) == ".gogarchFit") {
+               ## multivariate
+               list(
+                   type = "multivariate",
+                   cond_dist = object@fit[[1]]@fit$params$cond.dist,
+                   number_of_margins = length(object@fit)
+               )
+           } else {
+               ## univariate
+               list(
+                   type = "univariate",
+                   cond_dist = object@fit$params$cond.dist,
+                   par = object@fit$par,
+                   se_method = if (object@fit$params$cond.dist == "QMLE")
+                                   "robust"
+                               else 
+                                   "based on Hessian",
+                   matcoef = object@fit$matcoef,
+                   loglik = -object@fit$value,
+                   normalized_loglik = -object@fit$value / NROW(object@data)
+               )
+           }
+    c(common, wrk)
+}
+
+.print_title <- function(x) {
+    cat("\nTitle:\n ")
+    cat(x, "\n")
+    invisible(NULL)
+}
+
+.print_call <- function(x) {
+    cat("\nCall:\n ")
+    cat(paste(deparse(x), sep = "\n", collapse = "\n"), "\n")
+}
+
+.print_cond_dist <- function(x) {
+    cat("\nConditional Distribution:\n ")
+    cat(x, "\n")
+}
+
+.print_coef <- function(x) {
+    cat("\nCoefficient(s):\n")
+    digits = max(5, getOption("digits") - 4)
+    print.default(format(x, digits = digits), print.gap = 2, quote = FALSE)
+}
+
+.print_se_method <- function(x) {
+    cat("\nStd. Errors:\n ")
+    if (x == "QMLE")
+        cat("robust", "\n")
+    else
+        cat("based on Hessian", "\n")
+}
+
+.print_error_analysis <- function(x) {
+    digits = max(4, getOption("digits") - 5)
+    signif.stars = getOption("show.signif.stars")
+    cat("\nError Analysis:\n")
+    printCoefmat(x, digits = digits, signif.stars = signif.stars)
+}
+
+.print_loglik <- function(x, nllh) {
+    cat("\nLog Likelihood:\n ")
+    cat(x, "   normalized: ", nllh, "\n")
+}
+
+.print_description <- function(x) {
+    cat("\nDescription:\n ")
+    cat(x, "\n")
+    cat("\n")
+}
+
+.print_mean_var_eq <- function(formula) {
+    cat("\nMean and Variance Equation:\n ")
+    Name <- unclass(attr(formula, "data"))
+    
+    Formula <- formula
+    attr(Formula, "data") <- NULL
+    print(Formula)                # GNB: TODO: use arg. showEnv?
+
+    cat(" [", Name, "]\n", sep = "")
+
+    invisible(NULL)
+}
+
+.show_orig_body <- function(object, prepare = TRUE) {
     ## A function implemented by Diethelm Wuertz
+    ## refactored and modified by GNB
 
     # Description:
     #   Print method for an object of class "fGARCH"
@@ -32,25 +128,24 @@
 
     # FUNCTION:
 
-    # Title:
-    cat("\nTitle:\n ")
-    cat(object@title, "\n")
-
-    # Call:
-    cat("\nCall:\n ")
-    cat(paste(deparse(object@call), sep = "\n", collapse = "\n"), "\n")
-
-    # Mean and Variance Equation:
-    cat("\nMean and Variance Equation:\n ")
-    Name = unclass(attr(object@formula, "data"))
-    Formula = object@formula
-    attr(Formula, "data") <- NULL
-    print(Formula)
-    cat(" [", Name, "]\n", sep = "")
-
+    res <- if(prepare)
+               .prepare_GARCH_show(object)
+           else
+               object
+    
+    .print_title(res$title)
+    .print_call(res$call)
+    .print_mean_var_eq(res$formula)
+    
     # Univariate or Multivariate Modeling ?
-    if (as.character(object@call[1]) == ".gogarchFit") 
-    {
+    if(res$type == "univariate") { # univariate Garch Models
+        .print_cond_dist(res$cond_dist)
+        .print_coef(res$par)
+        .print_se_method(res$se_method)
+        .print_error_analysis(res$matcoef)
+        .print_loglik(res$loglik, res$normalized_loglik)
+
+    } else {
         # For multivariate Garch Models ...
         #   extract information from first fitted instrument.
         object@fit[[1]]@fit$params$cond.dist
@@ -63,57 +158,16 @@
         cat("\nNumber of Margins:\n ")
         cat(length(object@fit), "\n")
         
-    } else {
-    
-        # For univariate Garch Models ...
-        
-        # Conditional Distribution:
-        cat("\nConditional Distribution:\n ")
-        cat(object@fit$params$cond.dist, "\n")
-    
-        # Coefficients:
-        cat("\nCoefficient(s):\n")
-        digits = max(5, getOption("digits") - 4)
-        print.default(format(object@fit$par, digits = digits), print.gap = 2,
-             quote = FALSE)
-    
-        # Std. Errors:
-        cat("\nStd. Errors:\n ")
-        if (object@fit$params$cond.dist == "QMLE")
-        {
-            cat("robust", "\n")
-        } else {
-            cat("based on Hessian", "\n")
-        }
-        
-        # Error Analysis:
-        digits = max(4, getOption("digits") - 5)
-        fit = object@fit
-        signif.stars = getOption("show.signif.stars")
-        cat("\nError Analysis:\n")
-        printCoefmat(fit$matcoef, digits = digits, signif.stars = signif.stars)
-    
-        # Log Likelihood:
-        cat("\nLog Likelihood:\n ")
-        LLH = - object@fit$value
-        N = NROW(object@data)
-        cat(LLH, "   normalized: ", LLH/N, "\n")
-
     }
     
-    # Description:
-    cat("\nDescription:\n ")
-    cat(object@description, "\n")
+    .print_description(res$description)
 
-    # Return Value:
-    cat("\n")
-    invisible()
+    invisible(res)
 }
 
-setMethod(f = "show", signature(object = "fGARCH"), definition =
-    function(object) {
-        .show_orig_body(object)
-    })
+setMethod("show", "fGARCH",
+          function(object) .show_orig_body(object)
+)
 
 
 # ------------------------------------------------------------------------------

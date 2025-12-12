@@ -23,7 +23,7 @@
 \concept{fit MA-APARCH model}
 
 
-\title{Univariate or multivariate GARCH time series fitting}
+\title{Fit univariate and multivariate GARCH-type models}
 
 \description{
   
@@ -66,113 +66,116 @@ garchKappa(cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd", "snig"),
 }
 
 \arguments{
-    %\item{recursion}{
-    %   a string parameter that determines the recursion used for calculating
-    %   the maximum log-likelihood function.
-        % Allowed values are ...
-    %}
-    \item{algorithm}{
-        a string parameter that determines the algorithm used for maximum
-        likelihood estimation.
-        % Allowed values are
-        %   \code{"nmfb"},
-        %   \code{"sqp"},
-        %   \code{"nlminb"}, and
-        %   \code{"bfgs"} where the third is the default
-        % setting. \code{"mnfb"} is a fully Fortran implemented and extremely
-        % fast version of the R-coded \code{"nlminb"} algorithm.
-    }
-    \item{cond.dist}{
-        a character string naming the desired conditional distribution.
-        Valid values are \code{"dnorm"}, \code{"dged"}, \code{"dstd"},
-        \code{"dsnorm"}, \code{"dsged"}, \code{"dsstd"} and
-        \code{"QMLE"}. The default value is the normal distribution.  See
-        Details for more information.
-    }
-    \item{control}{
-        control parameters, the same as used for the functions from
-        \code{nlminb}, and 'bfgs' and 'Nelder-Mead' from \code{optim}.
-    }
-    \item{data}{
-        an optional timeSeries or data frame object containing the variables
-        in the model.  If not found in \code{data}, the variables are taken
-        from \code{environment(formula)}, typically the environment from which
-        \code{armaFit} is called.  If \code{data} is an univariate series, then
-        the series is converted into a numeric vector and the name of the
-        response in the formula will be neglected.
-    }
-    \item{delta}{
-        a numeric value, the exponent \code{delta} of the variance recursion.
-        By default, this value will be fixed, otherwise the exponent will be
-        estimated together with the other model parameters if
-        \code{include.delta=FALSE}.
-    }
-    \item{description}{optional character string with a brief description.}
-    \item{formula}{
-        \code{\link{formula}} object describing the mean and variance equation of the
-        ARMA-GARCH/APARCH model.  A pure GARCH(1,1) model is selected
-        e.g., for \code{formula = ~garch(1,1)}.  To specify an
-        ARMA(2,1)-APARCH(1,1) process, use \code{ ~ arma(2,1) + aparch(1,1)}.
-    }
-    \item{gamma}{
-        APARCH leverage parameter entering into the formula for calculating
-        the expectation value.
-    }
-    \item{hessian}{
-      a string denoting how the Hessian matrix should be evaluated,
-      either \code{hessian ="rcd"}, or \code{"ropt"}.  The default,
-      \code{"rcd"}  is a central difference approximation implemented
-      in \R and \code{"ropt"} uses the internal R function \code{optimhess}.
-    }
-    \item{include.delta}{a \code{\link{logical}} determining if the
-      parameter for the recursion equation \code{delta} will be estimated
-      or not.  If false, the shape parameter will be kept fixed during the
-      process of parameter optimization.}
+  % \item{recursion}{
+  %   a string parameter that determines the recursion used for calculating
+  %   the maximum log-likelihood function.
+  %   Allowed values are ...
+  % }
+  \item{formula}{
+    \code{\link{formula}} object describing the mean and variance equation of the
+    ARMA-GARCH/APARCH model.  A pure GARCH(1,1) model is selected
+    e.g., for \code{formula = ~garch(1,1)}.  To specify an
+    ARMA(2,1)-APARCH(1,1) process, use \code{ ~ arma(2,1) + aparch(1,1)}.
+  }
+  \item{data}{
 
-    \item{include.mean}{
-        this flag determines if the parameter for the mean will be estimated
-        or not. If \code{include.mean=TRUE} this will be the case, otherwise
-        the parameter will be kept fixed durcing the process
-        of parameter optimization.
-    }
-    \item{include.shape}{
-        a logical flag which determines if the parameter for the shape
-        of the conditional distribution will be estimated or not. If
-        \code{include.shape=FALSE} then the shape parameter will be kept
-        fixed during the process of parameter optimization.
-    }
-    \item{include.skew}{
-        a logical flag which determines if the parameter for the skewness
-        of the conditional distribution will be estimated or not. If
-        \code{include.skew=FALSE} then the skewness parameter will be kept
-        fixed during the process of parameter optimization.
-    }
-    \item{init.rec}{
-        a character string indicating the method how to initialize the
-        mean and varaince recursion relation.
-    }
+    an optional \code{"timeSeries"} or \code{"data.frame"} object
+    containing the variables in the model.  If not found in
+    \code{data}, the variables are taken from
+    \code{environment(formula)}, typically the environment from which
+    \code{armaFit} is called.  If \code{data} is an univariate series,
+    then the series is converted into a numeric vector and the name of
+    the response in the formula will be neglected.
+
+  }
+  \item{init.rec}{
+    a character string indicating the method how to initialize the
+    mean and varaince recursion relation.
+  }
+  \item{delta}{
+      a numeric value, the exponent \code{delta} of the variance recursion.
+      By default, this value will be fixed, otherwise the exponent will be
+      estimated together with the other model parameters if
+      \code{include.delta=FALSE}.
+  }
+  \item{skew}{
+      a numeric value, the skewness parameter of the conditional
+      distribution.
+  }
+  \item{shape}{
+      a numeric value, the shape parameter of the conditional distribution.
+  }
+  \item{cond.dist}{
+    a character string naming the desired conditional distribution.
+    Valid values are \code{"dnorm"}, \code{"dged"}, \code{"dstd"},
+    \code{"dsnorm"}, \code{"dsged"}, \code{"dsstd"} and
+    \code{"QMLE"}. The default value is the normal distribution.  See
+    Details for more information.
+  }
+  \item{include.mean}{
+      this flag determines if the parameter for the mean will be estimated
+      or not. If \code{include.mean=TRUE} this will be the case, otherwise
+      the parameter will be kept fixed durcing the process
+      of parameter optimization.
+  }
+  \item{include.delta}{a \code{\link{logical}} determining if the
+    parameter for the recursion equation \code{delta} will be estimated
+    or not.  If false, the shape parameter will be kept fixed during the
+    process of parameter optimization.
+  }
+  \item{include.skew}{
+      a logical flag which determines if the parameter for the skewness
+      of the conditional distribution will be estimated or not. If
+      \code{include.skew=FALSE} then the skewness parameter will be kept
+      fixed during the process of parameter optimization.
+  }
+
+  \item{include.shape}{
+      a logical flag which determines if the parameter for the shape
+      of the conditional distribution will be estimated or not. If
+      \code{include.shape=FALSE} then the shape parameter will be kept
+      fixed during the process of parameter optimization.
+  }
     \item{leverage}{
-        a logical flag for APARCH models. Should the model be leveraged?
-        By default \code{leverage=TRUE}.
-    }
-    \item{shape}{
-        a numeric value, the shape parameter of the conditional distribution.
-    }
-    \item{skew}{
-        a numeric value, the skewness parameter of the conditional
-        distribution.
-    }
-    \item{title}{
-        a character string which allows for a project title.
-    }
-    \item{trace}{
-        a logical flag. Should the optimization process of fitting the
-        model parameters be printed? By default \code{trace=TRUE}.
-    }
-    \item{\dots}{
-        additional arguments to be passed.
-    }
-
+      a logical flag for APARCH models. Should the model be leveraged?
+      By default \code{leverage=TRUE}.
+  }
+  \item{trace}{
+      a logical flag. Should the optimization process of fitting the
+      model parameters be printed? By default \code{trace=TRUE}.
+  }
+  \item{algorithm}{
+    a string parameter that determines the algorithm used for maximum
+    likelihood estimation.
+    % Allowed values are
+    %   \code{"nmfb"},
+    %   \code{"sqp"},
+    %   \code{"nlminb"}, and
+    %   \code{"bfgs"} where the third is the default
+    % setting. \code{"mnfb"} is a fully Fortran implemented and extremely
+    % fast version of the R-coded \code{"nlminb"} algorithm.
+  }
+  \item{hessian}{
+    a string denoting how the Hessian matrix should be evaluated,
+    either \code{hessian ="rcd"}, or \code{"ropt"}.  The default,
+    \code{"rcd"}  is a central difference approximation implemented
+    in \R and \code{"ropt"} uses the internal R function \code{optimhess}.
+  }
+  \item{control}{
+    control parameters, the same as used for the functions from
+    \code{nlminb}, and 'bfgs' and 'Nelder-Mead' from \code{optim}.
+  }
+  \item{gamma}{
+    APARCH leverage parameter entering into the formula for calculating
+    the expectation value.
+  }
+  \item{title}{
+    a character string which allows for a project title.
+  }
+  \item{description}{optional character string with a brief description.}
+  \item{\dots}{
+    additional arguments to be passed.
+  }
 }
 
 \details{
@@ -209,9 +212,9 @@ garchKappa(cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd", "snig"),
   Slot \code{@fit} contains the results from the optimization.
 
   for \code{.gogarchFit()}: Similar definition for GO-GARCH modeling.
-  Here, \code{data} must be \emph{multivariate}.  Still
-  \dQuote{preliminary}, mostly undocumented, and untested(!).  At least
-  mentioned here...
+  Here, \code{data} must be \emph{multivariate}.
+  Still \dQuote{preliminary}, mostly undocumented, and untested(!).  At
+  least mentioned here...
 
 }
 
@@ -281,76 +284,78 @@ garchKappa(cond.dist = c("norm", "ged", "std", "snorm", "sged", "sstd", "snig"),
 
 \examples{
 ## UNIVARIATE TIME SERIES INPUT:
-   # In the univariate case the lhs formula has not to be specified ...
+# In the univariate case the lhs formula has not to be specified ...
 
-   # A numeric Vector from default GARCH(1,1) - fix the seed:
-   N = 200
-   x.vec = as.vector(garchSim(garchSpec(rseed = 1985), n = N)[,1])
-   garchFit(~ garch(1,1), data = x.vec, trace = FALSE)
+# A numeric Vector from default GARCH(1,1) - fix the seed:
+N <- 200
+x.vec <- as.vector(garchSim(garchSpec(rseed = 1985), n = N)[,1])
+garchFit(~ garch(1,1), data = x.vec, trace = FALSE)
 
-   # An univariate timeSeries object with dummy dates:
-   stopifnot(require("timeSeries"))
-   x.timeSeries = dummyDailySeries(matrix(x.vec), units = "GARCH11")
-   garchFit(~ garch(1,1), data = x.timeSeries, trace = FALSE)
+# An univariate timeSeries object with dummy dates:
+stopifnot(require("timeSeries"))
+x.timeSeries <- dummyDailySeries(matrix(x.vec), units = "GARCH11")
+garchFit(~ garch(1,1), data = x.timeSeries, trace = FALSE)
 
 \dontrun{
    # An univariate zoo object:
    require("zoo")
-   x.zoo = zoo(as.vector(x.vec), order.by = as.Date(rownames(x.timeSeries)))
+   x.zoo <- zoo(as.vector(x.vec), order.by = as.Date(rownames(x.timeSeries)))
    garchFit(~ garch(1,1), data = x.zoo, trace = FALSE)
 }
 
-   # An univariate "ts" object:
-   x.ts = as.ts(x.vec)
-   garchFit(~ garch(1,1), data = x.ts, trace = FALSE)
+# An univariate "ts" object:
+x.ts <- as.ts(x.vec)
+garchFit(~ garch(1,1), data = x.ts, trace = FALSE)
+
 
 ## MULTIVARIATE TIME SERIES INPUT:
-   # For multivariate data inputs the lhs formula must be specified ...
+##
+# For multivariate data inputs the lhs formula must be specified ...
 
-   # A numeric matrix binded with dummy random normal variates:
-   X.mat = cbind(GARCH11 = x.vec, R = rnorm(N))
-   garchFit(GARCH11 ~ garch(1,1), data = X.mat)
+# A numeric matrix binded with dummy random normal variates:
+X.mat <- cbind(GARCH11 = x.vec, R = rnorm(N))
+garchFit(GARCH11 ~ garch(1,1), data = X.mat)
 
-   # A multivariate timeSeries object with dummy dates:
-   X.timeSeries = dummyDailySeries(X.mat, units = c("GARCH11", "R"))
-   garchFit(GARCH11 ~ garch(1,1), data = X.timeSeries)
+# A multivariate timeSeries object with dummy dates:
+X.timeSeries <- dummyDailySeries(X.mat, units = c("GARCH11", "R"))
+garchFit(GARCH11 ~ garch(1,1), data = X.timeSeries)
 
 \dontrun{
    # A multivariate zoo object:
-   X.zoo = zoo(X.mat, order.by = as.Date(rownames(x.timeSeries)))
+   X.zoo <- zoo(X.mat, order.by = as.Date(rownames(x.timeSeries)))
    garchFit(GARCH11 ~ garch(1,1), data = X.zoo)
 }
 
-   # A multivariate "mts" object:
-   X.mts = as.ts(X.mat)
-   garchFit(GARCH11 ~ garch(1,1), data = X.mts)
+# A multivariate "mts" object:
+X.mts <- as.ts(X.mat)
+garchFit(GARCH11 ~ garch(1,1), data = X.mts)
+
 
 ## MODELING THE PERCENTUAL SPI/SBI SPREAD FROM LPP BENCHMARK:
 
-   stopifnot(require("timeSeries"))
-   X.timeSeries = as.timeSeries(data(LPP2005REC))
-   X.mat = as.matrix(X.timeSeries)
-   \dontrun{X.zoo = zoo(X.mat, order.by = as.Date(rownames(X.mat)))}
-   X.mts = ts(X.mat)
-   garchFit(100*(SPI - SBI) ~ garch(1,1), data = X.timeSeries)
-   # The remaining are not yet supported ...
-   # garchFit(100*(SPI - SBI) ~ garch(1,1), data = X.mat)
-   # garchFit(100*(SPI - SBI) ~ garch(1,1), data = X.zoo)
-   # garchFit(100*(SPI - SBI) ~ garch(1,1), data = X.mts)
+stopifnot(require("timeSeries"))
+X.timeSeries <- as.timeSeries(data(LPP2005REC))
+X.mat <- as.matrix(X.timeSeries)
+\dontrun{X.zoo <- zoo(X.mat, order.by = as.Date(rownames(X.mat)))}
+X.mts <- ts(X.mat)
+garchFit(100*(SPI - SBI) ~ garch(1,1), data = X.timeSeries)
+# The remaining are not yet supported ...
+# garchFit(100*(SPI - SBI) ~ garch(1,1), data = X.mat)
+# garchFit(100*(SPI - SBI) ~ garch(1,1), data = X.zoo)
+# garchFit(100*(SPI - SBI) ~ garch(1,1), data = X.mts)
 
 ## MODELING HIGH/LOW RETURN SPREADS FROM MSFT PRICE SERIES:
 
-   X.timeSeries = MSFT
-   garchFit(Open ~ garch(1,1), data = returns(X.timeSeries))
-   garchFit(100*(High-Low) ~ garch(1,1), data = returns(X.timeSeries))
+X.timeSeries <- MSFT
+garchFit(Open ~ garch(1,1), data = returns(X.timeSeries))
+garchFit(100*(High-Low) ~ garch(1,1), data = returns(X.timeSeries))
 
 ## GO-GARCH Modelling  (not yet!!) % FIXME
 
-  ## data(DowJones30, package="fEcofin") # no longer exists
-  ## X = returns(as.timeSeries(DowJones30)); head(X)
-  ## N = 5; ans = .gogarchFit(data = X[, 1:N], trace = FALSE); ans
-  ## ans@h.t
-
+## data(DowJones30, package="fEcofin") # no longer exists
+## X <- returns(as.timeSeries(DowJones30)); head(X)
+## N <- 5; ans <- .gogarchFit(data = X[, 1:N], trace = FALSE); ans
+## ans@h.t
 }
 
 \keyword{models}

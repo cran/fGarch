@@ -33,7 +33,7 @@ To report bugs visit [Rmetrics](https://r-forge.r-project.org/projects/rmetrics/
 # Documentation
 
 You can view the documentation of `fGarch` at
-[fGarchDoc](https://geobosh.github.io/fGarchDoc/)
+[fGarchDoc](https://geobosh.github.io/fGarchDoc/) (rendered with pkgdown)
 or download the
 [reference manual](https://cran.r-project.org/package=fGarch/fGarch.pdf)
 of the latest release from CRAN.

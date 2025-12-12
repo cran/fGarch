@@ -8,19 +8,24 @@
 \concept{GARCH model}
 \concept{APARCH model}
 
+\concept{ARMA-GARCH model}
+\concept{ARMA-APARCH model}
+
 \concept{skew distribution}
 \concept{fit skew distribution}
 
 \concept{volatility}
 
 
-
 \title{Modelling heterskedasticity in financial time series}
 
 \description{
 
-  The Rmetrics \pkg{fGarch} package is a collection of functions to
+  The Rmetrics package \pkg{fGarch} is a collection of functions to
   analyze and model heteroskedastic behavior in financial time series.
+  The website \url{https://geobosh.github.io/fGarchDoc/} contains the
+  documentation of the package with a reference section in which the
+  functions are grouped by topic.
 
 }
 
@@ -32,13 +37,13 @@ Martin Maechler [ctb] (<https://orcid.org/0000-0002-8685-9910>),
 Chris Boudt [ctb]
 Pierre Chausse [ctb],
 Michal Miklovac [ctb],
-Georgi N. Boshnakov [cre, ctb]
+Georgi N. Boshnakov [cre, aut]
 
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 }
 
 % \details{
-%   
+% 
 % }
 
 \section{1 Introduction}{
@@ -101,7 +106,6 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
     \code{\link{garchFit}} \tab fits the parameters of a GARCH process
   }
     
-    
   \subsection{Extractor Functions:}{
     
     \tabular{ll}{
@@ -114,18 +118,14 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
   }
 }
 
-
 \section{4 Forecasting}{
 
-  Functions to forcecast mean and variance of GARCH and APARCH
-  processes.
+  Functions to forecast mean and variance of GARCH and APARCH processes.
   
   \tabular{ll}{
     \code{\link{predict}} \tab forecasts from an object of class \code{"fGARCH"}
   }
-  
 }
-
 
 \section{5 Standardized distributions}{
 
@@ -164,18 +164,12 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
       \code{\link{absMoments}}  \tab computes absolute moments of these distribution
     }
   }
-  
 }
 
 \section{About Rmetrics}{
-
-    The \code{fGarch} Rmetrics package is written for educational 
-    support in teaching "Computational Finance and Financial Engineering" 
-    and licensed under the GPL.
-    
+  The \code{fGarch} Rmetrics package is written for educational support
+  in teaching \dQuote{Computational Finance and Financial Engineering}
+  and licensed under the GPL.
 }
-
-%  Diethelm Wuertz and Yohan Chalabi, with contributions from 
-%  Michal Miklovac, Pierre Chausse, and Chris Boudt.
 
 \keyword{package}

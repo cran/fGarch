@@ -25,7 +25,18 @@ No methods defined with class \code{"fUGARCHSPEC"} in the signature.
 }
 
 \note{
+
+  Was this class meant to replace \code{"fGARCHSPEC"}?
+  
   (GNB) This class seems to be meant for internal use by the package.
+
+  (GNB) Amendment: no, functions \code{.ugarchSpec} and
+        \code{.ugarchFit} are exported. \code{.ugarchFit} fits the model
+        from a spec, unlike \code{garchFit}.
+
+  TODO: There is something unfinished here. Check and sort out. See also
+        \code{\link{fUGARCHSPEC-class}}
+  
 }
 
 \seealso{

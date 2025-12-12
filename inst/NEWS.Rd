@@ -15,6 +15,29 @@
 \title{News for \R Package \pkg{fGarch}}
 \encoding{UTF-8}
 
+\section{CHANGES in fGarch VERSION 4052.93 (2024-12-12, svn r6482--r6544)}{
+  \itemize{
+
+    \item emphasised that the skew normal distribution in fGarch is
+    different from what is usually called skew normal distribution.
+    Similarly for the other skew distributions.
+
+    \item replaced a call to `warnings` (plural) with `warning`
+    (singular) in \code{garchSpec}. The old one was clearly a typo and
+    was not issuing the intended warning about the violation of the
+    stationarity condition for GARCH models.
+    
+    \item improved the layout of the reference section of the pkgdown
+    site.
+
+    \item edited the help page of class \code{"fGARCH"}. In particular,
+    added cross-references to the help pages of the individual methods.
+    
+
+  }
+}
+
+
 \section{CHANGES in fGarch VERSION 4033.92 (2024-03-26, svn r6481--r6481)}{
   \itemize{
 
@@ -25,7 +48,7 @@
     plot method for fitted GARCH objects can be of length greater than
     one.
 
-    \item add a link to the website created with pkgdown to file
+    \item added a link to the website created with pkgdown to file
     'DESCRIPTION'.
 
   }

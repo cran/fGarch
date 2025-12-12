@@ -17,7 +17,6 @@ absMoments(n, density = c("dnorm", "dged", "dstd"), \dots)
 }
 
 \arguments{
-
   \item{n}{
     the order of the absolute moment, can be a vector to compute
     several absolute moments at once.
@@ -29,7 +28,6 @@ absMoments(n, density = c("dnorm", "dged", "dstd"), \dots)
     parameters passed to the density function.
   }
 }
-
 
 \details{
 
@@ -44,7 +42,7 @@ absMoments(n, density = c("dnorm", "dged", "dstd"), \dots)
   Otherwise, numerical integration is used and an attribute is attached
   to the results to report an estimate of the error. Note that the
   density is assumed symmetric wihtout a check.
-  
+
 }
 
 \value{
@@ -52,13 +50,10 @@ absMoments(n, density = c("dnorm", "dged", "dstd"), \dots)
 }
 
 \references{
-    
 Fernandez C., Steel M.F.J. (2000); 
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
     Preprint, 31 pages. 
-    
 }
-
 
 \author{
   Diethelm Wuertz for the Rmetrics \R-port
@@ -68,9 +63,8 @@ Fernandez C., Steel M.F.J. (2000);
   \code{\link{ged}},
   \code{\link{std}}
 }
-\examples{
-## absMoment -
 
+\examples{
 absMoments(1, "dstd", nu = 6)
 absMoments(1, "dstd", nu = 600)
 absMoments(1, "dstd", nu = 60000)
@@ -88,7 +82,6 @@ absMoments(4, "dstd", nu = 4)
 
 absMoments(1, "dged", nu = 4)
 }
-
 
 \keyword{distribution}
 

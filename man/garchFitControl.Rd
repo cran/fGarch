@@ -53,7 +53,7 @@ garchFitControl(
 }
 
 \arguments{
-  % In general:
+  % in general:
 
   \item{llh}{
     \code{llh = c("filter", "internal", "testing")[1]},
@@ -245,7 +245,6 @@ garchFitControl(
     sense that a unit change in any element produces about a unit
     change in the scaled value.
   }
-
 }
 
 \value{
@@ -253,14 +252,12 @@ garchFitControl(
 }
 
 \author{
-
     Diethelm Wuertz for the Rmetrics \R-port,\cr
     R Core Team for the 'optim' \R-port,\cr
     Douglas Bates and Deepayan Sarkar for the 'nlminb' \R-port,\cr
     Bell-Labs for the underlying PORT Library,\cr
     Ladislav Luksan for the underlying Fortran SQP Routine, \cr
     Zhu, Byrd, Lu-Chen and Nocedal for the underlying L-BFGS-B Routine.
-
 }
 
 \seealso{

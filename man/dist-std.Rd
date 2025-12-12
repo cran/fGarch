@@ -9,7 +9,7 @@
 \concept{t-distribution}
 \concept{Student-t distribution}
 \concept{standardized Student t distribution}
-\concept{standardized Student t-distribution}
+\concept{standardized Student-t distribution}
 
 
 \title{Standardized Student-t distribution}
@@ -30,7 +30,6 @@ rstd(n, mean = 0, sd = 1, nu = 5)
 }
 
 \arguments{
-
   \item{x, q}{
     a numeric vector of quantiles.
   }
@@ -80,9 +79,7 @@ rstd(n, mean = 0, sd = 1, nu = 5)
   numeric vector
 }
 
-
 \references{
-   
 Fernandez C., Steel M.F.J. (2000); 
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
     Preprint, 31 pages. 

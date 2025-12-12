@@ -1,15 +1,17 @@
 Package: fGarch
 Title: Rmetrics - Autoregressive Conditional Heteroskedastic Modelling
-Version: 4033.92
+Version: 4052.93
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Yohan", "Chalabi", role = "aut")
 	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
-	   , person("Martin","Maechler", role="aut", email="maechler@stat.math.ethz.ch", comment = c(ORCID = "0000-0002-8685-9910"))
+	   , person("Martin","Maechler", role="aut", email="maechler@stat.math.ethz.ch",
+	            comment = c(ORCID = "0000-0002-8685-9910"))
 	   , person("Chris", "Boudt", role = "ctb")
 	   , person("Pierre", "Chausse", role = "ctb")
 	   , person("Michal", "Miklovac", role = "ctb")
 	   , person(given = c("Georgi", "N."), family = "Boshnakov", 
-                    role = c("aut", "cre"), email = "georgi.boshnakov@manchester.ac.uk") )
+                    role = c("aut", "cre"), email = "georgi.boshnakov@manchester.ac.uk",
+		    comment = c(ORCID = "0000-0003-2839-346X")) )
 Description: Analyze and model heteroskedastic behavior in financial time series.
 Imports: fBasics, timeDate, timeSeries, fastICA, Matrix (>= 1.5-0),
         cvar (>= 0.5), graphics, methods, stats, utils
@@ -17,18 +19,20 @@ Suggests: RUnit, tcltk, goftest
 LazyData: yes
 License: GPL (>= 2)
 URL: https://geobosh.github.io/fGarchDoc/ (doc),
-        https://www.rmetrics.org (devel)
-BugReports: https://r-forge.r-project.org/projects/rmetrics
+        https://CRAN.R-project.org/package=fGarch,
+        https://www.rmetrics.org
+BugReports: https://r-forge.r-project.org/tracker/?func=browse&group_id=156&atid=633
 NeedsCompilation: yes
-Packaged: 2024-03-26 12:06:25 UTC; georgi
+Packaged: 2025-12-12 08:32:03 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
   Yohan Chalabi [aut],
   Tobias Setz [aut],
-  Martin Maechler [aut] (<https://orcid.org/0000-0002-8685-9910>),
+  Martin Maechler [aut] (ORCID: <https://orcid.org/0000-0002-8685-9910>),
   Chris Boudt [ctb],
   Pierre Chausse [ctb],
   Michal Miklovac [ctb],
-  Georgi N. Boshnakov [aut, cre]
+  Georgi N. Boshnakov [aut, cre] (ORCID:
+    <https://orcid.org/0000-0003-2839-346X>)
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2024-03-26 15:30:02 UTC
+Date/Publication: 2025-12-12 09:20:02 UTC

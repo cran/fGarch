@@ -21,6 +21,9 @@
   Functions to compute density, distribution function, quantile function
   and to generate random variates for the skew generalized error
   distribution.
+  Note that there are different ways to define a skew GED
+  distribution, check section Details to see if this is the distribution
+  you want.
           
 }
 
@@ -32,47 +35,53 @@ rsged(n, mean = 0, sd = 1, nu = 2, xi = 1.5)
 }
 
 \arguments{
-
-  \item{mean, sd, nu, xi}{
-    location parameter \code{mean},
-    scale parameter \code{sd},
-    shape parameter \code{nu}, 
-    skewness parameter \code{xi}.
-  }
-  \item{n}{
-    the number of observations.
-  } 
-  \item{p}{
-    a numeric vector of probabilities.
-  }
   \item{x, q}{
     a numeric vector of quantiles.
   }
-  \item{log}{
-    a logical; if TRUE, densities are given as log densities.
+  \item{p}{
+    a numeric vector of probabilities.
   }
-    
+  \item{n}{
+    number of observations to simulate.
+  } 
+  \item{mean}{
+    location parameter.
+  }
+  \item{sd}{
+    scale parameter.
+  }
+  \item{nu}{
+    shape parameter.
+  }
+  \item{xi}{
+    skewness parameter, a positive number. \code{xi = 1} gives a
+    symmetric distribution (here normal).
+  }
+  \item{log}{
+    logical; if \code{TRUE}, densities are given as log densities.
+  }
 }
 
 \details{
 
-  The distribution is standardized as discussed in the reference by
-  Wuertz et al below.
+  Skewness is based on the scheme by Fernandez and Steel (2000) but with
+  different parameterisation as discussed by Wuertz et al (????), in
+  that the skewness (\code{xi}), degrees of freedom (\code{nu}), 
+  mean (\code{mean}) and standard deviation (\code{sd}) are independent
+  parameters.
+    
+  \code{dsged} computes the density,
+  \code{psged} the distribution function,
+  \code{qsged} the quantile function, and
+  \code{rsged} generates random deviates.
 
 }
 
 \value{
-
-    \code{d*} returns the density,
-    \code{p*} returns the distribution function,
-    \code{q*} returns the quantile function, and
-    \code{r*} generates random deviates, \cr
-    all values are numeric vectors.
-    
+  numeric vector
 }
 
 \references{
-
 Nelson D.B. (1991);
     \emph{Conditional Heteroscedasticity in Asset Returns: A New Approach},
     Econometrica, 59, 347--370.
@@ -95,6 +104,9 @@ Wuertz D., Chalabi Y. and Luksan L. (????);
 \seealso{
   \code{\link{sgedFit}} (fit),
   \code{\link{sgedSlider}} (visualize),
+
+  \code{\link{snorm}} (skew normal),
+  \code{\link{sstd}} (skew t)
 
   \code{\link{ged}} (symmetric GED)
 }

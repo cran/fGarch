@@ -17,101 +17,117 @@
 
 
 
-\title{Class "fGARCH"}
+\title{Class "fGARCH" - fitted ARMA-GARCH/APARCH models}
 
 \description{ 
 
-  The class 'fGARCH' represents a model of an heteroskedastic time
-  series process.
+  Class 'fGARCH' represents models fitted to heteroskedastic time
+  series, including ARCH, GARCH, APARCH, ARMA-GARCH and ARMA-APARCH
+  models.
 
 }
 
 \section{Objects from the Class}{
 
-  Objects can be created by calls of the function \code{garchFit}.
-  This object is a parameter estimate of an empirical GARCH process.
+  Objects from class \code{"fGARCH"} can be created by calls of the
+  function \code{\link{garchFit}}.
     
 }
 
 \section{Slots}{
   \describe{
 
-    \item{\code{call}:}{Object of class \code{"call"}: 
-      the call of the \code{garch} function.
+    \item{\code{call}:}{Object of class \code{"call"},
+      the call used to fit the model and create the object.
     } 
-    \item{\code{formula}:}{Object of class \code{"formula"}: 
-      a formula object specifying the mean and variance equations.
+    \item{\code{formula}:}{Object of class \code{"formula"},
+      a formula object representing the mean and variance equations.
     }
-    \item{\code{method}:}{Object of class \code{"character"}: 
+    \item{\code{method}:}{Object of class \code{"character"},
       a string denoting the optimization method, by default
-      \code{"Max Log-Likelihood Estimation"}. 
+      \code{"Max Log-Likelihood Estimation"}.
     }
-    \item{\code{data}:}{Object of class \code{"list"}: 
-      a list with one entry named \code{x}, containing the data of
-      the time series to be estimated, the same as given by the
-      input argument \code{series}.
+    \item{\code{data}:}{Object of class \code{"list"},
+      a list with one entry, \code{x}, containing the data of
+      the time series to which the model is fitted.
     }
-    \item{\code{fit}:}{Object of class \code{"list"}: 
+    \item{\code{fit}:}{Object of class \code{"list"},
       a list with the results from the parameter estimation. The entries
       of the list depend on the selected algorithm, see below.
     }
-    \item{\code{residuals}:}{Object of class \code{"numeric"}: 
-      a numeric vector with the (raw, unstandardized) residual values.
+    \item{\code{residuals}:}{Object of class \code{"numeric"},
+      the raw, unstandardized residuals.
     }
-    \item{\code{fitted}:}{Object of class \code{"numeric"}: 
-      a numeric vector with the fitted values.
+    \item{\code{fitted}:}{Object of class \code{"numeric"},
+      the fitted values.
     }
-    \item{\code{h.t}:}{Object of class \code{"numeric"}: 
-
-      a numeric vector with the conditional variances (\eqn{h_t =
-      \sigma_t^\delta}{h.t = sigma.t^delta}).
-
+    \item{\code{h.t}:}{Object of class \code{"numeric"},
+      the conditional variances (\eqn{h_t = \sigma_t^\delta}{h.t =
+      sigma.t^delta}).
     }
-    \item{\code{sigma.t}:}{Object of class \code{"numeric"}: 
-      a numeric vector with the conditional standard deviations.
+    \item{\code{sigma.t}:}{Object of class \code{"numeric"},
+      the conditional standard deviations.
     }
-    \item{\code{title}:}{Object of class \code{"character"}: 
+    \item{\code{title}:}{Object of class \code{"character"},
       a title string.
     }
-    \item{\code{description}:}{Object of class \code{"character"}: 
+    \item{\code{description}:}{Object of class \code{"character"},
       a string with a brief description.
     }
-    
   }
 }       
 
 
+% \item{volatility}{\code{signature(object = "fGARCH")}: 
+%   extracts conditional volatility from an object of class \code{"fGARCH"}.
+% }
 \section{Methods}{
+  
+  Besides the S4 methods described below, the are \code{"fGARCH"}
+  methods (S3) for \code{tsdiag} (\code{\link{tsdiag}}), VaR
+  (\code{\link{VaR}}), expected shortfall (\code{\link{ES}}), volatility
+  (\code{\link{volatility}}), and maybe others.
+  
   \describe{
     
     \item{plot}{\code{signature(x = "fGARCH", y = "missing")}: 
-      plots an object of class \code{"fGARCH"}.
+      plots an object of class \code{"fGARCH"}, see the
+      \code{\link[=plot,fGARCH,missing-method]{help page}} of the method
+      for details and options.
     }
     \item{show}{\code{signature(object = "fGARCH")}: 
-      prints an object of class \code{"fGARCH"}.
+      prints the object.
     }      
-    \item{summary}{\code{signature(object = "fGARCH")}: 
-      summarizes an object of class \code{"fGARCH"}.
+    \item{summary}{\code{signature(object = "fGARCH")}:
+      summarizes the object. The \code{\link[=summary-methods]{help
+      page}} of the \code{"fGARCH"} method gives details on the output,
+      as well as interpretation of the results.
     }
-    \item{predict}{\code{signature(object = "fGARCH")}: 
-      forecasts mean and volatility from an object of class \code{"fGARCH"}.
+    \item{predict}{\code{signature(object = "fGARCH")}:
+      Computes forecasts of the mean and some measures of risk (such as
+      volatility, value-at-risk and expected shortfall), see the
+      method's \code{\link[=predict-methods]{help page}} for full
+      details.
     }
-    \item{fitted}{\code{signature(object = "fGARCH")}: 
-      extracts fitted values from an object of class \code{"fGARCH"}.
+    \item{fitted}{\code{signature(object = "fGARCH")}:
+      extracts fitted values from the object
+      (\code{\link[=fitted-methods]{help page}}).
     }     
-    \item{residuals}{\code{signature(object = "fGARCH")}: 
-      extracts fresiduals from an object of class \code{"fGARCH"}.
+    \item{residuals}{\code{signature(object = "fGARCH")}:
+      returns residuals from the fitted model
+      (\code{\link[=residuals-methods]{help page}}).
     }
-    \item{volatility}{\code{signature(object = "fGARCH")}: 
-      extracts conditional volatility from an object of class \code{"fGARCH"}.
+    \item{coef}{\code{signature(object = "fGARCH")}:
+      extracts the estimated coefficients
+      (\code{\link[=coef-methods]{help page}}).
     }
-    \item{coef}{\code{signature(object = "fGARCH")}: 
-      extracts fitted coefficients from an object of class \code{"fGARCH"}.
-    }
-    \item{formula}{\code{signature(x = "fGARCH")}: 
-      extracts formula expression from an object of class \code{"fGARCH"}.
+    \item{formula}{\code{signature(x = "fGARCH")}:
+      extracts the formula expression, see the method's
+      \code{\link[=formula-methods]{help page}}.
     } 
-    
+    \item{update}{\code{signature(object = "fGARCH")}:
+      ...
+    }
   }
 }
 
@@ -129,6 +145,8 @@
 ## simulate a time series, fit a GARCH(1,1) model, and show it:
 x <- garchSim( garchSpec(), n = 500)
 fit <- garchFit(~ garch(1, 1), data = x, trace = FALSE)
+coef(fit)
+summary(fit)
 fit # == print(fit) and also == show(fit)
 }
 

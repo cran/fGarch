@@ -18,10 +18,9 @@ reference:
       - garchSim
       - dem2gbp
       - sp500dge
-  - title: "Fit models"
+  - title: "Fit GARCH-type models"
     contents:
       - garchFit
-      - tsdiag.fGARCH
       - .gogarchFit
       - garchKappa
       - garchSpec
@@ -34,6 +33,7 @@ reference:
       - "show,fGARCHSPEC-method"
   - title: "Exploring and computing on 'fGARCH' objects"
     contents:
+      - tsdiag.fGARCH
       - "plot,fGARCH,missing-method"
       - "summary-methods"
       - "summary,fGARCH-method"

@@ -18,10 +18,10 @@
 
   Functions to compute density, distribution function, quantile function
   and to generate random variates for the skew normal distribution.
+  Note that there are different ways to define a skew normal
+  distribution, check section Details to see if this is the distribution
+  you want.
 
-  The distribution is standardized as discussed in the reference by
-  Wuertz et al below.
-  
 }
 
 \usage{
@@ -37,19 +37,31 @@ rsnorm(n, mean = 0, sd = 1, xi = 1.5)
   \item{n}{the number of observations.} 
   \item{mean}{location parameter.}
   \item{sd}{scale parameter.}
-  \item{xi}{skewness parameter.}
+  \item{xi}{
+    skewness parameter, a positive number. \code{xi = 1} gives a
+    symmetric distribution (here normal).
+  }
   \item{log}{a logical; if TRUE, densities are given as log densities.}
 }
 
-
 \details{
 
-  \code{dsnorm} computed the density,
+  Skewness is based on the scheme by Fernandez and Steel (2000) but with
+  different parameterisation as discussed by Wuertz et al (????), in
+  that the skewness (\code{xi}),
+  mean (\code{mean}) and standard deviation (\code{sd}) are independent
+  parameters.
+  
+  Please note that there are different ways to define a 'skew normal
+  distribution'. In particular, the distribution discussed here is
+  different from what is usually referred to as 'skew normal
+  distribution' (see, for example, Azzalini 1985).
+
+  \code{dsnorm} computes the density,
   \code{psnorm} the distribution function,
   \code{qsnorm} the quantile function,
   and
   \code{rsnorm} generates random deviates.
-
 }
 
 \value{
@@ -57,16 +69,18 @@ rsnorm(n, mean = 0, sd = 1, xi = 1.5)
 }
 
 \references{
-  Fernandez C., Steel M.F.J. (2000); 
-    \emph{On Bayesian Modelling of Fat Tails and Skewness},
-    Preprint, 31 pages.
+Fernandez C., Steel M.F.J. (2000); 
+  \emph{On Bayesian Modelling of Fat Tails and Skewness},
+  Preprint, 31 pages.
 
-  Wuertz D., Chalabi Y. and Luksan L. (????);
-    \emph{Parameter estimation of ARMA  models with GARCH/APARCH errors: An R
-      and SPlus software implementation},
-    Preprint, 41 pages,
-    \url{https://github.com/GeoBosh/fGarchDoc/blob/master/WurtzEtAlGarch.pdf}
+Wuertz D., Chalabi Y. and Luksan L. (????);
+  \emph{Parameter estimation of ARMA  models with GARCH/APARCH errors: An R
+    and SPlus software implementation},
+  Preprint, 41 pages,
+  \url{https://github.com/GeoBosh/fGarchDoc/blob/master/WurtzEtAlGarch.pdf}
 
+A. Azzalini (1985). A class of distributions which includes the normal ones. 
+  Scand. J. Statist. 12, 171-178  
 }
 
 \author{
@@ -79,7 +93,6 @@ rsnorm(n, mean = 0, sd = 1, xi = 1.5)
 
   \code{\link{sstd}} (skew Student-t),
   \code{\link{sged}} (skew GED)
-
 }
 
 \examples{

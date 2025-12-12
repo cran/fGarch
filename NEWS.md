@@ -1,3 +1,19 @@
+## CHANGES in fGarch VERSION 4052.93 (2024-12-12, svn r6482–r6544)
+
+-   emphasised that the skew normal distribution in fGarch is different
+    from what is usually called skew normal distribution. Similarly for
+    the other skew distributions.
+
+- replaced a call to 'warnings' (plural) with 'warning' (singular, a
+    different function) in `garchSpec`. The old one was clearly a typo
+    and was not issuing the intended warning about the violation of
+    the stationarity condition for GARCH models.
+
+-   improved the layout of the reference section of the pkgdown site.
+
+-   edited the help page of class `"fGARCH"`. In particular, added
+    cross-references to the help pages of the individual methods.
+
 ## CHANGES in fGarch VERSION 4033.92 (2024-03-26, svn r6481–r6481)
 
 -   added VaR and ES plots to the `plot` method for fitted GARCH models.
@@ -5,7 +21,7 @@
 -   documented with examples that argument `which` of the plot method
     for fitted GARCH objects can be of length greater than one.
 
--   add a link to the website created with pkgdown to file
+-   added a link to the website created with pkgdown to file
     'DESCRIPTION'.
 
 ## CHANGES in fGarch VERSION 4032.91 (2024-02-02, svn r6436–r6479)
@@ -134,15 +150,14 @@ Fixed issue 6061 raised by William Scott, who also supplied examples.
 
 ### NEW FEATURES
 
--   Packages [<span
-    class="pkg">timeSeries</span>](https://CRAN.R-project.org/package=timeSeries),
-    [<span
-    class="pkg">timeDate</span>](https://CRAN.R-project.org/package=timeDate)
-    and [<span
-    class="pkg">fBasics</span>](https://CRAN.R-project.org/package=fBasics)
+-   Packages
+    [<span class="pkg">timeSeries</span>](https://CRAN.R-project.org/package=timeSeries),
+    [<span class="pkg">timeDate</span>](https://CRAN.R-project.org/package=timeDate)
+    and
+    [<span class="pkg">fBasics</span>](https://CRAN.R-project.org/package=fBasics)
     are no longer in `Depends`, but only in `Imports` and hence no
-    longer automatically attached to the `search()` path whenever <span
-    class="pkg">fGarch</span> is.
+    longer automatically attached to the `search()` path whenever
+    <span class="pkg">fGarch</span> is.
 
     This may require updates in your code, e.g., adding
 
@@ -159,9 +174,10 @@ Fixed issue 6061 raised by William Scott, who also supplied examples.
     good practice.
 
 -   Removed all `Depends:` entries and checked exactly which parts of
-    packages, notably <span class="pkg">fBasics</span>, <span
-    class="pkg">timeDate</span>, and <span
-    class="pkg">timeSeries</span>, are needed and imported only these.
+    packages, notably <span class="pkg">fBasics</span>,
+    <span class="pkg">timeDate</span>, and
+    <span class="pkg">timeSeries</span>, are needed and imported only
+    these.
 
 -   Eliminated warning about 'length &gt; 1' character formula in
     `garchFit()`, i.e., `.garchFit()`.
@@ -190,15 +206,15 @@ Fixed issue 6061 raised by William Scott, who also supplied examples.
 
 ### Misc
 
--   in ‘<span class="file">NAMESPACE</span>’ and ‘<span
-    class="file">R/methods-plot.R</span>’ renamed functions
+-   in ‘<span class="file">NAMESPACE</span>’ and
+    ‘<span class="file">R/methods-plot.R</span>’ renamed functions
     `.plot.garch.1`, ..., `.plot.garch.13` to `.plot.garch_1`, ...,
     `.plot.garch_13`.
 
 -   compressed datasets ‘<span class="file">data/dem2gbp.csv</span>’ and
-    ‘<span class="file">data/sp500dge.csv</span>’ to ‘<span
-    class="file">data/dem2gbp.csv.bz2</span>’ ‘<span
-    class="file">data/sp500dge.csv.bz2</span>’, respectively.
+    ‘<span class="file">data/sp500dge.csv</span>’ to
+    ‘<span class="file">data/dem2gbp.csv.bz2</span>’
+    ‘<span class="file">data/sp500dge.csv.bz2</span>’, respectively.
 
 ## CHANGES in fGarch, VERSION 3042.83 (2017-11-16, svn r...)
 
@@ -208,8 +224,8 @@ Fixed issue 6061 raised by William Scott, who also supplied examples.
 
 -   Incorporate fixes by CRAN team (Brian Ripley?)
 
--   Checks and adaptions for R 3.4.2, e.g., ‘<span
-    class="file">DESCRIPTION</span>’, ...
+-   Checks and adaptions for R 3.4.2, e.g.,
+    ‘<span class="file">DESCRIPTION</span>’, ...
 
 ## CHANGES in fGarch, VERSION 3010.82.1 (2016-08-14, CRAN team.)
 
@@ -218,9 +234,9 @@ Fixed issue 6061 raised by William Scott, who also supplied examples.
 -   in ‘<span class="file">NAMESPACE</span>’, import (selectively) from
     <span class="pkg">utils</span>.
 
--   changed a couple of calls to `Matrix()` from package <span
-    class="pkg">Matrix</span> and `fastICA()` from <span
-    class="pkg">fastICA</span> to the fully qualified forms
+-   changed a couple of calls to `Matrix()` from package
+    <span class="pkg">Matrix</span> and `fastICA()` from
+    <span class="pkg">fastICA</span> to the fully qualified forms
     `Matrix::Matrix()` and `fastICA::fastICA`.
 
 -   removed some flag settings in ‘<span class="file">Makevars</span>’.
@@ -234,5 +250,5 @@ Fixed issue 6061 raised by William Scott, who also supplied examples.
 ### ChangeLog
 
 -   Changes up to April 2013, by Yohan Chalabi, Diethelm Wuertz, Pierre
-    Chausse and Martin Maechler are all in file ‘<span
-    class="file">ChangeLog</span>’.
+    Chausse and Martin Maechler are all in file
+    ‘<span class="file">ChangeLog</span>’.

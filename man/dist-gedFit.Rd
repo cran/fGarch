@@ -15,19 +15,15 @@ gedFit(x, \dots)
 }
 
 \arguments{
-
   \item{x}{
     a numeric vector of quantiles.
   }
   \item{\dots}{
     parameters parsed to the optimization function \code{nlm}. 
   }
-    
 }
 
-
 \value{
-
   \code{gedFit} returns a list with the following components: 
   \item{par}{
     The best set of parameters found. 
@@ -50,9 +46,7 @@ gedFit(x, \dots)
   }
 }
 
-
 \references{
-
 Nelson D.B. (1991);
     \emph{Conditional Heteroscedasticity in Asset Returns: A New Approach},
     Econometrica, 59, 347--370.
@@ -60,9 +54,7 @@ Nelson D.B. (1991);
 Fernandez C., Steel M.F.J. (2000); 
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
     Preprint, 31 pages. 
-    
 }
-
 
 \author{
   Diethelm Wuertz for the Rmetrics \R-port
@@ -74,12 +66,10 @@ Fernandez C., Steel M.F.J. (2000);
 }
 
 \examples{
-## rged -
-   set.seed(1953)
-   r = rged(n = 1000)
-       
-## gedFit -
-   gedFit(r)
+set.seed(1953)
+r <- rged(n = 1000)
+
+gedFit(r)
 }
 
 \keyword{distribution}

@@ -6,6 +6,13 @@
 \alias{qsstd}
 \alias{rsstd}
 
+\concept{standardized skew Student-t distribution}
+\concept{skew Student-t distribution}
+\concept{skewed Student-t distribution}
+
+\concept{skew distribution}
+\concept{skewed distribution}
+
 
 \title{Skew Student-t distribution}
 
@@ -13,9 +20,11 @@
     
   Functions to compute density, distribution function, quantile function
   and to generate random variates for the skew Student-t distribution.
+  Note that there are different ways to define a skew-t
+  distribution, check section Details to see if this is the distribution
+  you want.
        
 }
-
 
 \usage{
 dsstd(x, mean = 0, sd = 1, nu = 5, xi = 1.5, log = FALSE)
@@ -23,7 +32,6 @@ psstd(q, mean = 0, sd = 1, nu = 5, xi = 1.5)
 qsstd(p, mean = 0, sd = 1, nu = 5, xi = 1.5)
 rsstd(n, mean = 0, sd = 1, nu = 5, xi = 1.5)
 }
-
 
 \arguments{
   \item{x, q}{
@@ -45,25 +53,26 @@ rsstd(n, mean = 0, sd = 1, nu = 5, xi = 1.5)
     shape parameter (degrees of freedom).
   }
   \item{xi}{
-    skewness parameter.
+    skewness parameter, a positive number. \code{xi = 1} gives a
+    symmetric distribution (here normal).
   }
   \item{log}{
     logical; if \code{TRUE}, densities are given as log densities.
   }
-    
 }
-
 
 \details{
 
-  The distribution is standardized as discussed in the reference by
-  Wuertz et al below.
-  
+  Skewness is based on the scheme by Fernandez and Steel (2000) but with
+  different parameterisation as discussed by Wuertz et al (????), in
+  that the skewness (\code{xi}), degrees of freedom (\code{nu}), 
+  mean (\code{mean}) and standard deviation (\code{sd}) are independent
+  parameters.
+    
   \code{dsstd} computes the density,
   \code{psstd} the distribution function,
   \code{qsstd} the quantile function, and
   \code{rsstd} generates random deviates.
-
 }
 
 \value{
@@ -71,7 +80,6 @@ rsstd(n, mean = 0, sd = 1, nu = 5, xi = 1.5)
 }
 
 \references{
-   
 Fernandez C., Steel M.F.J. (2000); 
     \emph{On Bayesian Modelling of Fat Tails and Skewness},
     Preprint, 31 pages. 
@@ -90,6 +98,9 @@ Wuertz D., Chalabi Y. and Luksan L. (????);
 \seealso{
   \code{\link{sstdFit}} (fit),
   \code{\link{sstdSlider}} (visualize)
+
+  \code{\link{snorm}} (skew normal),
+  \code{\link{sged}} (skew GED)
 }
 
 \examples{

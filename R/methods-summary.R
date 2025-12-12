@@ -195,16 +195,18 @@
 
 summary.fGARCH <- function(object) {
     res <- list(
-        show       = capture.output(show(object)),
+        show       = .prepare_GARCH_show(object),
         stat_tests = .fGARCH_show_stat_test(object),
         ics        = object@fit$ics )
     class(res) <- "summary_fGARCH"
-
+    
     res
 }
 
 print.summary_fGARCH <- function(x, ..., classic = FALSE) {
-    cat(x$show, sep = "\n")
+    # cat(x$show, sep = "\n")
+    .show_orig_body(x$show, prepare = FALSE)
+    cat("\n")
 
     cat("\nStandardised Residuals Tests:\n")
     if(classic)
@@ -231,7 +233,7 @@ setMethod(f = "summary", signature(object = "fGARCH"),
               ##    see .fGARCH_summary_body_orig()
               ## completely refactored and modified by Georgi Boshnakov (GNB)
               
-              res <- summary.fGARCH(object, ...)
+               res <- summary.fGARCH(object, ...)
 
               ## For compatibility, show the old summary when computing the
               ## object Note that the print method has 'classic = FALSE'

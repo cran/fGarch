@@ -13,7 +13,7 @@
 \description{
 
   Specifies an univariate ARMA-GARCH or ARMA-APARCH time series model.
-
+  
 }
 
 \usage{
@@ -24,19 +24,11 @@ garchSpec(model = list(), presample = NULL,
 
 \arguments{
 
-  \item{cond.dist}{
-    a character string naming the desired conditional distribution.
-    Valid values are \code{"norm"}, \code{"ged"}, \code{"std"}, 
-    \code{"snorm"}, \code{"sged"}, \code{"sstd"}. The default value 
-    is \code{"norm"}, the standard normal distribution.
-  }
-
   \item{model}{
     a list of GARCH model parameters, see section \sQuote{Details}.
     The default \code{model=list()} specifies Bollerslev's 
     GARCH(1,1) model with normal conditional distributed innovations.
   }   
-
   \item{presample}{
     a numeric three column matrix with start values for the series, 
     for the innovations, and for the conditional variances. For an 
@@ -44,7 +36,12 @@ garchSpec(model = list(), presample = NULL,
     max(m,n,p,q)+1, longer presamples are truncated. Note, all presamples
     are initialized by a normal-GARCH(p,q) process.
   }
-
+  \item{cond.dist}{
+    a character string naming the desired conditional distribution.
+    Valid values are \code{"norm"}, \code{"ged"}, \code{"std"}, 
+    \code{"snorm"}, \code{"sged"}, \code{"sstd"}. The default value 
+    is \code{"norm"}, the standard normal distribution.
+  }
   \item{rseed}{
     single integer argument, the seed for the intitialization of
     the random number generator for the innovations. If
@@ -55,10 +52,10 @@ garchSpec(model = list(), presample = NULL,
 
 \details{
 
-  The function \code{garchSpec} specifies a GARCH or APARCH time series
-  process which we can use for simulating artificial GARCH and/or APARCH
-  models. This is very useful for testing the GARCH parameter estimation
-  results, since your model parameters are known and well specified.
+  \code{garchSpec} specifies a GARCH or APARCH time series model which
+  can be used for simulating artificial GARCH and/or APARCH time
+  series. This is very useful for testing the GARCH parameter estimation
+  results, since the model parameters are known and well specified.
 
   Argument \code{model} is a list of model parameters. For the GARCH
   part of the model they are:
@@ -170,62 +167,60 @@ garchSpec(model = list(), presample = NULL,
 }
 
 \examples{
-## garchSpec -
+# Normal Conditional Distribution:
+spec = garchSpec()
+spec
 
-   # Normal Conditional Distribution:
-   spec = garchSpec()
-   spec
-   
-   # Skewed Normal Conditional Distribution:
-   spec = garchSpec(model = list(skew = 0.8), cond.dist = "snorm")
-   spec
-   
-   # Skewed GED Conditional Distribution:
-   spec = garchSpec(model = list(skew = 0.9, shape = 4.8), cond.dist = "sged")
-   spec
+# Skewed Normal Conditional Distribution:
+spec = garchSpec(model = list(skew = 0.8), cond.dist = "snorm")
+spec
+
+# Skewed GED Conditional Distribution:
+spec = garchSpec(model = list(skew = 0.9, shape = 4.8), cond.dist = "sged")
+spec
    
 ## More specifications ...
 
-   # Default GARCH(1,1) - uses default parameter settings
-   garchSpec(model = list())
-   
-   # ARCH(2) - use default omega and specify alpha, set beta=0!
-   garchSpec(model = list(alpha = c(0.2, 0.4), beta = 0))
-   
-   # AR(1)-ARCH(2) - use default mu, omega
-   garchSpec(model = list(ar = 0.5, alpha = c(0.3, 0.4), beta = 0))
-   
-   # AR([1,5])-GARCH(1,1) - use default garch values and subset ar[.]
-   garchSpec(model = list(mu = 0.001, ar = c(0.5,0,0,0,0.1)))
-   
-   # ARMA(1,2)-GARCH(1,1) - use default garch values
-   garchSpec(model = list(ar = 0.5, ma = c(0.3, -0.3)))  
-   
-   # GARCH(1,1) - use default omega and specify alpha/beta
-   garchSpec(model = list(alpha = 0.2, beta = 0.7))
-   
-   # GARCH(1,1) - specify omega/alpha/beta
-   garchSpec(model = list(omega = 1e-6, alpha = 0.1, beta = 0.8))
-   
-   # GARCH(1,2) - use default omega and specify alpha[1]/beta[2]
-   garchSpec(model = list(alpha = 0.1, beta = c(0.4, 0.4)))
-   
-   # GARCH(2,1) - use default omega and specify alpha[2]/beta[1]
-   garchSpec(model = list(alpha = c(0.12, 0.04), beta = 0.08))
-   
-   # snorm-ARCH(1) - use defaults with skew Normal
-   garchSpec(model = list(beta = 0, skew = 0.8), cond.dist = "snorm")
-   
-   # sged-GARCH(1,1) - using defaults with skew GED
-   garchSpec(model = list(skew = 0.93, shape = 3), cond.dist = "sged")
-   
-   # Taylor Schwert GARCH(1,1) - this belongs to the family of APARCH Models
-   garchSpec(model = list(delta = 1))
-   
-   # AR(1)-t-APARCH(2, 1) - a little bit more complex specification ...
-   garchSpec(model = list(mu = 1.0e-4, ar = 0.5, omega = 1.0e-6, 
-       alpha = c(0.10, 0.05), gamma = c(0, 0), beta = 0.8, delta = 1.8, 
-       shape = 4, skew = 0.85), cond.dist = "sstd")
+# Default GARCH(1,1) - uses default parameter settings
+garchSpec(model = list())
+
+# ARCH(2) - use default omega and specify alpha, set beta=0!
+garchSpec(model = list(alpha = c(0.2, 0.4), beta = 0))
+
+# AR(1)-ARCH(2) - use default mu, omega
+garchSpec(model = list(ar = 0.5, alpha = c(0.3, 0.4), beta = 0))
+
+# AR([1,5])-GARCH(1,1) - use default garch values and subset ar[.]
+garchSpec(model = list(mu = 0.001, ar = c(0.5,0,0,0,0.1)))
+
+# ARMA(1,2)-GARCH(1,1) - use default garch values
+garchSpec(model = list(ar = 0.5, ma = c(0.3, -0.3)))  
+
+# GARCH(1,1) - use default omega and specify alpha/beta
+garchSpec(model = list(alpha = 0.2, beta = 0.7))
+
+# GARCH(1,1) - specify omega/alpha/beta
+garchSpec(model = list(omega = 1e-6, alpha = 0.1, beta = 0.8))
+
+# GARCH(1,2) - use default omega and specify alpha[1]/beta[2]
+garchSpec(model = list(alpha = 0.1, beta = c(0.4, 0.4)))
+
+# GARCH(2,1) - use default omega and specify alpha[2]/beta[1]
+garchSpec(model = list(alpha = c(0.12, 0.04), beta = 0.08))
+
+# snorm-ARCH(1) - use defaults with skew Normal
+garchSpec(model = list(beta = 0, skew = 0.8), cond.dist = "snorm")
+
+# sged-GARCH(1,1) - using defaults with skew GED
+garchSpec(model = list(skew = 0.93, shape = 3), cond.dist = "sged")
+
+# Taylor Schwert GARCH(1,1) - this belongs to the family of APARCH Models
+garchSpec(model = list(delta = 1))
+
+# AR(1)-t-APARCH(2, 1) - a little bit more complex specification ...
+garchSpec(model = list(mu = 1.0e-4, ar = 0.5, omega = 1.0e-6, 
+    alpha = c(0.10, 0.05), gamma = c(0, 0), beta = 0.8, delta = 1.8, 
+    shape = 4, skew = 0.85), cond.dist = "sstd")
 }
 
 \keyword{models}

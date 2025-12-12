@@ -30,7 +30,6 @@ rged(n, mean = 0, sd = 1, nu = 2)
 }
 
 \arguments{
-  
   \item{x, q}{
     a numeric vector of quantiles.
   }
@@ -74,7 +73,6 @@ rged(n, mean = 0, sd = 1, nu = 2)
 }
 
 \references{
-
 Nelson D.B. (1991);
     \emph{Conditional Heteroscedasticity in Asset Returns: A New Approach},
     Econometrica, 59, 347--370.
@@ -89,7 +87,6 @@ Wuertz D., Chalabi Y. and Luksan L. (????);
     Preprint, 41 pages,
     \url{https://github.com/GeoBosh/fGarchDoc/blob/master/WurtzEtAlGarch.pdf}
 }
-
 
 \author{
   Diethelm Wuertz for the Rmetrics \R-port
@@ -123,7 +120,6 @@ Wuertz D., Chalabi Y. and Luksan L. (????);
    
    # Compute quantiles:
    round(qsged(psged(q = seq(-1, 5, by = 1))), digits = 6)
-       
 }
 
 \keyword{distribution}

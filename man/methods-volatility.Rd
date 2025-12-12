@@ -93,30 +93,29 @@
 
 \examples{
 ## Swiss Pension fund Index -
-   stopifnot(require("timeSeries")) # need package 'timeSeries'
-   x = as.timeSeries(data(LPP2005REC, package = "timeSeries"))
+stopifnot(require("timeSeries")) # need package 'timeSeries'
+x <- as.timeSeries(data(LPP2005REC, package = "timeSeries"))
 
-## garchFit
-   fit = garchFit(LPP40 ~ garch(1, 1), data = 100*x, trace = FALSE)
-   fit
+fit <- garchFit(LPP40 ~ garch(1, 1), data = 100*x, trace = FALSE)
+fit
 
-## volatility -
-   # Standard Deviation:
-   vola = volatility(fit, type = "sigma")
-   head(vola)
-   class(vola)
-   # Variance:
-   vola = volatility(fit, type = "h")
-   head(vola)
-   class(vola)
+## volatility
+## Standard Deviation:
+vola <- volatility(fit, type = "sigma")
+head(vola)
+class(vola)
+## Variance:
+vola <- volatility(fit, type = "h")
+head(vola)
+class(vola)
 
-## slot -
-   vola = slot(fit, "sigma.t")
-   head(vola)
-   class(vola)
-   vola = slot(fit, "h.t")
-   head(vola)
-   class(vola)
+## slot
+vola <- slot(fit, "sigma.t")
+head(vola)
+class(vola)
+vola <- slot(fit, "h.t")
+head(vola)
+class(vola)
 }
 
 \keyword{models}

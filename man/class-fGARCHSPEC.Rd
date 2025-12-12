@@ -75,9 +75,8 @@
 }
 
 \examples{
-## garchSpec -
-   spec = garchSpec()
-   spec # print() or show() it
+spec = garchSpec()
+spec
 }
 
 \keyword{programming}
